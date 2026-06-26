@@ -1,0 +1,606 @@
+"use client";
+
+import Link from "next/link";
+import Image from "next/image";
+import {
+  ArrowRight,
+  Leaf,
+  Sprout,
+  Recycle,
+  Stamp,
+  Truck,
+  FileText,
+  ShoppingBag,
+  CreditCard,
+  CalendarDays,
+  Tag,
+  Heart,
+} from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+import { Button } from "@/components/ui/button";
+import { WhatsAppButton } from "@/components/whatsapp-button";
+import { ProductCard } from "@/components/product-card";
+import { FaqAccordion } from "@/components/faq-accordion";
+import {
+  SectionHeading,
+  PricingTiers,
+  CtaBand,
+} from "@/components/sections";
+import {
+  FadeIn,
+  StaggerIn,
+  StaggerItem,
+  AnimatedHeadline,
+  AnimatedLine,
+  PulseBadge,
+  HoverCard,
+} from "@/components/ui/animate";
+import {
+  getAllSegments,
+  getFeaturedProducts,
+  getCaseStudies,
+  getFaqs,
+  getAllCategories,
+} from "@/lib/content";
+import { site } from "@/lib/site";
+import { Logo } from "@/components/logo";
+
+// Icon per product-category slug for the "Browse by category" grid.
+const categoryIcons: Record<string, LucideIcon> = {
+  "seed-paper": FileText,
+  "bags-sleeves": ShoppingBag,
+  "cards-stationery": CreditCard,
+  corporate: CalendarDays,
+  "tags-inserts": Tag,
+  event: Heart,
+};
+
+const clients = [
+  "Metro Pakistan", "PepsiCo", "Zong", "BKK", "3POL",
+  "PM International", "Dawlance", "Sapphire", "UNDP", "Nestlé",
+];
+
+const steps = [
+  { icon: Stamp, title: "Design & print", text: "We print your logo, colours and message on plantable seed paper." },
+  { icon: Leaf,  title: "Use it",         text: "Bags, tags, cards, calendars — it works like normal paper." },
+  { icon: Sprout, title: "Plant it",      text: "Pop it in soil, water it, and give it sunlight." },
+  { icon: Recycle, title: "It grows",    text: "Instead of waste, it becomes herbs and flowers." },
+];
+
+const clientWork = [
+  {
+    image: "/images/clients/client-metro-kit-flatlay.jpg",
+    brand: "Metro Pakistan",
+    type: "CSR Corporate Gift",
+    desc: "Seed paper tote bag, laptop sleeve, seed balls & planting guide for Metro's sustainability campaign.",
+  },
+  {
+    image: "/images/clients/client-pm-csr-box.jpg",
+    brand: "PM International",
+    type: "New Year CSR Gift",
+    desc: "Plantable calendar, gift bag & seed ball hamper — 'Happy New Year, Green Start' campaign.",
+  },
+  {
+    image: "/images/clients/client-3pol-calendar.jpg",
+    brand: "3POL by Rapidev",
+    type: "Seed Paper Calendar",
+    desc: "Custom-branded seed paper desk calendar with full planting instructions.",
+  },
+  {
+    image: "/images/clients/client-bkk-giftset.jpg",
+    brand: "BKK",
+    type: "New Year CSR Kit",
+    desc: "Full branded CSR gift set — seed balls, calendar, bottles and plantable accessories.",
+  },
+  {
+    image: "/images/clients/client-corporate-cards.jpg",
+    brand: "Dawlance · Parco · Standard Chartered",
+    type: "Branded Seed Paper Cards",
+    desc: "Plantable greeting cards for Dawlance, Standard Chartered, Parco, Agha Steel and Reon Energy.",
+  },
+  {
+    image: "/images/clients/client-cayano-bizcard.jpg",
+    brand: "Cayano — London",
+    type: "Plantable Business Card",
+    desc: "Custom seed paper business card for Cayano's Managing Director — made in Lahore, delivered to London.",
+  },
+];
+
+const ease = [0.22, 1, 0.36, 1] as const;
+
+export default function HomePage() {
+  const segments = getAllSegments();
+  const featured = getFeaturedProducts();
+  const caseStudies = getCaseStudies();
+  const faqs = getFaqs().slice(0, 6);
+  const categories = getAllCategories();
+
+  // Parallax for hero image — image moves at 30% of scroll speed
+  const heroRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
+  const heroImageY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+
+  return (
+    <>
+      {/* ──────────────────────────────────────────────────────────────
+          HERO — Full-bleed image, transparent nav, centered text
+          Pull -mt-16 to go behind the sticky transparent header
+      ────────────────────────────────────────────────────────────── */}
+      <section
+        ref={heroRef}
+        className="relative -mt-16 flex min-h-screen items-center justify-center overflow-hidden"
+      >
+        {/* Parallax image layer — CSS background for reliable full-bleed rendering */}
+        <motion.div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: "url('/images/hero-banner.jpg')",
+            backgroundSize: "cover",
+            backgroundPosition: "center 55%",
+            y: heroImageY,
+          }}
+        />
+        {/* Hidden Next.js Image so the browser preloads / CDN optimises it */}
+        <Image
+          src="/images/hero-banner.jpg"
+          alt=""
+          fill
+          priority
+          aria-hidden
+          className="invisible absolute"
+          sizes="100vw"
+        />
+
+        {/* Gradient overlays — readable text on any part of image */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/45 to-black/30" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-transparent" />
+
+        {/* ── Centered hero content ── */}
+        <div className="relative z-10 mx-auto max-w-4xl px-6 pt-20 pb-16 text-center">
+
+          {/* Eyebrow pill */}
+          <AnimatedLine delay={0.15}>
+            <div className="flex justify-center">
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-5 py-2 text-sm font-semibold text-white backdrop-blur-sm">
+                <Leaf className="h-4 w-4 text-green-400" />
+                Pakistan&apos;s first plantable seed-paper maker
+                <PulseBadge label="Lahore" />
+              </span>
+            </div>
+          </AnimatedLine>
+
+          {/* Headline — word-by-word reveal */}
+          <h1 className="mt-6 font-[family-name:var(--font-heading)] text-5xl font-bold leading-[1.06] tracking-tight text-white sm:text-6xl lg:text-7xl">
+            <AnimatedHeadline text="Seed paper that" delay={0.3} />
+            <br />
+            <AnimatedHeadline
+              text="grows."
+              delay={0.7}
+              className="italic text-green-400"
+            />
+          </h1>
+
+          {/* Subline */}
+          <AnimatedLine delay={1.05} className="mt-6 text-lg text-white/75 sm:text-xl max-w-2xl mx-auto leading-relaxed">
+            Custom plantable products for CSR campaigns, events, retail brands and
+            bulk paper supply — manufactured in Lahore with real seeds inside every sheet.
+          </AnimatedLine>
+
+          {/* CTAs */}
+          <AnimatedLine delay={1.25} className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+            <WhatsAppButton source="hero" label="Get a quote on WhatsApp" />
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="border-white/40 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20 hover:border-white/60"
+            >
+              <Link href="/sample-kit">
+                Request samples <ArrowRight className="h-4 w-4" />
+              </Link>
+            </Button>
+          </AnimatedLine>
+
+          {/* Stats strip */}
+          <AnimatedLine delay={1.45}>
+            <dl className="mt-12 flex flex-wrap justify-center gap-x-10 gap-y-5">
+              {[
+                { label: "MOQ from",     value: "300 units" },
+                { label: "Lead time",    value: "7–15 days" },
+                { label: "Made in",      value: site.city },
+                { label: "Seed options", value: "8+ varieties" },
+              ].map(({ label, value }) => (
+                <div key={label} className="text-center">
+                  <dt className="text-[11px] font-semibold uppercase tracking-widest text-white/50">
+                    {label}
+                  </dt>
+                  <dd className="mt-0.5 text-2xl font-bold text-white">{value}</dd>
+                </div>
+              ))}
+            </dl>
+          </AnimatedLine>
+        </div>
+
+        {/* Scroll cue */}
+        <motion.div
+          className="absolute bottom-8 left-1/2 -translate-x-1/2"
+          animate={{ y: [0, 9, 0] }}
+          transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <div className="flex h-9 w-6 items-start justify-center rounded-full border-2 border-white/40 pt-2">
+            <motion.div
+              className="h-1.5 w-1.5 rounded-full bg-white/70"
+              animate={{ opacity: [1, 0.3, 1] }}
+              transition={{ duration: 1.8, repeat: Infinity }}
+            />
+          </div>
+        </motion.div>
+      </section>
+
+      {/* ── CLIENT STRIP ── */}
+      <section className="border-y bg-background/95">
+        <div className="container-page py-5">
+          <div className="flex flex-wrap items-center justify-center gap-x-7 gap-y-3">
+            <span className="text-[11px] uppercase tracking-wider text-muted-foreground/55 mr-1">
+              Trusted by
+            </span>
+            {clients.map((c) => (
+              <motion.span
+                key={c}
+                className="text-sm font-semibold text-muted-foreground/65 hover:text-foreground transition-colors cursor-default"
+                whileHover={{ scale: 1.05 }}
+              >
+                {c}
+              </motion.span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── BROWSE BY CATEGORY — circular-icon grid, just under hero ── */}
+      <section className="section">
+        <div className="container-page">
+          <FadeIn>
+            <SectionHeading
+              eyebrow="View our popular"
+              title="Plantable paper categories"
+              subtitle="Every category is custom-made, seed-embedded and printed with your brand."
+              align="center"
+            />
+          </FadeIn>
+          <StaggerIn
+            className="mx-auto mt-12 grid max-w-4xl grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3"
+            delay={0.1}
+          >
+            {categories.map((cat) => {
+              const Icon = categoryIcons[cat.slug] ?? Leaf;
+              return (
+                <StaggerItem key={cat.slug}>
+                  <Link
+                    href={`/products/category/${cat.slug}`}
+                    className="group flex flex-col items-center text-center"
+                  >
+                    <span className="grid h-24 w-24 place-items-center rounded-full border-2 border-brand/40 bg-card text-brand transition duration-300 group-hover:-translate-y-1.5 group-hover:border-brand group-hover:bg-brand group-hover:text-white group-hover:shadow-lg group-hover:shadow-brand/20">
+                      <Icon className="h-9 w-9" strokeWidth={1.5} />
+                    </span>
+                    <span className="mt-4 font-[family-name:var(--font-heading)] text-base font-semibold group-hover:text-brand">
+                      {cat.name}
+                    </span>
+                  </Link>
+                </StaggerItem>
+              );
+            })}
+          </StaggerIn>
+          <FadeIn delay={0.2} className="mt-12 flex justify-center">
+            <Button asChild size="lg">
+              <Link href="/products">
+                View all products <ArrowRight className="h-4 w-4" />
+              </Link>
+            </Button>
+          </FadeIn>
+        </div>
+      </section>
+
+      {/* ── SEGMENTS ── */}
+      <section className="section bg-secondary/40">
+        <div className="container-page">
+          <FadeIn>
+            <SectionHeading
+              eyebrow="Who we work with"
+              title="Find your brief — we'll handle the rest"
+              subtitle="CSR campaigns, events, brand materials or bulk paper stock — each segment has its own products, MOQ and lead time. Start where you are."
+            />
+          </FadeIn>
+          <StaggerIn className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4" delay={0.1}>
+            {segments.map((s) => (
+              <StaggerItem key={s.slug}>
+                <HoverCard className="h-full">
+                  <Link
+                    href={`/${s.slug}`}
+                    className="group flex h-full flex-col rounded-2xl border bg-card p-7 transition"
+                  >
+                    <h3 className="font-[family-name:var(--font-heading)] text-xl font-bold">
+                      {s.label}
+                    </h3>
+                    <p className="mt-1 text-sm font-medium text-brand">{s.audience}</p>
+                    <p className="mt-3 flex-1 text-sm text-muted-foreground">{s.hook}</p>
+                    <span className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-foreground group-hover:gap-2">
+                      Explore <ArrowRight className="h-4 w-4 transition-all" />
+                    </span>
+                  </Link>
+                </HoverCard>
+              </StaggerItem>
+            ))}
+          </StaggerIn>
+        </div>
+      </section>
+
+      {/* ── HOW IT WORKS ── */}
+      <section className="section">
+        <div className="container-page">
+          <FadeIn>
+            <SectionHeading
+              eyebrow="What is plantable paper?"
+              title="Tree-free paper with seeds inside — plant it and it grows"
+              subtitle="Our seed paper is made from post-consumer and post-industrial paper. No new trees. When its job is done, it doesn't become waste — it becomes a plant."
+            />
+          </FadeIn>
+          <StaggerIn className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4" delay={0.1}>
+            {steps.map((step, i) => (
+              <StaggerItem key={step.title}>
+                <div className="rounded-2xl border bg-card p-6 h-full">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-full bg-brand/10 text-brand">
+                    <step.icon className="h-5 w-5" />
+                  </div>
+                  <p className="mt-4 text-xs font-bold text-brand">Step {i + 1}</p>
+                  <h3 className="mt-1 font-semibold">{step.title}</h3>
+                  <p className="mt-1 text-sm text-muted-foreground">{step.text}</p>
+                </div>
+              </StaggerItem>
+            ))}
+          </StaggerIn>
+        </div>
+      </section>
+
+      {/* ── FEATURED PRODUCTS ── */}
+      <section className="section bg-secondary/40">
+        <div className="container-page">
+          <FadeIn>
+            <div className="flex items-end justify-between gap-4">
+              <SectionHeading
+                eyebrow="Popular"
+                title="Start with these"
+                subtitle="Ready-made formats or fully custom bulk orders — we handle both."
+              />
+              <Button asChild variant="outline" className="hidden sm:inline-flex shrink-0">
+                <Link href="/products">All products <ArrowRight className="h-4 w-4" /></Link>
+              </Button>
+            </div>
+          </FadeIn>
+          <StaggerIn className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4" delay={0.1}>
+            {featured.map((p) => (
+              <StaggerItem key={p.slug} className="h-full">
+                <ProductCard product={p} />
+              </StaggerItem>
+            ))}
+          </StaggerIn>
+        </div>
+      </section>
+
+      {/* ── PETAL BAGS — two-column: image left, text + buttons right ── */}
+      <section className="section">
+        <div className="container-page">
+          <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
+            <FadeIn>
+              <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border bg-card">
+                <Image
+                  src="/images/products/petal-bags-wide.jpg"
+                  alt="Seed Paper & Petal Bags — colorful plantable bags in purple, peach, pink and blue, flower garden background by Boxit"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+              </div>
+            </FadeIn>
+            <FadeIn delay={0.12}>
+              <p className="eyebrow">Seed paper &amp; petal bags</p>
+              <h2 className="mt-3 font-[family-name:var(--font-heading)] text-3xl font-bold sm:text-4xl">
+                Colourful plantable bags, embedded with real petals
+              </h2>
+              <p className="mt-4 text-muted-foreground">
+                Handmade seed-paper gift bags in soft pastels — purple, peach,
+                pink and blue — flecked with marigold petals and embedded with
+                seeds. Branded with your logo, carried home by your customer, and
+                planted into flowers when they&apos;re done. The first offline ad
+                your customer keeps.
+              </p>
+              <ul className="mt-5 space-y-2 text-sm">
+                {[
+                  "Custom sizes, handles & brand-colour printing",
+                  "Seed-embedded, 100% biodegradable stock",
+                  "Made in Lahore — bulk lead times, no imports",
+                ].map((f) => (
+                  <li key={f} className="flex items-center gap-2">
+                    <Sprout className="h-4 w-4 shrink-0 text-brand" /> {f}
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+                <Button asChild size="lg">
+                  <Link href="/quote?product=custom-shopping-bags">
+                    Request a quote
+                  </Link>
+                </Button>
+                <Button asChild size="lg" variant="outline">
+                  <Link href="/plantable-brand-materials">
+                    Explore brand materials <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </Button>
+              </div>
+            </FadeIn>
+          </div>
+        </div>
+      </section>
+
+      {/* ── CLIENT WORK ── */}
+      <section className="section bg-secondary/40">
+        <div className="container-page">
+          <FadeIn>
+            <SectionHeading
+              eyebrow="Real projects"
+              title="Brands that turned gifts into growing things"
+              subtitle="From corporate CSR kits to personalised event giveaways — here's what plantable seed paper did for real campaigns."
+            />
+          </FadeIn>
+          <StaggerIn className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3" delay={0.1}>
+            {clientWork.map((cw) => (
+              <StaggerItem key={cw.brand}>
+                <HoverCard className="h-full">
+                  <div className="flex flex-col rounded-2xl border bg-card overflow-hidden h-full">
+                    <div className="relative h-52 w-full">
+                      <Image
+                        src={cw.image}
+                        alt={`${cw.brand} — ${cw.type}`}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                      />
+                    </div>
+                    <div className="p-5 flex flex-col flex-1">
+                      <p className="text-[11px] font-bold uppercase tracking-wide text-brand">{cw.type}</p>
+                      <h3 className="mt-1 font-[family-name:var(--font-heading)] font-bold text-base">{cw.brand}</h3>
+                      <p className="mt-2 text-sm text-muted-foreground flex-1">{cw.desc}</p>
+                    </div>
+                  </div>
+                </HoverCard>
+              </StaggerItem>
+            ))}
+          </StaggerIn>
+        </div>
+      </section>
+
+      {/* ── CASE STUDIES ── */}
+      <section className="section">
+        <div className="container-page">
+          <FadeIn>
+            <SectionHeading
+              eyebrow="Proof"
+              title="Campaigns that grew something real"
+              subtitle="Here is what plantable seed paper did for real CSR campaigns, events and brands."
+            />
+          </FadeIn>
+          <StaggerIn className="mt-10 grid gap-6 lg:grid-cols-3" delay={0.1}>
+            {caseStudies.map((cs) => (
+              <StaggerItem key={cs.slug}>
+                <HoverCard className="h-full">
+                  <Link
+                    href={`/work/${cs.slug}`}
+                    className="group flex flex-col rounded-2xl border bg-card p-6 h-full"
+                  >
+                    <p className="text-xs font-semibold uppercase tracking-wide text-brand">{cs.clientType}</p>
+                    <h3 className="mt-2 font-[family-name:var(--font-heading)] text-lg font-bold">{cs.client}</h3>
+                    <p className="mt-3 flex-1 text-sm text-muted-foreground">{cs.result}</p>
+                    {cs.quote && (
+                      <blockquote className="mt-4 border-l-2 border-brand pl-3 text-sm italic text-foreground">
+                        &ldquo;{cs.quote.text}&rdquo;
+                      </blockquote>
+                    )}
+                    <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold group-hover:gap-2">
+                      Read the story <ArrowRight className="h-4 w-4 transition-all" />
+                    </span>
+                  </Link>
+                </HoverCard>
+              </StaggerItem>
+            ))}
+          </StaggerIn>
+        </div>
+      </section>
+
+      {/* ── PRICING TIERS ── */}
+      <section className="section bg-secondary/40">
+        <div className="container-page">
+          <FadeIn>
+            <SectionHeading
+              eyebrow="How we work"
+              title="Pick a starting point, not a price list"
+              subtitle="We don't sell fixed SKUs — every project is custom. These are the three ways brands usually start with us."
+              align="center"
+            />
+          </FadeIn>
+          <FadeIn delay={0.15} className="mt-12">
+            <PricingTiers />
+          </FadeIn>
+        </div>
+      </section>
+
+      {/* ── SAMPLE KIT CTA ── */}
+      <section className="section bg-primary text-primary-foreground">
+        <div className="container-page grid items-center gap-10 lg:grid-cols-2">
+          <FadeIn>
+            <p className="text-sm font-semibold uppercase tracking-wide text-gold">The smartest first step</p>
+            <h2 className="mt-3 font-[family-name:var(--font-heading)] text-3xl font-bold sm:text-4xl">
+              Get a sample kit before you commit to bulk
+            </h2>
+            <p className="mt-4 text-primary-foreground/80">
+              Feel the seed paper, see the printing and finishing samples, and get a 15-minute consultation
+              on which format fits your brief. The kit cost is adjusted against your first bulk order.
+            </p>
+            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+              <Button asChild size="lg" variant="gold">
+                <Link href="/sample-kit">Request a sample kit</Link>
+              </Button>
+              <Button asChild size="lg" variant="outline"
+                className="border-primary-foreground/30 bg-transparent text-primary-foreground hover:bg-primary-foreground/10">
+                <Link href="/quote">Take the product quiz</Link>
+              </Button>
+            </div>
+          </FadeIn>
+          <FadeIn delay={0.15}>
+            <ul className="grid gap-3 rounded-2xl bg-primary-foreground/10 p-6">
+              {[
+                "Seed-paper + biodegradable stock swatches",
+                "Print, embossing & finishing examples",
+                "Bag, tag, card & sleeve formats",
+                "15-minute packaging consultation",
+                "Cost adjusted against your bulk order",
+              ].map((f) => (
+                <li key={f} className="flex items-center gap-2 text-sm">
+                  <Sprout className="h-4 w-4 text-gold shrink-0" /> {f}
+                </li>
+              ))}
+            </ul>
+          </FadeIn>
+        </div>
+      </section>
+
+      {/* ── FAQ ── */}
+      <section className="section bg-secondary/40">
+        <div className="container-page grid gap-10 lg:grid-cols-12">
+          <FadeIn className="lg:col-span-4">
+            <SectionHeading eyebrow="FAQ" title="Answers buyers ask first" />
+            <p className="mt-4 text-sm text-muted-foreground">
+              Still unsure? See the full list, or ask us directly.
+            </p>
+            <div className="mt-5 flex flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row">
+              <Button asChild variant="outline">
+                <Link href="/faq">See all FAQs</Link>
+              </Button>
+              <WhatsAppButton source="faq-teaser" label="Ask on WhatsApp" />
+            </div>
+          </FadeIn>
+          <FadeIn delay={0.1} className="lg:col-span-8">
+            <FaqAccordion items={faqs} />
+          </FadeIn>
+        </div>
+      </section>
+
+      <CtaBand />
+
+      <FadeIn className="flex items-center justify-center gap-2 pb-12 text-sm text-muted-foreground">
+        <Truck className="h-4 w-4" /> Nationwide delivery across Pakistan
+      </FadeIn>
+    </>
+  );
+}

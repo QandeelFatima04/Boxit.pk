@@ -1,0 +1,16 @@
+channel,campaign,landing_page,tagged_url
+instagram/paid_social,corporate-gifting,/corporate-gifting,https://boxit.pk/corporate-gifting?utm_source=instagram&utm_medium=paid_social&utm_campaign=corporate-gifting&utm_content=feed
+instagram/paid_social,sustainable-packaging,/sustainable-packaging,https://boxit.pk/sustainable-packaging?utm_source=instagram&utm_medium=paid_social&utm_campaign=sustainable-packaging&utm_content=feed
+instagram/paid_social,weddings-events,/weddings-events,https://boxit.pk/weddings-events?utm_source=instagram&utm_medium=paid_social&utm_campaign=weddings-events&utm_content=feed
+facebook/paid_social,corporate-gifting,/corporate-gifting,https://boxit.pk/corporate-gifting?utm_source=facebook&utm_medium=paid_social&utm_campaign=corporate-gifting&utm_content=feed
+facebook/paid_social,sustainable-packaging,/sustainable-packaging,https://boxit.pk/sustainable-packaging?utm_source=facebook&utm_medium=paid_social&utm_campaign=sustainable-packaging&utm_content=feed
+meta/retargeting,sample-kit,/sample-kit,https://boxit.pk/sample-kit?utm_source=meta&utm_medium=retargeting&utm_campaign=sample-kit&utm_content=carousel
+instagram/bio,always-on,/,https://boxit.pk/?utm_source=instagram&utm_medium=bio&utm_campaign=always-on&utm_content=linkinbio
+instagram/social,organic,/quote,https://boxit.pk/quote?utm_source=instagram&utm_medium=social&utm_campaign=organic&utm_content=story
+facebook/social,organic,/products,https://boxit.pk/products?utm_source=facebook&utm_medium=social&utm_campaign=organic&utm_content=post
+linkedin/social,organic,/corporate-gifting,https://boxit.pk/corporate-gifting?utm_source=linkedin&utm_medium=social&utm_campaign=organic&utm_content=post
+whatsapp/messaging,always-on,/sample-kit,https://boxit.pk/sample-kit?utm_source=whatsapp&utm_medium=messaging&utm_campaign=always-on&utm_content=status
+newsletter/email,monthly,/products,https://boxit.pk/products?utm_source=newsletter&utm_medium=email&utm_campaign=monthly&utm_content=header
+email/email,quote-followup,/quote,https://boxit.pk/quote?utm_source=email&utm_medium=email&utm_campaign=quote-followup&utm_content=cta
+qr/print,sample-kit-insert,/quote,https://boxit.pk/quote?utm_source=qr&utm_medium=print&utm_campaign=sample-kit-insert&utm_content=box
+partner/referral,partners,/,https://boxit.pk/?utm_source=partner&utm_medium=referral&utm_campaign=partners&utm_content=link
