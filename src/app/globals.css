@@ -159,3 +159,23 @@
     @apply py-16 sm:py-24;
   }
 }
+
+/* ── Logo marquee (auto-scrolling partner strip) ──
+   Track holds two identical copies of the row, so shifting by -50%
+   lands exactly one set over and loops seamlessly. */
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee-scroll 75s linear infinite;
+}
+.animate-marquee-reverse {
+  animation: marquee-scroll 75s linear infinite reverse;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee,
+  .animate-marquee-reverse {
+    animation: none;
+  }
+}

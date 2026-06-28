@@ -46,6 +46,7 @@ import {
 } from "@/lib/content";
 import { site } from "@/lib/site";
 import { Logo } from "@/components/logo";
+import { LogoMarquee } from "@/components/logo-marquee";
 
 // Icon per product-category slug for the "Browse by category" grid.
 const categoryIcons: Record<string, LucideIcon> = {
@@ -56,11 +57,6 @@ const categoryIcons: Record<string, LucideIcon> = {
   "tags-inserts": Tag,
   event: Heart,
 };
-
-const clients = [
-  "Metro Pakistan", "PepsiCo", "Zong", "BKK", "3POL",
-  "PM International", "Dawlance", "Sapphire", "UNDP", "Nestlé",
-];
 
 const steps = [
   { icon: Stamp, title: "Design & print", text: "We print your logo, colours and message on plantable seed paper." },
@@ -239,23 +235,20 @@ export default function HomePage() {
         </motion.div>
       </section>
 
-      {/* ── CLIENT STRIP ── */}
-      <section className="border-y bg-background/95">
-        <div className="container-page py-5">
-          <div className="flex flex-wrap items-center justify-center gap-x-7 gap-y-3">
-            <span className="text-[11px] uppercase tracking-wider text-muted-foreground/55 mr-1">
-              Trusted by
-            </span>
-            {clients.map((c) => (
-              <motion.span
-                key={c}
-                className="text-sm font-semibold text-muted-foreground/65 hover:text-foreground transition-colors cursor-default"
-                whileHover={{ scale: 1.05 }}
-              >
-                {c}
-              </motion.span>
-            ))}
-          </div>
+      {/* ── PARTNERS IN SUSTAINABILITY — logo wall ── */}
+      <section className="border-y bg-background">
+        <div className="container-page section">
+          <FadeIn>
+            <SectionHeading
+              eyebrow="Brands we work with"
+              title="Partners in sustainability"
+              subtitle="From global names to homegrown brands — these are some of the teams that chose plantable seed paper for their CSR gifts, events and brand materials."
+              align="center"
+            />
+          </FadeIn>
+          <FadeIn delay={0.1} className="mt-12">
+            <LogoMarquee />
+          </FadeIn>
         </div>
       </section>
 
