@@ -1,10 +1,10 @@
 export type NavLink = { label: string; href: string };
 
 export const solutionsNav: NavLink[] = [
+  { label: "Seed Paper Stock", href: "/seed-paper-stock" },
   { label: "CSR & Corporate Gifts", href: "/csr-corporate-gifts" },
   { label: "Plantable Brand Materials", href: "/plantable-brand-materials" },
   { label: "Weddings & Events", href: "/weddings-events" },
-  { label: "Seed Paper Stock", href: "/seed-paper-stock" },
 ];
 
 export const mainNav: NavLink[] = [

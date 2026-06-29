@@ -49,7 +49,53 @@ export const segments: SegmentPage[] = [
     },
   },
 
-  // ── 2. Plantable Brand Materials ─────────────────────────────────
+  // ── 2. Weddings & Events ──────────────────────────────────────────
+  {
+    slug: "weddings-events",
+    label: "Weddings & Events",
+    audience: "Wedding planners, event managers & families organising mehndi, nikah and corporate events",
+    heroHeadline: "Plantable invitations and giveaways your guests will remember — and grow.",
+    heroSub:
+      "Seed-paper invitations, envelopes, confetti and favour bags that guests plant after your event. An invitation that becomes flowers is one nobody throws away.",
+    pains: [
+      "Beautiful invitations that go in the bin the morning after the event",
+      "Wanting a unique, talked-about detail that photographs well on social",
+      "Plastic-free favour options that still feel premium and on-theme",
+    ],
+    offer:
+      "We help event planners create fully custom plantable invitations and giveaways — paper, print, finishing and packaging handled by one team.",
+    hook: "An invitation that grows after the wedding.",
+    productSlugs: [
+      "wedding-invitations",
+      "plantable-confetti",
+      "plantable-greeting-cards-set",
+      "seed-balls-jar",
+    ],
+    startingFrom: "Custom-quoted",
+    moq: "From 300 sets",
+    leadTime: "10–15 working days after design approval",
+    cta: {
+      label: "Request event samples on WhatsApp",
+      whatsappText:
+        "Hi Boxit, I'm planning a wedding/event and want plantable invitations or giveaways. Quantity: ___. Event date: ___. Please share samples and pricing.",
+    },
+    seo: {
+      seoTitle: "Plantable Wedding Invitations & Event Giveaways Pakistan — Boxit",
+      metaDescription:
+        "Seed-paper wedding invitations, confetti and giveaways guests can plant. Plastic-free, memorable event stationery custom printed in Pakistan.",
+      keywords: [
+        "plantable wedding invitations Pakistan",
+        "seed paper invitations",
+        "eco wedding favours",
+        "plantable confetti Pakistan",
+        "biodegradable event giveaways",
+        "plantable invitation cards Pakistan",
+        "seed paper wedding cards Lahore",
+      ],
+    },
+  },
+
+  // ── 3. Plantable Brand Materials ─────────────────────────────────
   {
     slug: "plantable-brand-materials",
     label: "Plantable Brand Materials",
@@ -93,52 +139,6 @@ export const segments: SegmentPage[] = [
         "eco hang tags fashion Pakistan",
         "seed paper price tags Pakistan",
         "biodegradable hang tags brand",
-      ],
-    },
-  },
-
-  // ── 3. Weddings & Events ──────────────────────────────────────────
-  {
-    slug: "weddings-events",
-    label: "Weddings & Events",
-    audience: "Wedding planners, event managers & families organising mehndi, nikah and corporate events",
-    heroHeadline: "Plantable invitations and giveaways your guests will remember — and grow.",
-    heroSub:
-      "Seed-paper invitations, envelopes, confetti and favour bags that guests plant after your event. An invitation that becomes flowers is one nobody throws away.",
-    pains: [
-      "Beautiful invitations that go in the bin the morning after the event",
-      "Wanting a unique, talked-about detail that photographs well on social",
-      "Plastic-free favour options that still feel premium and on-theme",
-    ],
-    offer:
-      "We help event planners create fully custom plantable invitations and giveaways — paper, print, finishing and packaging handled by one team.",
-    hook: "An invitation that grows after the wedding.",
-    productSlugs: [
-      "wedding-invitations",
-      "plantable-confetti",
-      "plantable-greeting-cards-set",
-      "seed-balls-jar",
-    ],
-    startingFrom: "Custom-quoted",
-    moq: "From 300 sets",
-    leadTime: "10–15 working days after design approval",
-    cta: {
-      label: "Request event samples on WhatsApp",
-      whatsappText:
-        "Hi Boxit, I'm planning a wedding/event and want plantable invitations or giveaways. Quantity: ___. Event date: ___. Please share samples and pricing.",
-    },
-    seo: {
-      seoTitle: "Plantable Wedding Invitations & Event Giveaways Pakistan — Boxit",
-      metaDescription:
-        "Seed-paper wedding invitations, confetti and giveaways guests can plant. Plastic-free, memorable event stationery custom printed in Pakistan.",
-      keywords: [
-        "plantable wedding invitations Pakistan",
-        "seed paper invitations",
-        "eco wedding favours",
-        "plantable confetti Pakistan",
-        "biodegradable event giveaways",
-        "plantable invitation cards Pakistan",
-        "seed paper wedding cards Lahore",
       ],
     },
   },
