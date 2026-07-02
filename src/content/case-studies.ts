@@ -17,6 +17,10 @@ export const caseStudies: CaseStudy[] = [
     result:
       "A full plantable CSR kit — seed-paper tote bag, laptop sleeve, seed balls and a planting guide — branded for Metro's sustainability team. A giveaway recipients could actually use, then plant.",
     image: "/images/clients/client-metro-kit-flatlay.jpg",
+    gallery: [
+      "/images/clients/client-metro-kit-flatlay.jpg",
+      "/images/clients/client-metro-flatlay.jpg",
+    ],
   },
   {
     slug: "corporate-plantable-cards",
@@ -29,6 +33,10 @@ export const caseStudies: CaseStudy[] = [
     result:
       "Custom plantable seed-paper greeting cards produced for Dawlance, Standard Chartered, Parco, Agha Steel and Reon Energy — branded corporate cards that recipients plant instead of bin.",
     image: "/images/clients/client-corporate-cards.jpg",
+    gallery: [
+      "/images/clients/client-corporate-cards.jpg",
+      "/images/products/greeting-cards-1.jpg",
+    ],
   },
   {
     slug: "cayano-plantable-business-card",
@@ -41,6 +49,10 @@ export const caseStudies: CaseStudy[] = [
     result:
       "A custom seed-paper business card for Cayano's Managing Director — designed and made in Lahore, delivered to London. Most business cards get binned; this one gets planted.",
     image: "/images/clients/client-cayano-bizcard.jpg",
+    gallery: [
+      "/images/clients/client-cayano-bizcard.jpg",
+      "/images/products/tags-bookmarks-1.jpg",
+    ],
   },
   {
     slug: "plantable-wedding-invitations",
@@ -53,5 +65,6 @@ export const caseStudies: CaseStudy[] = [
     result:
       "Seed-paper invitations and confetti for a Lahore wedding — a plastic-free suite that guests could plant after the event. (Private client; named on request with permission.)",
     image: "/images/products/wedding-cards-1.jpg",
+    gallery: ["/images/products/wedding-cards-1.jpg"],
   },
 ];

@@ -22,6 +22,7 @@ import { useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { WhatsAppButton } from "@/components/whatsapp-button";
 import { ProductCard } from "@/components/product-card";
+import { CaseStudyGallery } from "@/components/case-study-gallery";
 import { FaqAccordion } from "@/components/faq-accordion";
 import {
   SectionHeading,
@@ -494,6 +495,12 @@ export default function HomePage() {
                   >
                     <p className="text-xs font-semibold uppercase tracking-wide text-brand">{cs.clientType}</p>
                     <h3 className="mt-2 font-[family-name:var(--font-heading)] text-lg font-bold">{cs.client}</h3>
+                    {cs.gallery && cs.gallery.length > 0 && (
+                      <CaseStudyGallery
+                        images={cs.gallery}
+                        alt={`${cs.client} — plantable seed-paper work`}
+                      />
+                    )}
                     <p className="mt-3 flex-1 text-sm text-muted-foreground">{cs.result}</p>
                     {cs.quote && (
                       <blockquote className="mt-4 border-l-2 border-brand pl-3 text-sm italic text-foreground">

@@ -64,6 +64,8 @@ export type CaseStudy = {
   result: string;
   quote?: { text: string; author: string };
   image?: string;
+  /** Extra related images shown as a small gallery on the case-study tile. */
+  gallery?: string[];
   logo?: string;
   seo?: Seo;
 };
