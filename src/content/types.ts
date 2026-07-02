@@ -80,6 +80,10 @@ export type SegmentPage = {
   audience: string;
   heroHeadline: string;
   heroSub: string;
+  /** Landing image shown in the hero, relevant to the segment. */
+  heroImage: string;
+  /** Alt text for the hero image. */
+  heroImageAlt: string;
   pains: string[];
   offer: string;
   hook: string;

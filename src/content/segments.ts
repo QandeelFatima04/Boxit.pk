@@ -8,6 +8,9 @@ export const segments: SegmentPage[] = [
     audience: "HR, CSR, ESG & marketing teams at corporates and NGOs",
     heroHeadline:
       "Plantable corporate gifts and CSR campaign material your recipients will photograph, plant, and remember.",
+    heroImage: "/images/clients/client-corporate-cards.jpg",
+    heroImageAlt:
+      "Branded plantable seed-paper corporate greeting cards and CSR campaign material displayed on easels",
     heroSub:
       "Seed-paper calendars, branded gift boxes, greeting cards and seed balls — customised with your logo and campaign message. Don't just say your company supports sustainability; give people something they can grow.",
     pains: [
@@ -55,6 +58,9 @@ export const segments: SegmentPage[] = [
     label: "Weddings & Events",
     audience: "Wedding planners, event managers & families organising mehndi, nikah and corporate events",
     heroHeadline: "Plantable invitations and giveaways your guests will remember — and grow.",
+    heroImage: "/images/products/tags-bookmarks-2.jpg",
+    heroImageAlt:
+      "Elegant plantable seed-paper wedding invitation cards displayed on easels",
     heroSub:
       "Seed-paper invitations, envelopes, confetti and favour bags that guests plant after your event. An invitation that becomes flowers is one nobody throws away.",
     pains: [
@@ -102,6 +108,9 @@ export const segments: SegmentPage[] = [
     audience: "Fashion labels, cosmetics brands, handmade & D2C product businesses",
     heroHeadline:
       "Plantable hang tags, business cards, inserts and pennants that make your brand's sustainability visible — without a second vendor.",
+    heroImage: "/images/products/price-tags-1.jpg",
+    heroImageAlt:
+      "Custom plantable seed-paper hang tags and price tags printed with brand logos",
     heroSub:
       "Seed-paper hang tags, price tags, branded inserts, business cards and pennants printed with your logo. Your product touches a customer's hand — make sure the tag it wears is part of your brand story, not an afterthought.",
     pains: [
@@ -150,6 +159,9 @@ export const segments: SegmentPage[] = [
     audience: "Commercial printers, graphic designers, packaging converters and manufacturers",
     heroHeadline:
       "Wholesale plantable seed paper stock — A4 sheets, custom GSM, bulk quantities for your own production.",
+    heroImage: "/images/products/artistic-sheets-2.jpg",
+    heroImageAlt:
+      "Wholesale plantable seed-paper sheets in bulk, manufactured in Lahore",
     heroSub:
       "We manufacture seed-embedded paper in-house in Lahore. Buy raw sheets for your own printing, converting or client supply. Multiple GSM options, seasonal seed selection, and deckle-edge or cut-sheet formats available. No import delays — local lead times, local quality control.",
     pains: [

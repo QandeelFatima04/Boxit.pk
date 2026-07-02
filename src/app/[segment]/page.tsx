@@ -3,11 +3,10 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight, Check, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { WhatsAppButton } from "@/components/whatsapp-button";
 import { ProductCard } from "@/components/product-card";
+import { SegmentHero } from "@/components/segment-hero";
 import {
   SectionHeading,
-  TransparencyBlock,
   PricingTiers,
   Guarantees,
   CtaBand,
@@ -62,41 +61,8 @@ export default async function SegmentPage({
         ]}
       />
 
-      {/* Hero */}
-      <section className="bg-gradient-to-b from-secondary/60 to-background">
-        <div className="container-page py-16 sm:py-20">
-          <nav className="mb-6 text-sm text-muted-foreground">
-            <Link href="/" className="hover:text-brand">
-              Home
-            </Link>{" "}
-            / <span className="text-foreground">{s.label}</span>
-          </nav>
-          <p className="eyebrow">{s.audience}</p>
-          <h1 className="mt-4 max-w-3xl font-[family-name:var(--font-heading)] text-4xl font-bold leading-tight tracking-tight sm:text-5xl">
-            {s.heroHeadline}
-          </h1>
-          <p className="mt-5 max-w-2xl text-lg text-muted-foreground">
-            {s.heroSub}
-          </p>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <WhatsAppButton
-              source={`segment-${s.slug}`}
-              label={s.cta.label}
-              text={s.cta.whatsappText}
-            />
-            <Button asChild size="lg" variant="outline">
-              <Link href="/sample-kit">Order a sample kit</Link>
-            </Button>
-          </div>
-          <div className="mt-10 max-w-2xl">
-            <TransparencyBlock
-              startingFrom={s.startingFrom}
-              moq={s.moq}
-              leadTime={s.leadTime}
-            />
-          </div>
-        </div>
-      </section>
+      {/* Hero — full-screen landing with scroll parallax (client component) */}
+      <SegmentHero segment={s} />
 
       {/* Pains + offer */}
       <section className="section">
