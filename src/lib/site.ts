@@ -21,8 +21,7 @@ export const site = {
   country: "Pakistan",
   address: "Lahore, Pakistan", // TODO confirm full address
   social: {
-    instagram: "https://www.instagram.com/boxit.pk/",
-    instagramAlt: "https://www.instagram.com/boxit.pk.co/",
+    instagram: "https://www.instagram.com/boxit.pk_plantable_products/",
     facebook: "https://www.facebook.com/boxit.pk",
     linkedin: "https://www.linkedin.com/company/boxit-pk",
   },
