@@ -131,8 +131,7 @@ export function RfqForm({
           className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
         >
           <option value="" disabled>Select a range…</option>
-          <option value="under-100">Under 100 units</option>
-          <option value="100-500">100–500 units</option>
+          <option value="300-500">300–500 units</option>
           <option value="500-2000">500–2,000 units</option>
           <option value="2000-plus">2,000+ units</option>
           <option value="not-sure">Not sure yet</option>

@@ -40,7 +40,7 @@ const STEPS: Step[] = [
   {
     key: "quantity",
     question: "Roughly how many do you need?",
-    options: ["Under 100", "100–500", "500–2,000", "2,000+", "Not sure"],
+    options: ["300–500", "500–2,000", "2,000+", "Not sure"],
   },
   {
     key: "material",
