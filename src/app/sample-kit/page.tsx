@@ -7,8 +7,23 @@ import { formatPKR } from "@/lib/format";
 import { Guarantees } from "@/components/sections";
 import { ProductJsonLd } from "@/components/json-ld";
 import { getProduct } from "@/lib/content";
+import { FaqAccordion } from "@/components/faq-accordion";
+import { faqs } from "@/content/faqs";
 
 const kit = getProduct("sample-kit");
+
+// The questions a sample-kit buyer actually asks before ordering, pulled from
+// the site's real FAQ list (samples/refund, delivery, MOQ, pricing, location).
+const kitFaqQuestions = [
+  "Can I see samples?",
+  "How fast can you deliver?",
+  "What is the MOQ?",
+  "What is the price range?",
+  "Where is your office located?",
+];
+const kitFaqs = kitFaqQuestions
+  .map((q) => faqs.find((f) => f.question === q))
+  .filter((f): f is (typeof faqs)[number] => Boolean(f));
 
 export const metadata: Metadata = {
   title: kit?.seo?.seoTitle ?? "Sample Kit",
@@ -64,6 +79,11 @@ export default function SampleKitPage() {
             {kit.leadTime && (
               <p className="mt-3 text-sm text-muted-foreground">{kit.leadTime}</p>
             )}
+            <p className="mt-2 text-sm text-muted-foreground">
+              Ships nationwide across Pakistan. The kit cost is fully adjusted
+              against your bulk order — so it&apos;s a credit toward your first
+              run, not an extra spend.
+            </p>
           </div>
 
           <div className="rounded-3xl border bg-card p-8">
@@ -97,6 +117,21 @@ export default function SampleKitPage() {
             </p>
           </div>
           <Guarantees />
+
+          {kitFaqs.length > 0 && (
+            <div className="pt-4">
+              <h2 className="font-[family-name:var(--font-heading)] text-2xl font-bold">
+                Sample kit FAQs
+              </h2>
+              <p className="mt-2 text-sm text-muted-foreground">
+                Still deciding? Here&apos;s what buyers ask most before ordering a
+                kit.
+              </p>
+              <div className="mt-5">
+                <FaqAccordion items={kitFaqs} />
+              </div>
+            </div>
+          )}
         </div>
       </section>
     </>
