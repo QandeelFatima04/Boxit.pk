@@ -11,10 +11,15 @@ export function CaseStudyGallery({
   images,
   alt,
   interval = 3500,
+  fit = "cover",
+  className = "relative mt-4 aspect-[4/3] overflow-hidden rounded-lg border bg-secondary/30",
 }: {
   images: string[];
   alt: string;
   interval?: number;
+  /** How the image sits in its frame. "contain" shows the full image uncropped. */
+  fit?: "cover" | "contain";
+  className?: string;
 }) {
   const [active, setActive] = useState(0);
 
@@ -28,15 +33,17 @@ export function CaseStudyGallery({
 
   if (images.length === 0) return null;
 
+  const fitClass = fit === "contain" ? "object-contain" : "object-cover";
+
   return (
-    <div className="relative mt-4 aspect-[4/3] overflow-hidden rounded-lg border bg-secondary/30">
+    <div className={className}>
       {images.map((src, i) => (
         <Image
           key={src}
           src={src}
           alt={`${alt} — image ${i + 1}`}
           fill
-          className={`object-cover transition-opacity duration-700 ease-in-out ${
+          className={`${fitClass} transition-opacity duration-700 ease-in-out ${
             i === active ? "opacity-100" : "opacity-0"
           }`}
           sizes="(max-width: 1024px) 100vw, 33vw"

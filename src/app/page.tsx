@@ -127,36 +127,52 @@ const steps = [
 const clientWork = [
   {
     image: "/images/clients/client-metro-kit-flatlay.jpg",
+    gallery: [
+      "/images/clients/client-metro-kit-flatlay.jpg",
+      "/images/clients/client-metro-flatlay.jpg",
+      "/images/clients/client-metro-bag.jpg",
+    ],
     brand: "Metro Pakistan",
     type: "CSR Corporate Gift",
     desc: "Seed paper tote bag, laptop sleeve, seed balls & planting guide for Metro's sustainability campaign.",
   },
   {
     image: "/images/clients/client-pm-csr-box.jpg",
-    brand: "PM International",
+    gallery: ["/images/clients/client-pm-csr-box.jpg"],
+    brand: "Philip Morris International (PM)",
     type: "New Year CSR Gift",
     desc: "Plantable calendar, gift bag & seed ball hamper — 'Happy New Year, Green Start' campaign.",
   },
   {
-    image: "/images/clients/client-3pol-calendar.jpg",
-    brand: "3POL by Rapidev",
-    type: "Seed Paper Calendar",
-    desc: "Custom-branded seed paper desk calendar with full planting instructions.",
-  },
-  {
-    image: "/images/clients/client-bkk-giftset.jpg",
-    brand: "BKK",
-    type: "New Year CSR Kit",
-    desc: "Full branded CSR gift set — seed balls, calendar, bottles and plantable accessories.",
-  },
-  {
     image: "/images/clients/client-corporate-cards.jpg",
+    gallery: [
+      "/images/clients/client-corporate-cards.jpg",
+      "/images/clients/client-dawlance-ptc.jpg",
+    ],
     brand: "Dawlance · Parco · Standard Chartered",
     type: "Branded Seed Paper Cards",
     desc: "Plantable greeting cards for Dawlance, Standard Chartered, Parco, Agha Steel and Reon Energy.",
   },
   {
+    image: "/images/clients/client-bkk-giftset.jpg",
+    gallery: [
+      "/images/clients/client-bkk-giftset.jpg",
+      "/images/clients/client-bkk-seedballs.jpg",
+    ],
+    brand: "Bakhabar Kissan (BKK)",
+    type: "New Year CSR Kit",
+    desc: "Full branded CSR gift set — seed balls, calendar, bottles and plantable accessories.",
+  },
+  {
+    image: "/images/clients/client-3pol-calendar.jpg",
+    gallery: ["/images/clients/client-3pol-calendar.jpg"],
+    brand: "3POL by Rapidev",
+    type: "Seed Paper Calendar",
+    desc: "Custom-branded seed paper desk calendar with full planting instructions.",
+  },
+  {
     image: "/images/clients/client-cayano-bizcard.jpg",
+    gallery: ["/images/clients/client-cayano-bizcard.jpg"],
     brand: "Cayano — London",
     type: "Plantable Business Card",
     desc: "Custom seed paper business card for Cayano's Managing Director — made in Lahore, delivered to London.",
@@ -537,15 +553,12 @@ export default function HomePage() {
               <StaggerItem key={cw.brand}>
                 <HoverCard className="h-full">
                   <div className="flex flex-col rounded-2xl border bg-card overflow-hidden h-full">
-                    <div className="relative h-52 w-full">
-                      <Image
-                        src={cw.image}
-                        alt={`${cw.brand} — ${cw.type}`}
-                        fill
-                        className="object-cover"
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                      />
-                    </div>
+                    <CaseStudyGallery
+                      images={cw.gallery}
+                      alt={`${cw.brand} — ${cw.type}`}
+                      fit="cover"
+                      className="relative aspect-[4/3] w-full overflow-hidden bg-secondary/30"
+                    />
                     <div className="p-5 flex flex-col flex-1">
                       <p className="text-[11px] font-bold uppercase tracking-wide text-brand">{cw.type}</p>
                       <h3 className="mt-1 font-[family-name:var(--font-heading)] font-bold text-base">{cw.brand}</h3>
