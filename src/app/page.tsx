@@ -9,12 +9,11 @@ import {
   Recycle,
   Stamp,
   Truck,
-  FileText,
   ShoppingBag,
-  CreditCard,
   CalendarDays,
   Tag,
-  Heart,
+  Mail,
+  Gift,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
@@ -49,14 +48,73 @@ import { site } from "@/lib/site";
 import { Logo } from "@/components/logo";
 import { LogoMarquee } from "@/components/logo-marquee";
 
-// Icon per product-category slug for the "Browse by category" grid.
-const categoryIcons: Record<string, LucideIcon> = {
-  "seed-paper": FileText,
-  "bags-sleeves": ShoppingBag,
-  "cards-stationery": CreditCard,
-  corporate: CalendarDays,
-  "tags-inserts": Tag,
-  event: Heart,
+// Colour theme per category — drives the tinted card, gradient ring, photo and badge.
+// Full class strings (no interpolation) so Tailwind keeps them at build time.
+type CategoryTheme = {
+  card: string; // card gradient background
+  ring: string; // gradient ring around the photo circle
+  badge: string; // small accent badge gradient
+  link: string; // "Explore" link colour
+  image: string; // product photo shown inside the circle
+  badgeIcon: LucideIcon; // symbol inside the corner badge
+};
+const categoryThemes: Record<string, CategoryTheme> = {
+  "seed-paper": {
+    card: "from-emerald-50",
+    ring: "from-emerald-400 to-teal-500",
+    badge: "from-emerald-500 to-teal-600",
+    link: "text-emerald-600",
+    image: "/images/products/artistic-sheets-1.jpg",
+    badgeIcon: Sprout,
+  },
+  "bags-sleeves": {
+    card: "from-amber-50",
+    ring: "from-amber-400 to-orange-500",
+    badge: "from-amber-500 to-orange-600",
+    link: "text-amber-600",
+    image: "/images/products/petal-bags-colorful.jpg",
+    badgeIcon: ShoppingBag,
+  },
+  "cards-stationery": {
+    card: "from-sky-50",
+    ring: "from-sky-400 to-blue-500",
+    badge: "from-sky-500 to-blue-600",
+    link: "text-sky-600",
+    image: "/images/products/greeting-cards-1.jpg",
+    badgeIcon: Mail,
+  },
+  corporate: {
+    card: "from-violet-50",
+    ring: "from-violet-400 to-purple-500",
+    badge: "from-violet-500 to-purple-600",
+    link: "text-violet-600",
+    image: "/images/products/calendars-1.jpg",
+    badgeIcon: CalendarDays,
+  },
+  "tags-inserts": {
+    card: "from-rose-50",
+    ring: "from-rose-400 to-pink-500",
+    badge: "from-rose-500 to-pink-600",
+    link: "text-rose-600",
+    image: "/images/products/tags-bookmarks-1.jpg",
+    badgeIcon: Tag,
+  },
+  event: {
+    card: "from-teal-50",
+    ring: "from-teal-400 to-cyan-500",
+    badge: "from-teal-500 to-cyan-600",
+    link: "text-teal-600",
+    image: "/images/products/wedding-cards-1.jpg",
+    badgeIcon: Gift,
+  },
+};
+const defaultTheme: CategoryTheme = {
+  card: "from-emerald-50",
+  ring: "from-emerald-400 to-teal-500",
+  badge: "from-emerald-500 to-teal-600",
+  link: "text-emerald-600",
+  image: "/images/products/artistic-sheets-1.jpg",
+  badgeIcon: Leaf,
 };
 
 const steps = [
@@ -265,22 +323,48 @@ export default function HomePage() {
             />
           </FadeIn>
           <StaggerIn
-            className="mx-auto mt-12 grid max-w-4xl grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3"
+            className="mx-auto mt-12 grid max-w-5xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
             delay={0.1}
           >
             {categories.map((cat) => {
-              const Icon = categoryIcons[cat.slug] ?? Leaf;
+              const theme = categoryThemes[cat.slug] ?? defaultTheme;
+              const BadgeIcon = theme.badgeIcon;
               return (
                 <StaggerItem key={cat.slug}>
                   <Link
                     href={`/products/category/${cat.slug}`}
-                    className="group flex flex-col items-center text-center"
+                    className={`group flex h-full flex-col items-center rounded-2xl border border-black/5 bg-gradient-to-b ${theme.card} to-white p-8 text-center shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg`}
                   >
-                    <span className="grid h-24 w-24 place-items-center rounded-full border-2 border-brand/40 bg-card text-brand transition duration-300 group-hover:-translate-y-1.5 group-hover:border-brand group-hover:bg-brand group-hover:text-white group-hover:shadow-lg group-hover:shadow-brand/20">
-                      <Icon className="h-9 w-9" strokeWidth={1.5} />
-                    </span>
-                    <span className="mt-4 font-[family-name:var(--font-heading)] text-base font-semibold group-hover:text-brand">
+                    <div className="relative">
+                      <span
+                        className={`block h-28 w-28 rounded-full bg-gradient-to-br ${theme.ring} p-[3px] transition-transform duration-300 group-hover:scale-105`}
+                      >
+                        <span className="relative block h-full w-full overflow-hidden rounded-full bg-white">
+                          <Image
+                            src={theme.image}
+                            alt={cat.name}
+                            fill
+                            sizes="112px"
+                            className="object-cover"
+                          />
+                        </span>
+                      </span>
+                      <span
+                        className={`absolute -bottom-1 -right-1 grid h-9 w-9 place-items-center rounded-full bg-gradient-to-br ${theme.badge} text-white shadow-sm ring-4 ring-white`}
+                      >
+                        <BadgeIcon className="h-4 w-4" strokeWidth={2} />
+                      </span>
+                    </div>
+                    <h3 className="mt-5 font-[family-name:var(--font-heading)] text-lg font-bold">
                       {cat.name}
+                    </h3>
+                    <p className="mt-2 line-clamp-2 text-sm text-muted-foreground">
+                      {cat.description}
+                    </p>
+                    <span
+                      className={`mt-4 inline-flex items-center gap-1 text-sm font-semibold ${theme.link} transition-all group-hover:gap-2`}
+                    >
+                      Explore <ArrowRight className="h-4 w-4" />
                     </span>
                   </Link>
                 </StaggerItem>
