@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { Check, Sprout, Truck, Package } from "lucide-react";
 import { AddToQuoteButton } from "@/components/add-to-cart-button";
 import { WhatsAppButton } from "@/components/whatsapp-button";
+import { EstimatorButton } from "@/components/estimator-button";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ProductCard } from "@/components/product-card";
@@ -177,6 +178,7 @@ export default async function ProductPage({
                   Request a quote
                 </Link>
               </Button>
+              <EstimatorButton />
               <WhatsAppButton
                 source={`product-${product.slug}`}
                 label="Get a quote on WhatsApp"

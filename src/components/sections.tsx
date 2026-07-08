@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Check, ShieldCheck } from "lucide-react";
+import { Calculator, Check, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { WhatsAppButton } from "@/components/whatsapp-button";
 import { getPricingTiers, guarantees } from "@/lib/content";
@@ -156,6 +156,16 @@ export function CtaBand({
               <WhatsAppButton source="cta-band" text={whatsappText} />
               <Button asChild size="lg" variant="gold">
                 <Link href="/sample-kit">Order a sample kit</Link>
+              </Button>
+              <Button
+                asChild
+                size="lg"
+                variant="outline"
+                className="border-primary-foreground/30 bg-transparent text-primary-foreground hover:bg-primary-foreground/10"
+              >
+                <Link href="/estimator">
+                  <Calculator className="h-4 w-4" /> Estimate cost
+                </Link>
               </Button>
             </div>
           </div>

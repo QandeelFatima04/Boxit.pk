@@ -41,6 +41,16 @@ export default async function QuotePage({
           a few questions and we&apos;ll come back with material recommendations,
           MOQ, timeline and pricing.
         </p>
+        <p className="mt-3 text-sm text-muted-foreground">
+          Want a ballpark first?{" "}
+          <a
+            href="/estimator"
+            className="font-semibold text-brand underline underline-offset-4"
+          >
+            Try the instant cost estimator
+          </a>
+          .
+        </p>
 
         <Tabs
           defaultValue={defaultBuyerType || productName ? "form" : "quiz"}

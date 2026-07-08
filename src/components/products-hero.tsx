@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { Calculator } from "lucide-react";
 import { AnimatedHeadline, AnimatedLine } from "@/components/ui/animate";
 
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -269,6 +270,12 @@ export function ProductsHero() {
               className="inline-flex items-center justify-center rounded-full bg-brand px-7 py-3 text-sm font-semibold text-white transition hover:opacity-90"
             >
               Request a quote
+            </Link>
+            <Link
+              href="/estimator"
+              className="inline-flex items-center justify-center gap-2 rounded-full border px-7 py-3 text-sm font-semibold transition hover:bg-muted"
+            >
+              <Calculator className="h-4 w-4" /> Estimate cost
             </Link>
             <Link
               href="/sample-kit"

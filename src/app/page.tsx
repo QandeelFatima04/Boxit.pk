@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import {
   ArrowRight,
+  Calculator,
   Leaf,
   Sprout,
   Recycle,
@@ -260,6 +261,16 @@ export default function HomePage() {
           {/* CTAs */}
           <AnimatedLine delay={1.25} className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
             <WhatsAppButton source="hero" label="Get a quote on WhatsApp" />
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="border-white/40 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20 hover:border-white/60"
+            >
+              <Link href="/estimator">
+                <Calculator className="h-4 w-4" /> Estimate cost
+              </Link>
+            </Button>
             <Button
               asChild
               size="lg"

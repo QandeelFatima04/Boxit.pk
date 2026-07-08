@@ -21,6 +21,7 @@ export const footerNav = {
   solutions: solutionsNav,
   explore: [
     { label: "Products", href: "/products" },
+    { label: "Cost Estimator", href: "/estimator" },
     { label: "Sample Kit", href: "/sample-kit" },
     { label: "Our Work", href: "/work" },
     { label: "Request a Quote", href: "/quote" },

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
-import { Menu, ShoppingBag } from "lucide-react";
+import { Calculator, Menu, ShoppingBag } from "lucide-react";
 import { Logo } from "@/components/logo";
 import { Button } from "@/components/ui/button";
 import {
@@ -107,6 +107,21 @@ export function SiteHeader() {
           <Button
             asChild
             size="sm"
+            variant="outline"
+            className={`hidden lg:inline-flex transition-all ${
+              isGlass
+                ? "border-white/40 bg-white/10 text-white hover:bg-white/20 hover:border-white/60"
+                : ""
+            }`}
+          >
+            <Link href="/estimator">
+              <Calculator className="h-4 w-4" /> Estimator
+            </Link>
+          </Button>
+
+          <Button
+            asChild
+            size="sm"
             className={`hidden sm:inline-flex transition-all ${
               isGlass
                 ? "bg-white text-black hover:bg-white/90 border-0 shadow-none"
@@ -150,7 +165,12 @@ export function SiteHeader() {
                     {link.label}
                   </Link>
                 ))}
-                <Button asChild className="mt-4">
+                <Button asChild variant="outline" className="mt-4">
+                  <Link href="/estimator" onClick={() => setOpen(false)}>
+                    <Calculator className="h-4 w-4" /> Estimate cost
+                  </Link>
+                </Button>
+                <Button asChild className="mt-2">
                   <Link href="/quote" onClick={() => setOpen(false)}>Request a quote</Link>
                 </Button>
               </nav>

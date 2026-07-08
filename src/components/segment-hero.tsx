@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight, Sprout } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { WhatsAppButton } from "@/components/whatsapp-button";
+import { EstimatorButton } from "@/components/estimator-button";
 import { FadeIn } from "@/components/ui/animate";
 import type { SegmentPage } from "@/content/types";
 
@@ -77,6 +78,7 @@ export function SegmentHero({ segment: s }: { segment: SegmentPage }) {
                 label={s.cta.label}
                 text={s.cta.whatsappText}
               />
+              <EstimatorButton />
               <Button asChild size="lg" variant="outline">
                 <Link href="/sample-kit">
                   Order a sample kit <ArrowRight className="h-4 w-4" />
