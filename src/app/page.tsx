@@ -117,10 +117,10 @@ const defaultTheme: CategoryTheme = {
 };
 
 const steps = [
-  { icon: Stamp, title: "Design & print", text: "We print your logo, colours and message on plantable seed paper." },
-  { icon: Leaf,  title: "Use it",         text: "Bags, tags, cards, calendars — it works like normal paper." },
-  { icon: Sprout, title: "Plant it",      text: "Pop it in soil, water it, and give it sunlight." },
-  { icon: Recycle, title: "It grows",    text: "Instead of waste, it becomes herbs and flowers." },
+  { icon: Stamp, title: "Design & print", text: "We print your logo, colours and message on plantable seed paper.", image: "/images/products/artistic-sheets-1.jpg" },
+  { icon: Leaf,  title: "Use it",         text: "Bags, tags, cards, calendars — it works like normal paper.", image: "/images/products/product-spread-grass.jpg" },
+  { icon: Sprout, title: "Plant it",      text: "Pop it in soil, water it, and give it sunlight.", image: "/images/steps/step-plant-it.jpg" },
+  { icon: Recycle, title: "It grows",    text: "Instead of waste, it becomes herbs and flowers.", image: "/images/steps/step-it-grows-6.jpg" },
 ];
 
 const clientWork = [
@@ -442,13 +442,24 @@ export default function HomePage() {
           <StaggerIn className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4" delay={0.1}>
             {steps.map((step, i) => (
               <StaggerItem key={step.title}>
-                <div className="rounded-2xl border bg-card p-6 h-full">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-full bg-brand/10 text-brand">
-                    <step.icon className="h-5 w-5" />
+                <div className="rounded-2xl border bg-card h-full overflow-hidden">
+                  <div className="relative aspect-[3/2] w-full overflow-hidden border-b bg-brand/5">
+                    <Image
+                      src={step.image}
+                      alt={`${step.title} — ${step.text}`}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    />
                   </div>
-                  <p className="mt-4 text-xs font-bold text-brand">Step {i + 1}</p>
-                  <h3 className="mt-1 font-semibold">{step.title}</h3>
-                  <p className="mt-1 text-sm text-muted-foreground">{step.text}</p>
+                  <div className="p-6">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-full bg-brand/10 text-brand">
+                      <step.icon className="h-5 w-5" />
+                    </div>
+                    <p className="mt-4 text-xs font-bold text-brand">Step {i + 1}</p>
+                    <h3 className="mt-1 font-semibold">{step.title}</h3>
+                    <p className="mt-1 text-sm text-muted-foreground">{step.text}</p>
+                  </div>
                 </div>
               </StaggerItem>
             ))}
