@@ -40,7 +40,6 @@ import {
 import {
   getAllSegments,
   getFeaturedProducts,
-  getCaseStudies,
   getFaqs,
   getAllCategories,
 } from "@/lib/content";
@@ -184,7 +183,6 @@ const ease = [0.22, 1, 0.36, 1] as const;
 export default function HomePage() {
   const segments = getAllSegments();
   const featured = getFeaturedProducts();
-  const caseStudies = getCaseStudies();
   const faqs = getFaqs().slice(0, 6);
   const categories = getAllCategories();
 
@@ -572,51 +570,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── CASE STUDIES ── */}
-      <section className="section">
-        <div className="container-page">
-          <FadeIn>
-            <SectionHeading
-              eyebrow="Proof"
-              title="Campaigns that grew something real"
-              subtitle="Here is what plantable seed paper did for real CSR campaigns, events and brands."
-            />
-          </FadeIn>
-          <StaggerIn className="mt-10 grid gap-6 lg:grid-cols-3" delay={0.1}>
-            {caseStudies.map((cs) => (
-              <StaggerItem key={cs.slug}>
-                <HoverCard className="h-full">
-                  <Link
-                    href={`/work/${cs.slug}`}
-                    className="group flex flex-col rounded-2xl border bg-card p-6 h-full"
-                  >
-                    <p className="text-xs font-semibold uppercase tracking-wide text-brand">{cs.clientType}</p>
-                    <h3 className="mt-2 font-[family-name:var(--font-heading)] text-lg font-bold">{cs.client}</h3>
-                    {cs.gallery && cs.gallery.length > 0 && (
-                      <CaseStudyGallery
-                        images={cs.gallery}
-                        alt={`${cs.client} — plantable seed-paper work`}
-                      />
-                    )}
-                    <p className="mt-3 flex-1 text-sm text-muted-foreground">{cs.result}</p>
-                    {cs.quote && (
-                      <blockquote className="mt-4 border-l-2 border-brand pl-3 text-sm italic text-foreground">
-                        &ldquo;{cs.quote.text}&rdquo;
-                      </blockquote>
-                    )}
-                    <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold group-hover:gap-2">
-                      Read the story <ArrowRight className="h-4 w-4 transition-all" />
-                    </span>
-                  </Link>
-                </HoverCard>
-              </StaggerItem>
-            ))}
-          </StaggerIn>
-        </div>
-      </section>
-
       {/* ── PRICING TIERS ── */}
-      <section className="section bg-secondary/40">
+      <section className="section">
         <div className="container-page">
           <FadeIn>
             <SectionHeading
