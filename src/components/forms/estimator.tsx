@@ -15,6 +15,7 @@ import {
   formats,
   materials,
   printingOptions,
+  sizes,
   finishingOptions,
 } from "@/content/estimator";
 
@@ -23,9 +24,10 @@ const selectClass =
 
 export function Estimator() {
   const [format, setFormat] = useState(formats[0].key);
-  const [quantity, setQuantity] = useState(300);
+  const [quantity, setQuantity] = useState(formats[0].minQty);
   const [material, setMaterial] = useState(materials[0].key);
-  const [printing, setPrinting] = useState(printingOptions[1].key);
+  const [printing, setPrinting] = useState(printingOptions[0].key);
+  const [size, setSize] = useState(sizes[0].key);
   const [finishing, setFinishing] = useState<string[]>([]);
 
   // Lead capture (optional — mirrors the quiz's "send me this" flow).
@@ -34,17 +36,36 @@ export function Estimator() {
   const [sent, setSent] = useState(false);
 
   const result = useMemo(
-    () => estimate({ format, quantity, material, printing, finishing }),
-    [format, quantity, material, printing, finishing],
+    () => estimate({ format, quantity, material, printing, size, finishing }),
+    [format, quantity, material, printing, size, finishing],
   );
 
   const fmt = formats.find((f) => f.key === format)!;
+  // "Biodegradable (no seeds)" only applies to raw paper sheets; everything else
+  // is plantable seed paper. Plantable is always available.
+  const availableMaterials = materials.filter(
+    (m) => m.key === "seed-paper" || fmt.allowNoSeeds,
+  );
   const materialLabel = materials.find((m) => m.key === material)?.label ?? "";
   const printingLabel = printingOptions.find((p) => p.key === printing)?.label ?? "";
+  const sizeLabel = sizes.find((s) => s.key === size)?.label ?? "";
   const finishingLabels = finishing
     .map((k) => finishingOptions.find((o) => o.key === k)?.label)
     .filter(Boolean)
     .join(", ");
+
+  // Switching product resets the quantity to that product's sheet MOQ.
+  function changeFormat(key: string) {
+    setFormat(key);
+    const next = formats.find((f) => f.key === key);
+    if (next) {
+      setQuantity(next.minQty);
+      // Drop the no-seeds material if the new product doesn't support it.
+      if (!next.allowNoSeeds && material !== "seed-paper") {
+        setMaterial("seed-paper");
+      }
+    }
+  }
 
   function toggleFinishing(key: string) {
     setFinishing((cur) =>
@@ -57,6 +78,7 @@ export function Estimator() {
     return [
       `Product: ${fmt.label}`,
       `Quantity: ${result.quantity.toLocaleString("en-PK")} ${result.unitNoun}`,
+      `Size: ${sizeLabel}`,
       `Material: ${materialLabel}`,
       `Printing: ${printingLabel}`,
       finishingLabels ? `Finishing: ${finishingLabels}` : `Finishing: none`,
@@ -84,6 +106,7 @@ export function Estimator() {
       message: `Estimator request —\n${buildSummary()}`,
       answers: {
         source: "estimator",
+        size: sizeLabel,
         material: materialLabel,
         printing: printingLabel,
         finishing: finishingLabels || "none",
@@ -105,7 +128,7 @@ export function Estimator() {
             id="e-format"
             className={selectClass}
             value={format}
-            onChange={(e) => setFormat(e.target.value)}
+            onChange={(e) => changeFormat(e.target.value)}
           >
             {formats.map((f) => (
               <option key={f.key} value={f.key}>
@@ -125,11 +148,36 @@ export function Estimator() {
           <Input
             id="e-qty"
             type="number"
-            min={1}
+            min={fmt.minQty}
             step={50}
             value={quantity}
-            onChange={(e) => setQuantity(Math.max(0, Number(e.target.value) || 0))}
+            onChange={(e) => setQuantity(Number(e.target.value) || 0)}
+            onBlur={(e) =>
+              setQuantity(Math.max(fmt.minQty, Number(e.target.value) || 0))
+            }
           />
+        </div>
+
+        <div className="space-y-2">
+          <Label>Size</Label>
+          <div className="grid grid-cols-2 gap-2">
+            {sizes.map((s) => {
+              const active = size === s.key;
+              return (
+                <button
+                  key={s.key}
+                  type="button"
+                  onClick={() => setSize(s.key)}
+                  className={cn(
+                    "rounded-lg border p-3 text-center text-sm font-medium transition hover:border-brand",
+                    active && "border-brand bg-secondary text-brand",
+                  )}
+                >
+                  {s.label}
+                </button>
+              );
+            })}
+          </div>
         </div>
 
         <div className="space-y-1.5">
@@ -140,7 +188,7 @@ export function Estimator() {
             value={material}
             onChange={(e) => setMaterial(e.target.value)}
           >
-            {materials.map((m) => (
+            {availableMaterials.map((m) => (
               <option key={m.key} value={m.key}>
                 {m.label}
               </option>
@@ -187,7 +235,10 @@ export function Estimator() {
                   >
                     {active && <Check className="h-3 w-3" />}
                   </span>
-                  {o.label}
+                  <span className="flex-1">{o.label}</span>
+                  <span className="text-xs font-normal text-muted-foreground">
+                    +{formatPKR(o.perUnitAdd)}/unit
+                  </span>
                 </button>
               );
             })}
@@ -212,8 +263,7 @@ export function Estimator() {
               </p>
               <p className="mt-1 text-sm text-muted-foreground">
                 ≈ {formatPKR(result.perUnitLow)}–{formatPKR(result.perUnitHigh)}{" "}
-                per {result.unitNoun.replace(/s$/, "")}, incl.{" "}
-                {formatPKR(result.setupFee)} one-time setup
+                per {result.unitNoun.replace(/s$/, "")}
               </p>
             </div>
 
