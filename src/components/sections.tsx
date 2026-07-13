@@ -92,7 +92,7 @@ export function PricingTiers() {
             {tier.priceHint}
           </p>
           <p className="mt-2 text-sm text-muted-foreground">{tier.positioning}</p>
-          <ul className="mt-5 space-y-2.5">
+          <ul className="mt-5 flex-1 space-y-2.5">
             {tier.includes.map((inc) => (
               <li key={inc} className="flex gap-2 text-sm">
                 <Check className="mt-0.5 h-4 w-4 shrink-0 text-brand" />

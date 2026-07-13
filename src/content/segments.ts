@@ -52,51 +52,51 @@ export const segments: SegmentPage[] = [
     },
   },
 
-  // ── 2. Weddings & Events ──────────────────────────────────────────
+  // ── 2. Seed Paper Stock ───────────────────────────────────────────
   {
-    slug: "weddings-events",
-    label: "Weddings & Events",
-    audience: "Wedding planners, event managers & families organising mehndi, nikah and corporate events",
-    heroHeadline: "Plantable invitations and giveaways your guests will remember — and grow.",
-    heroImage: "/images/products/tags-bookmarks-2.jpg",
+    slug: "seed-paper-stock",
+    label: "Seed Paper Stock",
+    audience: "Commercial printers, graphic designers, packaging converters and manufacturers",
+    heroHeadline:
+      "Wholesale plantable seed paper stock — A4 sheets, custom GSM, bulk quantities for your own production.",
+    heroImage: "/images/products/artistic-sheets-2.jpg",
     heroImageAlt:
-      "Elegant plantable seed-paper wedding invitation cards displayed on easels",
+      "Wholesale plantable seed-paper sheets in bulk, manufactured in Lahore",
     heroSub:
-      "Seed-paper invitations, envelopes, confetti and favour bags that guests plant after your event. An invitation that becomes flowers is one nobody throws away.",
+      "We manufacture seed-embedded paper in-house in Lahore. Buy raw sheets for your own printing, converting or client supply. Multiple GSM options, seasonal seed selection, and deckle-edge or cut-sheet formats available. No import delays — local lead times, local quality control.",
     pains: [
-      "Beautiful invitations that go in the bin the morning after the event",
-      "Wanting a unique, talked-about detail that photographs well on social",
-      "Plastic-free favour options that still feel premium and on-theme",
+      "Unable to source plantable paper stock locally — importing is slow and expensive",
+      "Clients asking for eco-friendly substrates but no reliable local supplier",
+      "Needing to test material before committing to a large production run",
     ],
     offer:
-      "We help event planners create fully custom plantable invitations and giveaways — paper, print, finishing and packaging handled by one team.",
-    hook: "An invitation that grows after the wedding.",
+      "We supply bulk plantable seed-paper sheets directly from our Lahore facility — consistent quality, local lead times, and no import chain. Order a sample pack first, then specify your bulk GSM, size and seed type.",
+    hook:
+      "Pakistan's only local manufacturer of plantable seed paper — no import delays, no minimum container.",
     productSlugs: [
-      "wedding-invitations",
-      "plantable-confetti",
-      "plantable-greeting-cards-set",
-      "seed-balls-jar",
+      "seed-paper-sheets-bulk",
+      "seed-paper-a5-pack",
     ],
-    startingFrom: "Custom-quoted",
-    moq: "From 300 sets",
-    leadTime: "10–15 working days after design approval",
+    startingFrom: "From PKR 1,200 (A5 sample pack)",
+    moq: "From 300 A4 sheets (bulk)",
+    leadTime: "5–10 working days",
     cta: {
-      label: "Request event samples on WhatsApp",
+      label: "Request a stock quote on WhatsApp",
       whatsappText:
-        "Hi Boxit, I'm planning a wedding/event and want plantable invitations or giveaways. Quantity: ___. Event date: ___. Please share samples and pricing.",
+        "Hi Boxit, I need seed paper stock for my own production / client supply. Quantity: ___. Size: ___. GSM requirement: ___. Please share pricing.",
     },
     seo: {
-      seoTitle: "Plantable Wedding Invitations & Event Giveaways Pakistan — Boxit",
+      seoTitle: "Wholesale Seed Paper Stock Pakistan — Bulk Plantable Sheets",
       metaDescription:
-        "Seed-paper wedding invitations, confetti and giveaways guests can plant. Plastic-free, memorable event stationery custom printed in Pakistan.",
+        "Buy wholesale plantable seed paper sheets from Pakistan's only local manufacturer. A4, A5, custom GSM and deckle-edge formats. Sample packs available from Lahore.",
       keywords: [
-        "plantable wedding invitations Pakistan",
-        "seed paper invitations",
-        "eco wedding favours",
-        "plantable confetti Pakistan",
-        "biodegradable event giveaways",
-        "plantable invitation cards Pakistan",
-        "seed paper wedding cards Lahore",
+        "seed paper stock Pakistan",
+        "wholesale plantable paper",
+        "bulk seed paper sheets",
+        "plantable paper supplier Pakistan",
+        "seed paper manufacturer Lahore",
+        "biodegradable paper stock Pakistan",
+        "seed paper wholesale Lahore",
       ],
     },
   },
@@ -152,51 +152,51 @@ export const segments: SegmentPage[] = [
     },
   },
 
-  // ── 4. Seed Paper Stock ───────────────────────────────────────────
+  // ── 4. Weddings & Events ──────────────────────────────────────────
   {
-    slug: "seed-paper-stock",
-    label: "Seed Paper Stock",
-    audience: "Commercial printers, graphic designers, packaging converters and manufacturers",
-    heroHeadline:
-      "Wholesale plantable seed paper stock — A4 sheets, custom GSM, bulk quantities for your own production.",
-    heroImage: "/images/products/artistic-sheets-2.jpg",
+    slug: "weddings-events",
+    label: "Weddings & Events",
+    audience: "Wedding planners, event managers & families organising mehndi, nikah and corporate events",
+    heroHeadline: "Plantable invitations and giveaways your guests will remember — and grow.",
+    heroImage: "/images/products/tags-bookmarks-2.jpg",
     heroImageAlt:
-      "Wholesale plantable seed-paper sheets in bulk, manufactured in Lahore",
+      "Elegant plantable seed-paper wedding invitation cards displayed on easels",
     heroSub:
-      "We manufacture seed-embedded paper in-house in Lahore. Buy raw sheets for your own printing, converting or client supply. Multiple GSM options, seasonal seed selection, and deckle-edge or cut-sheet formats available. No import delays — local lead times, local quality control.",
+      "Seed-paper invitations, envelopes, confetti and favour bags that guests plant after your event. An invitation that becomes flowers is one nobody throws away.",
     pains: [
-      "Unable to source plantable paper stock locally — importing is slow and expensive",
-      "Clients asking for eco-friendly substrates but no reliable local supplier",
-      "Needing to test material before committing to a large production run",
+      "Beautiful invitations that go in the bin the morning after the event",
+      "Wanting a unique, talked-about detail that photographs well on social",
+      "Plastic-free favour options that still feel premium and on-theme",
     ],
     offer:
-      "We supply bulk plantable seed-paper sheets directly from our Lahore facility — consistent quality, local lead times, and no import chain. Order a sample pack first, then specify your bulk GSM, size and seed type.",
-    hook:
-      "Pakistan's only local manufacturer of plantable seed paper — no import delays, no minimum container.",
+      "We help event planners create fully custom plantable invitations and giveaways — paper, print, finishing and packaging handled by one team.",
+    hook: "An invitation that grows after the wedding.",
     productSlugs: [
-      "seed-paper-sheets-bulk",
-      "seed-paper-a5-pack",
+      "wedding-invitations",
+      "plantable-confetti",
+      "plantable-greeting-cards-set",
+      "seed-balls-jar",
     ],
-    startingFrom: "From PKR 1,200 (A5 sample pack)",
-    moq: "From 300 A4 sheets (bulk)",
-    leadTime: "5–10 working days",
+    startingFrom: "Custom-quoted",
+    moq: "From 300 sets",
+    leadTime: "10–15 working days after design approval",
     cta: {
-      label: "Request a stock quote on WhatsApp",
+      label: "Request event samples on WhatsApp",
       whatsappText:
-        "Hi Boxit, I need seed paper stock for my own production / client supply. Quantity: ___. Size: ___. GSM requirement: ___. Please share pricing.",
+        "Hi Boxit, I'm planning a wedding/event and want plantable invitations or giveaways. Quantity: ___. Event date: ___. Please share samples and pricing.",
     },
     seo: {
-      seoTitle: "Wholesale Seed Paper Stock Pakistan — Bulk Plantable Sheets",
+      seoTitle: "Plantable Wedding Invitations & Event Giveaways Pakistan — Boxit",
       metaDescription:
-        "Buy wholesale plantable seed paper sheets from Pakistan's only local manufacturer. A4, A5, custom GSM and deckle-edge formats. Sample packs available from Lahore.",
+        "Seed-paper wedding invitations, confetti and giveaways guests can plant. Plastic-free, memorable event stationery custom printed in Pakistan.",
       keywords: [
-        "seed paper stock Pakistan",
-        "wholesale plantable paper",
-        "bulk seed paper sheets",
-        "plantable paper supplier Pakistan",
-        "seed paper manufacturer Lahore",
-        "biodegradable paper stock Pakistan",
-        "seed paper wholesale Lahore",
+        "plantable wedding invitations Pakistan",
+        "seed paper invitations",
+        "eco wedding favours",
+        "plantable confetti Pakistan",
+        "biodegradable event giveaways",
+        "plantable invitation cards Pakistan",
+        "seed paper wedding cards Lahore",
       ],
     },
   },

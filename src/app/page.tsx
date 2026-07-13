@@ -8,13 +8,17 @@ import {
   Leaf,
   Sprout,
   Recycle,
-  Stamp,
   Truck,
+  Droplets,
   ShoppingBag,
   CalendarDays,
   Tag,
   Mail,
   Gift,
+  Package,
+  Pencil,
+  Box,
+  FileText,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
@@ -42,15 +46,18 @@ import {
   getAllSegments,
   getFeaturedProducts,
   getFaqs,
-  getAllCategories,
 } from "@/lib/content";
 import { site } from "@/lib/site";
 import { Logo } from "@/components/logo";
 import { LogoMarquee } from "@/components/logo-marquee";
 
-// Colour theme per category — drives the tinted card, gradient ring, photo and badge.
+// Homepage category tiles — an explicit list so we can mix real category pages
+// with tiles that link straight to a related product or the quote page.
 // Full class strings (no interpolation) so Tailwind keeps them at build time.
-type CategoryTheme = {
+type CategoryTile = {
+  href: string; // where the tile links
+  name: string;
+  description: string;
   card: string; // card gradient background
   ring: string; // gradient ring around the photo circle
   badge: string; // small accent badge gradient
@@ -58,8 +65,14 @@ type CategoryTheme = {
   image: string; // product photo shown inside the circle
   badgeIcon: LucideIcon; // symbol inside the corner badge
 };
-const categoryThemes: Record<string, CategoryTheme> = {
-  "seed-paper": {
+// NOTE: "Souvenir Box" and "Cards & Stationery" are intentionally swapped in
+// position (souvenir box sits in the cards slot, cards sits in the souvenir slot).
+// "Souvenir Box" reuses a placeholder photo until a real one is supplied.
+const categoryTiles: CategoryTile[] = [
+  {
+    href: "/products/category/seed-paper",
+    name: "Seed Paper & Sheets",
+    description: "Plantable, seed-embedded paper stock — the raw material behind everything we make.",
     card: "from-emerald-50",
     ring: "from-emerald-400 to-teal-500",
     badge: "from-emerald-500 to-teal-600",
@@ -67,7 +80,10 @@ const categoryThemes: Record<string, CategoryTheme> = {
     image: "/images/products/artistic-sheets-1.jpg",
     badgeIcon: Sprout,
   },
-  "bags-sleeves": {
+  {
+    href: "/products/category/bags-sleeves",
+    name: "Bags & Sleeves",
+    description: "Custom shopping bags, sleeves and wraps that make your brand's packaging plantable.",
     card: "from-amber-50",
     ring: "from-amber-400 to-orange-500",
     badge: "from-amber-500 to-orange-600",
@@ -75,15 +91,22 @@ const categoryThemes: Record<string, CategoryTheme> = {
     image: "/images/products/petal-bags-colorful.jpg",
     badgeIcon: ShoppingBag,
   },
-  "cards-stationery": {
-    card: "from-sky-50",
-    ring: "from-sky-400 to-blue-500",
-    badge: "from-sky-500 to-blue-600",
-    link: "text-sky-600",
-    image: "/images/products/greeting-cards-1.jpg",
-    badgeIcon: Mail,
+  {
+    // Swapped into the Cards & Stationery slot
+    href: "/products/corporate-gift-boxes",
+    name: "Souvenir Box",
+    description: "Curated plantable souvenir and gift boxes — branded keepsakes people plant and remember.",
+    card: "from-fuchsia-50",
+    ring: "from-fuchsia-400 to-pink-500",
+    badge: "from-fuchsia-500 to-pink-600",
+    link: "text-fuchsia-600",
+    image: "/images/products/artistic-sheets-1.jpg", // placeholder — real photo to come
+    badgeIcon: Package,
   },
-  corporate: {
+  {
+    href: "/products/category/corporate",
+    name: "Calendars, Diaries & Corporate",
+    description: "Plantable calendars, diaries and gift packaging for corporate gifting and CSR.",
     card: "from-violet-50",
     ring: "from-violet-400 to-purple-500",
     badge: "from-violet-500 to-purple-600",
@@ -91,7 +114,10 @@ const categoryThemes: Record<string, CategoryTheme> = {
     image: "/images/products/calendars-1.jpg",
     badgeIcon: CalendarDays,
   },
-  "tags-inserts": {
+  {
+    href: "/products/category/tags-inserts",
+    name: "Tags, Toppers & Inserts",
+    description: "Hang tags, price tags, product toppers and inserts in seed paper.",
     card: "from-rose-50",
     ring: "from-rose-400 to-pink-500",
     badge: "from-rose-500 to-pink-600",
@@ -99,7 +125,10 @@ const categoryThemes: Record<string, CategoryTheme> = {
     image: "/images/products/tags-bookmarks-1.jpg",
     badgeIcon: Tag,
   },
-  event: {
+  {
+    href: "/products/category/event",
+    name: "Weddings & Events",
+    description: "Plantable invitations, envelopes, confetti and giveaways guests remember.",
     card: "from-teal-50",
     ring: "from-teal-400 to-cyan-500",
     badge: "from-teal-500 to-cyan-600",
@@ -107,21 +136,81 @@ const categoryThemes: Record<string, CategoryTheme> = {
     image: "/images/products/wedding-cards-1.jpg",
     badgeIcon: Gift,
   },
-};
-const defaultTheme: CategoryTheme = {
-  card: "from-emerald-50",
-  ring: "from-emerald-400 to-teal-500",
-  badge: "from-emerald-500 to-teal-600",
-  link: "text-emerald-600",
-  image: "/images/products/artistic-sheets-1.jpg",
-  badgeIcon: Leaf,
-};
+  {
+    href: "/products/seed-balls-jar",
+    name: "Seed Balls",
+    description: "Wildflower seed balls — toss-and-grow giveaways and CSR favourites.",
+    card: "from-lime-50",
+    ring: "from-lime-400 to-green-500",
+    badge: "from-lime-500 to-green-600",
+    link: "text-lime-600",
+    image: "/images/products/seed-balls-1.jpg",
+    badgeIcon: Sprout,
+  },
+  {
+    href: "/quote",
+    name: "Pen & Pencil",
+    description: "Plantable pens and sprout pencils that grow into herbs after use.",
+    card: "from-indigo-50",
+    ring: "from-indigo-400 to-blue-500",
+    badge: "from-indigo-500 to-blue-600",
+    link: "text-indigo-600",
+    image: "/images/products/pen-pencil.jpg",
+    badgeIcon: Pencil,
+  },
+  {
+    href: "/sample-kit",
+    name: "Sample Kit",
+    description: "Seed-paper swatches, print samples and a consult before you commit to bulk.",
+    card: "from-sky-50",
+    ring: "from-sky-400 to-blue-500",
+    badge: "from-sky-500 to-blue-600",
+    link: "text-sky-600",
+    image: "/images/products/sample-kit-spread.jpg",
+    badgeIcon: Box,
+  },
+  {
+    href: "/products/custom-shopping-bags",
+    name: "Tote Bags",
+    description: "Reusable, brandable tote bags in biodegradable, plantable stock.",
+    card: "from-orange-50",
+    ring: "from-orange-400 to-amber-500",
+    badge: "from-orange-500 to-amber-600",
+    link: "text-orange-600",
+    image: "/images/products/plantable-bags-1.jpg",
+    badgeIcon: ShoppingBag,
+  },
+  {
+    href: "/products/seed-paper-sheets-bulk",
+    name: "Cotton Paper",
+    description: "Tree-free cotton seed paper sheets — soft, textured and plantable.",
+    card: "from-cyan-50",
+    ring: "from-cyan-400 to-teal-500",
+    badge: "from-cyan-500 to-teal-600",
+    link: "text-cyan-600",
+    image: "/images/products/cotton-paper-sheets.jpg",
+    badgeIcon: FileText,
+  },
+  {
+    // Swapped into the Souvenir Box slot
+    href: "/products/category/cards-stationery",
+    name: "Cards & Stationery",
+    description: "Plantable business cards, greeting cards, bookmarks and stationery printed with your brand.",
+    card: "from-blue-50",
+    ring: "from-blue-400 to-indigo-500",
+    badge: "from-blue-500 to-indigo-600",
+    link: "text-blue-600",
+    image: "/images/products/greeting-cards-1.jpg",
+    badgeIcon: Mail,
+  },
+];
 
 const steps = [
-  { icon: Stamp, title: "Design & print", text: "We print your logo, colours and message on plantable seed paper.", image: "/images/products/artistic-sheets-1.jpg" },
-  { icon: Leaf,  title: "Use it",         text: "Bags, tags, cards, calendars — it works like normal paper.", image: "/images/products/product-spread-grass.jpg" },
-  { icon: Sprout, title: "Plant it",      text: "Pop it in soil, water it, and give it sunlight.", image: "/images/steps/step-plant-it.jpg" },
-  { icon: Recycle, title: "It grows",    text: "Instead of waste, it becomes herbs and flowers.", image: "/images/steps/step-it-grows-6.jpg" },
+  { icon: Recycle, title: "Paper and cotton's waste", text: "We start with post-consumer paper and cotton off-cuts headed for the bin.", image: "/images/products/artistic-sheets-1.jpg" },
+  { icon: Leaf,    title: "Paper made from waste",     text: "That waste is pulped and pressed into new seed-embedded paper — no new trees.", image: "/images/products/artistic-sheets-2.jpg" },
+  { icon: ShoppingBag, title: "Moderate into products", text: "The seed paper is made into bags, tags, cards and calendars for your brand.", image: "/images/products/product-spread-grass.jpg" },
+  { icon: Droplets, title: "Need water and little sunshine", text: "Plant it in soil, water it, and give it a little sunshine.", image: "/images/steps/step-plant-it.jpg" },
+  { icon: Sprout,  title: "Here it grows",             text: "Instead of waste, it grows into herbs and flowers.", image: "/images/steps/step-it-grows-6.jpg" },
 ];
 
 const clientWork = [
@@ -185,7 +274,6 @@ export default function HomePage() {
   const segments = getAllSegments();
   const featured = getFeaturedProducts();
   const faqs = getFaqs().slice(0, 6);
-  const categories = getAllCategories();
 
   // Parallax for hero image — image moves at 30% of scroll speed
   const heroRef = useRef<HTMLElement>(null);
@@ -290,7 +378,7 @@ export default function HomePage() {
                 { label: "MOQ from",     value: "300 units" },
                 { label: "Lead time",    value: "7–15 days" },
                 { label: "Made in",      value: site.city },
-                { label: "Seed options", value: "8+ varieties" },
+                { label: "Seed options", value: "Seasonal" },
               ].map(({ label, value }) => (
                 <div key={label} className="text-center">
                   <dt className="text-[11px] font-semibold uppercase tracking-widest text-white/50">
@@ -351,23 +439,22 @@ export default function HomePage() {
             className="mx-auto mt-12 grid max-w-5xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
             delay={0.1}
           >
-            {categories.map((cat) => {
-              const theme = categoryThemes[cat.slug] ?? defaultTheme;
-              const BadgeIcon = theme.badgeIcon;
+            {categoryTiles.map((tile) => {
+              const BadgeIcon = tile.badgeIcon;
               return (
-                <StaggerItem key={cat.slug}>
+                <StaggerItem key={tile.name}>
                   <Link
-                    href={`/products/category/${cat.slug}`}
-                    className={`group flex h-full flex-col items-center rounded-2xl border border-black/5 bg-gradient-to-b ${theme.card} to-white p-8 text-center shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg`}
+                    href={tile.href}
+                    className={`group flex h-full flex-col items-center rounded-2xl border border-black/5 bg-gradient-to-b ${tile.card} to-white p-8 text-center shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg`}
                   >
                     <div className="relative">
                       <span
-                        className={`block h-28 w-28 rounded-full bg-gradient-to-br ${theme.ring} p-[3px] transition-transform duration-300 group-hover:scale-105`}
+                        className={`block h-28 w-28 rounded-full bg-gradient-to-br ${tile.ring} p-[3px] transition-transform duration-300 group-hover:scale-105`}
                       >
                         <span className="relative block h-full w-full overflow-hidden rounded-full bg-white">
                           <Image
-                            src={theme.image}
-                            alt={cat.name}
+                            src={tile.image}
+                            alt={tile.name}
                             fill
                             sizes="112px"
                             className="object-cover"
@@ -375,19 +462,19 @@ export default function HomePage() {
                         </span>
                       </span>
                       <span
-                        className={`absolute -bottom-1 -right-1 grid h-9 w-9 place-items-center rounded-full bg-gradient-to-br ${theme.badge} text-white shadow-sm ring-4 ring-white`}
+                        className={`absolute -bottom-1 -right-1 grid h-9 w-9 place-items-center rounded-full bg-gradient-to-br ${tile.badge} text-white shadow-sm ring-4 ring-white`}
                       >
                         <BadgeIcon className="h-4 w-4" strokeWidth={2} />
                       </span>
                     </div>
                     <h3 className="mt-5 font-[family-name:var(--font-heading)] text-lg font-bold">
-                      {cat.name}
+                      {tile.name}
                     </h3>
                     <p className="mt-2 line-clamp-2 text-sm text-muted-foreground">
-                      {cat.description}
+                      {tile.description}
                     </p>
                     <span
-                      className={`mt-4 inline-flex items-center gap-1 text-sm font-semibold ${theme.link} transition-all group-hover:gap-2`}
+                      className={`mt-4 inline-flex items-center gap-1 text-sm font-semibold ${tile.link} transition-all group-hover:gap-2`}
                     >
                       Explore <ArrowRight className="h-4 w-4" />
                     </span>
@@ -450,7 +537,7 @@ export default function HomePage() {
               subtitle="Our seed paper is made from post-consumer and post-industrial paper. No new trees. When its job is done, it doesn't become waste — it becomes a plant."
             />
           </FadeIn>
-          <StaggerIn className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4" delay={0.1}>
+          <StaggerIn className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-5" delay={0.1}>
             {steps.map((step, i) => (
               <StaggerItem key={step.title}>
                 <div className="rounded-2xl border bg-card h-full overflow-hidden">
