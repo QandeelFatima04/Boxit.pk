@@ -75,7 +75,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${sans.variable} ${heading.variable} h-full`}
+      className={`${sans.variable} ${heading.variable} h-full scroll-smooth`}
     >
       <body className="flex min-h-full flex-col">
         <Analytics />

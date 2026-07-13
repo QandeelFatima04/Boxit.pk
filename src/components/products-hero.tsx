@@ -11,12 +11,17 @@ const ease = [0.22, 1, 0.36, 1] as const;
 const CYCLE = 13;
 
 // Seed-paper / flower positions on the soil (around centre 200,200).
+// startRot = angle the paper tumbles in from; fall = per-paper stagger so they
+// don't all land on the same frame.
 const SPOTS = [
-  { x: 158, y: 192, rot: -16 },
-  { x: 244, y: 178, rot: 18 },
-  { x: 176, y: 246, rot: 8 },
-  { x: 246, y: 244, rot: -10 },
+  { x: 158, y: 192, rot: -16, startRot: -140, fall: 0.0 },
+  { x: 244, y: 178, rot: 18, startRot: 130, fall: 0.06 },
+  { x: 176, y: 246, rot: 8, startRot: -95, fall: 0.12 },
+  { x: 246, y: 244, rot: -10, startRot: 120, fall: 0.18 },
 ];
+
+// Rain columns (x positions under the cloud).
+const RAIN = [164, 182, 200, 218, 236];
 
 const FLOWER_COLORS = [
   { petal: "#f0a93a", petalDark: "#d98213", core: "#7a3d10" }, // marigold
@@ -53,33 +58,45 @@ function Flower({
     >
       {/* soft cast shadow */}
       <ellipse cx={x} cy={y + 3} rx="26" ry="24" fill="#000" opacity="0.12" />
-      {/* outer petals */}
-      {outer.map((deg) => (
-        <ellipse
-          key={`o${deg}`}
-          cx={x}
-          cy={y - 18}
-          rx="7"
-          ry="17"
-          fill={c.petalDark}
-          transform={`rotate(${deg} ${x} ${y})`}
-        />
-      ))}
-      {/* inner petals */}
-      {inner.map((deg) => (
-        <ellipse
-          key={`i${deg}`}
-          cx={x}
-          cy={y - 12}
-          rx="6"
-          ry="12"
-          fill={c.petal}
-          transform={`rotate(${deg} ${x} ${y})`}
-        />
-      ))}
-      {/* core */}
-      <circle cx={x} cy={y} r="9" fill={c.core} />
-      <circle cx={x} cy={y} r="9" fill="url(#coreGrad)" />
+      {/* petals sway in a gentle breeze */}
+      <motion.g
+        style={{ transformBox: "fill-box", transformOrigin: "center" }}
+        animate={{ rotate: [-2.5, 2.5, -2.5] }}
+        transition={{
+          duration: 4.5,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: delay * 3,
+        }}
+      >
+        {/* outer petals */}
+        {outer.map((deg) => (
+          <ellipse
+            key={`o${deg}`}
+            cx={x}
+            cy={y - 18}
+            rx="7"
+            ry="17"
+            fill={c.petalDark}
+            transform={`rotate(${deg} ${x} ${y})`}
+          />
+        ))}
+        {/* inner petals */}
+        {inner.map((deg) => (
+          <ellipse
+            key={`i${deg}`}
+            cx={x}
+            cy={y - 12}
+            rx="6"
+            ry="12"
+            fill={c.petal}
+            transform={`rotate(${deg} ${x} ${y})`}
+          />
+        ))}
+        {/* core */}
+        <circle cx={x} cy={y} r="9" fill={c.core} />
+        <circle cx={x} cy={y} r="9" fill="url(#coreGrad)" />
+      </motion.g>
     </motion.g>
   );
 }
@@ -134,34 +151,62 @@ function PotStory() {
 
       {/* Everything that happens inside the pot, clipped to the soil */}
       <g clipPath="url(#soilClip)">
-        {/* Seed-paper pieces drop in, then fade as flowers take over */}
+        {/* Seed-paper pieces fall in under gravity, tumble, settle, then fade
+            as flowers take over. Shadow on the soil tightens as each lands. */}
         {SPOTS.map((s, i) => (
-          <motion.g
-            key={`paper${i}`}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: [0, 0, 1, 1, 0, 0], y: [-60, -60, 0, 0, 0, 0] }}
-            transition={{
-              duration: CYCLE,
-              repeat: Infinity,
-              ease,
-              times: [0, 0.08, 0.16, 0.58, 0.66, 1],
-              delay: i * 0.12,
-            }}
-          >
-            <rect
-              x={s.x - 15}
-              y={s.y - 11}
-              width="30"
-              height="22"
-              rx="3"
-              fill="url(#paperGrad)"
-              filter="url(#soft)"
-              transform={`rotate(${s.rot} ${s.x} ${s.y})`}
+          <g key={`paper${i}`}>
+            {/* contact shadow — wide & faint while high, small & dark on impact */}
+            <motion.ellipse
+              cx={s.x}
+              cy={s.y + 5}
+              rx="16"
+              ry="5"
+              fill="#000"
+              style={{ transformBox: "fill-box", transformOrigin: "center" }}
+              initial={{ opacity: 0 }}
+              animate={{
+                opacity: [0, 0, 0.04, 0.22, 0.22, 0, 0],
+                scale: [2, 2, 1.6, 1, 1, 1, 1],
+              }}
+              transition={{
+                duration: CYCLE,
+                repeat: Infinity,
+                ease: "easeOut",
+                times: [0, 0.06, 0.11, 0.17, 0.58, 0.66, 1],
+                delay: s.fall,
+              }}
             />
-            {/* tiny seed specks on the paper */}
-            <circle cx={s.x - 5} cy={s.y - 2} r="1.4" fill="#b9a77c" />
-            <circle cx={s.x + 4} cy={s.y + 3} r="1.4" fill="#b9a77c" />
-          </motion.g>
+            {/* the paper: accelerates down (easeIn), overshoots, settles */}
+            <motion.g
+              style={{ transformBox: "fill-box", transformOrigin: "center" }}
+              initial={{ opacity: 0 }}
+              animate={{
+                opacity: [0, 1, 1, 1, 1, 0, 0],
+                y: [-130, -130, 7, 0, 0, 0, 0],
+                rotate: [s.startRot, s.startRot, s.rot + 7, s.rot, s.rot, s.rot, s.rot],
+              }}
+              transition={{
+                duration: CYCLE,
+                repeat: Infinity,
+                times: [0, 0.06, 0.15, 0.19, 0.58, 0.66, 1],
+                ease: ["linear", "easeIn", "easeOut", "linear", "easeIn", "linear"],
+                delay: s.fall,
+              }}
+            >
+              <rect
+                x={s.x - 15}
+                y={s.y - 11}
+                width="30"
+                height="22"
+                rx="3"
+                fill="url(#paperGrad)"
+                filter="url(#soft)"
+              />
+              {/* tiny seed specks on the paper */}
+              <circle cx={s.x - 5} cy={s.y - 2} r="1.4" fill="#b9a77c" />
+              <circle cx={s.x + 4} cy={s.y + 3} r="1.4" fill="#b9a77c" />
+            </motion.g>
+          </g>
         ))}
 
         {/* Light soil sprinkled over the papers */}
@@ -209,30 +254,64 @@ function PotStory() {
         }}
       >
         {/* rain (only visible while the cloud is overhead) */}
-        {[170, 190, 210, 230].map((x, i) => (
-          <motion.line
-            key={x}
-            x1={x}
-            x2={x - 6}
-            y1={110}
-            y2={130}
-            stroke="#9fc1dd"
-            strokeWidth="3"
-            strokeLinecap="round"
-            animate={{ y: [0, 70], opacity: [0, 0.9, 0] }}
-            transition={{ duration: 1, repeat: Infinity, ease: "easeIn", delay: i * 0.22 }}
-          />
+        {RAIN.map((x, i) => (
+          <g key={x}>
+            {/* drop streak, falling faster as it drops */}
+            <motion.line
+              x1={x}
+              x2={x - 3}
+              y1={112}
+              y2={126}
+              stroke="#a9c8e2"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              animate={{ y: [0, 78], opacity: [0, 0.85, 0.85, 0] }}
+              transition={{
+                duration: 0.85,
+                repeat: Infinity,
+                ease: "easeIn",
+                delay: i * 0.14,
+              }}
+            />
+            {/* splash ring where it hits the soil */}
+            <motion.ellipse
+              cx={x - 3}
+              cy={190}
+              rx="3"
+              ry="1.4"
+              fill="none"
+              stroke="#a9c8e2"
+              strokeWidth="1.4"
+              style={{ transformBox: "fill-box", transformOrigin: "center" }}
+              animate={{ scale: [0, 2.6], opacity: [0, 0.55, 0] }}
+              transition={{
+                duration: 0.85,
+                repeat: Infinity,
+                ease: "easeOut",
+                delay: i * 0.14 + 0.42,
+              }}
+            />
+          </g>
         ))}
-        <g filter="url(#cloudBlur)" fill="#ffffff">
-          <circle cx="170" cy="92" r="22" />
-          <circle cx="200" cy="80" r="28" />
-          <circle cx="232" cy="92" r="22" />
-          <rect x="168" y="92" width="66" height="22" rx="11" />
-        </g>
-        <g fill="#e9eef2">
-          <circle cx="178" cy="100" r="14" />
-          <circle cx="216" cy="100" r="14" />
-        </g>
+        {/* cloud drifts up and down a touch as it hovers */}
+        <motion.g
+          animate={{ y: [0, -4, 0] }}
+          transition={{ duration: 3.4, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <g filter="url(#cloudBlur)" fill="#ffffff">
+            <circle cx="168" cy="92" r="22" />
+            <circle cx="196" cy="78" r="30" />
+            <circle cx="224" cy="86" r="24" />
+            <circle cx="238" cy="98" r="17" />
+            <rect x="166" y="92" width="74" height="24" rx="12" />
+          </g>
+          {/* shaded, rain-heavy underside */}
+          <g fill="#d3dde5">
+            <circle cx="180" cy="104" r="14" />
+            <circle cx="204" cy="107" r="15" />
+            <circle cx="226" cy="104" r="13" />
+          </g>
+        </motion.g>
       </motion.g>
     </svg>
   );

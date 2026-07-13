@@ -24,7 +24,10 @@ function Placeholder({ name }: { name: string }) {
 
 export function ProductCard({ product }: { product: Product }) {
   return (
-    <div className="group flex h-full flex-col overflow-hidden rounded-2xl border bg-card transition hover:shadow-lg hover:shadow-black/5">
+    <div
+      id={product.slug}
+      className="group flex h-full flex-col overflow-hidden rounded-2xl border bg-card transition hover:shadow-lg hover:shadow-black/5 scroll-mt-28"
+    >
       <Link
         href={`/products/${product.slug}`}
         className="relative aspect-[4/3] overflow-hidden"

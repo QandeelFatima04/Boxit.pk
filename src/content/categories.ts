@@ -26,6 +26,12 @@ export const categories: Category[] = [
       "Plantable calendars, diaries and gift packaging for corporate gifting and CSR campaigns.",
   },
   {
+    slug: "seed-balls",
+    name: "Seed Balls & Pouches",
+    description:
+      "Toss-and-grow wildflower seed balls and their packaging — a favourite eco giveaway for CSR campaigns, events and weddings.",
+  },
+  {
     slug: "tags-inserts",
     name: "Tags, Toppers & Inserts",
     description:

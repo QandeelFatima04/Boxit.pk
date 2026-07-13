@@ -25,9 +25,7 @@ export const segments: SegmentPage[] = [
     productSlugs: [
       "seed-paper-calendars",
       "plantable-diaries",
-      "corporate-gift-boxes",
-      "seed-balls-jar",
-    ],
+      "corporate-gift-boxes",    ],
     startingFrom: "Custom-quoted",
     moq: "From 300 units",
     leadTime: "10–15 working days after design approval",
@@ -174,9 +172,7 @@ export const segments: SegmentPage[] = [
     productSlugs: [
       "wedding-invitations",
       "plantable-confetti",
-      "plantable-greeting-cards-set",
-      "seed-balls-jar",
-    ],
+      "plantable-greeting-cards-set",    ],
     startingFrom: "Custom-quoted",
     moq: "From 300 sets",
     leadTime: "10–15 working days after design approval",

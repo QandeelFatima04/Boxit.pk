@@ -1,8 +1,11 @@
+// Products index — hero, clickable product nav, category sections, galleries.
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ProductCard } from "@/components/product-card";
 import { SectionHeading, CtaBand } from "@/components/sections";
 import { ProductsHero } from "@/components/products-hero";
+import { ProductQuickNav } from "@/components/product-quick-nav";
+import { GalleryTile } from "@/components/gallery-tile";
 import { getAllCategories, getProductsByCategory } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -18,6 +21,8 @@ export default function ProductsPage() {
   return (
     <>
       <ProductsHero />
+
+      <ProductQuickNav />
 
       {categories.map((cat) => {
         const products = getProductsByCategory(cat.slug);
@@ -38,6 +43,40 @@ export default function ProductsPage() {
                 {products.map((p) => (
                   <ProductCard key={p.slug} product={p} />
                 ))}
+                {cat.slug === "seed-balls" && (
+                  <>
+                    <GalleryTile
+                      title="Seed balls in production"
+                      subtitle="Real batches, hand-rolled and drying at our nursery."
+                      images={[
+                        {
+                          src: "/images/products/seed-ball-earth-1.jpg",
+                          alt: "Thousands of blue-green wildflower seed balls drying at the nursery",
+                        },
+                        {
+                          src: "/images/products/seed-ball-earth-2.jpg",
+                          alt: "Close-up carpet of blue and green wildflower seed balls",
+                        },
+                      ]}
+                    />
+                    <GalleryTile
+                      title="Seed ball bags"
+                      subtitle="Branded cotton drawstring bags — example run for JazzWorld."
+                      badge="Bags"
+                      defaultIndex={1}
+                      images={[
+                        {
+                          src: "/images/products/seed-ball-bags-1.jpg",
+                          alt: "Branded JazzWorld cotton drawstring seed-ball bags in bulk",
+                        },
+                        {
+                          src: "/images/products/seed-ball-bags-2.jpg",
+                          alt: "Close-up of two JazzWorld branded cotton seed-ball bags",
+                        },
+                      ]}
+                    />
+                  </>
+                )}
               </div>
             </div>
           </section>

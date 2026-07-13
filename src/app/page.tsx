@@ -137,7 +137,7 @@ const categoryTiles: CategoryTile[] = [
     badgeIcon: Gift,
   },
   {
-    href: "/products/seed-balls-jar",
+    href: "/products/category/seed-balls",
     name: "Seed Balls",
     description: "Wildflower seed balls — toss-and-grow giveaways and CSR favourites.",
     card: "from-lime-50",
