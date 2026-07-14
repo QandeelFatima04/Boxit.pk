@@ -25,6 +25,10 @@ export type Product = {
   category: string; // category slug
   segments: SegmentSlug[];
   image?: string;
+  /** Extra images shown as a thumbnail gallery on the product card (main image first). */
+  gallery?: string[];
+  /** "tall" gives this card a portrait image frame (so full portrait photos fill it without side bars). */
+  imageFrame?: "tall";
   /** Fixed-price productized item → purchasable. Otherwise → request a quote. */
   purchasable: boolean;
   price?: number; // PKR, required when purchasable

@@ -93,7 +93,7 @@ const categoryTiles: CategoryTile[] = [
   },
   {
     // Swapped into the Cards & Stationery slot
-    href: "/products/corporate-gift-boxes",
+    href: "/products/corporate-souvenir-set-premium",
     name: "Souvenir Box",
     description: "Curated plantable souvenir and gift boxes — branded keepsakes people plant and remember.",
     card: "from-fuchsia-50",

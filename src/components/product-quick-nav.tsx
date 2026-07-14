@@ -17,7 +17,6 @@ const QUICK_NAV: { slug: string; label: string }[] = [
   { slug: "plantable-notebooks", label: "Notebooks — outer seed paper" },
   { slug: "seed-paper-sheets-bulk", label: "Seed paper sheets" },
   { slug: "custom-shopping-bags", label: "Shopping bags (small)" },
-  { slug: "corporate-gift-boxes", label: "Corporate gift boxes (empty)" },
   { slug: "custom-seed-balls-bulk", label: "Seed balls" },
   { slug: "seed-ball-pouches", label: "Pouches for seed balls" },
   { slug: "branded-sleeves-inserts", label: "Sleeves & inserts" },
@@ -27,11 +26,9 @@ const QUICK_NAV: { slug: string; label: string }[] = [
   { slug: "plantable-ball-points", label: "Ball points" },
   { slug: "plantable-brochures", label: "Brochures" },
   { slug: "plantable-event-stationery", label: "Event stationery" },
-  { slug: "seed-paper-boxes", label: "Boxes (outer seed paper)" },
   { slug: "deckle-edge-seed-paper", label: "Deckle edge seed paper" },
   { slug: "deckle-edge-paper", label: "Deckle edge paper (without seeds)" },
   { slug: "cotton-paper", label: "Cotton paper" },
-  { slug: "recyclable-diary", label: "Recyclable diary (outer tote)" },
 ];
 
 export function ProductQuickNav() {

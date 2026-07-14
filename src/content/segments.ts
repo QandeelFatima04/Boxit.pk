@@ -25,7 +25,8 @@ export const segments: SegmentPage[] = [
     productSlugs: [
       "seed-paper-calendars",
       "plantable-diaries",
-      "corporate-gift-boxes",    ],
+      "corporate-souvenir-set-premium",
+    ],
     startingFrom: "Custom-quoted",
     moq: "From 300 units",
     leadTime: "10–15 working days after design approval",
