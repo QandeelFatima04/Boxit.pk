@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import { CtaBand } from "@/components/sections";
+import { CaseStudyCard } from "@/components/case-study-card";
 import { getCaseStudies } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -31,24 +30,7 @@ export default function WorkPage() {
       <section className="section">
         <div className="container-page grid gap-6 lg:grid-cols-3">
           {caseStudies.map((cs) => (
-            <Link
-              key={cs.slug}
-              href={`/work/${cs.slug}`}
-              className="group flex flex-col rounded-2xl border bg-card p-7 transition hover:shadow-lg hover:shadow-black/5"
-            >
-              <p className="text-xs font-semibold uppercase tracking-wide text-brand">
-                {cs.clientType}
-              </p>
-              <h2 className="mt-2 font-[family-name:var(--font-heading)] text-xl font-bold">
-                {cs.client}
-              </h2>
-              <p className="mt-3 flex-1 text-sm text-muted-foreground">
-                {cs.result}
-              </p>
-              <span className="mt-5 inline-flex items-center gap-1 text-sm font-semibold group-hover:gap-2">
-                Read the story <ArrowRight className="h-4 w-4 transition-all" />
-              </span>
-            </Link>
+            <CaseStudyCard key={cs.slug} caseStudy={cs} />
           ))}
         </div>
       </section>

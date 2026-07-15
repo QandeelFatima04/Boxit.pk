@@ -20,6 +20,8 @@ export const caseStudies: CaseStudy[] = [
     gallery: [
       "/images/clients/client-metro-kit-flatlay.jpg",
       "/images/clients/client-metro-flatlay.jpg",
+      "/images/products/shopping-bag-metro.jpg",
+      "/images/clients/client-metro-bag.jpg",
     ],
   },
   {
@@ -36,6 +38,8 @@ export const caseStudies: CaseStudy[] = [
     gallery: [
       "/images/clients/client-corporate-cards.jpg",
       "/images/products/greeting-cards-1.jpg",
+      "/images/clients/client-dawlance-ptc.jpg",
+      "/images/products/agha-steel-invite.png",
     ],
   },
   {
@@ -52,6 +56,70 @@ export const caseStudies: CaseStudy[] = [
     gallery: [
       "/images/clients/client-cayano-bizcard.jpg",
       "/images/products/tags-bookmarks-1.jpg",
+    ],
+  },
+  {
+    slug: "jazz-plantable-notebook",
+    client: "Jazz",
+    clientType: "Corporate gifting",
+    segment: "csr-corporate-gifts",
+    product: "Plantable notebook & seed-ball pouches",
+    quantity: "Corporate gifting run",
+    purpose: "A branded plantable gifting set for JazzWorld's teams and clients",
+    result:
+      "A plantable gifting set branded for JazzWorld — a seed-paper-cover notebook alongside cotton drawstring pouches of seed balls. Practical branded giveaways recipients actually use, then plant into herbs or flowers.",
+    image: "/images/products/jazzworld-notebook.jpg",
+    gallery: [
+      "/images/products/jazzworld-notebook.jpg",
+      "/images/products/seed-ball-bags-1.jpg",
+      "/images/products/seed-ball-bags-2.jpg",
+    ],
+  },
+  {
+    slug: "lumovy-plantable-notebook",
+    client: "Lumovy — Technology Solutions",
+    clientType: "Corporate gifting",
+    segment: "csr-corporate-gifts",
+    product: "Plantable branded notebook",
+    quantity: "Corporate gifting run",
+    purpose: "A branded plantable notebook for Lumovy's team and clients",
+    result:
+      "A custom plantable notebook branded for Lumovy Technology Solutions — a seed-paper outer cover on a practical everyday notebook. When the pages run out, the cover plants into herbs or flowers instead of going in the bin.",
+    image: "/images/products/lumovy-notebook.jpg",
+    gallery: ["/images/products/lumovy-notebook.jpg"],
+  },
+  {
+    slug: "ejad-tech-summit-cards",
+    client: "Ejad — Tech Summit",
+    clientType: "Brand materials / event",
+    segment: "plantable-brand-materials",
+    product: "Plantable business cards & event materials",
+    quantity: "Event print run",
+    purpose: "Plantable cards attendees would keep instead of bin",
+    result:
+      "Plantable seed-paper business cards and event materials produced for Ejad's tech summit — branded cards attendees plant instead of pocket and forget.",
+    image: "/images/products/ejad-tech-summit-a.png",
+    gallery: [
+      "/images/products/ejad-tech-summit-a.png",
+      "/images/products/ejad-tech-summit-b.png",
+    ],
+  },
+  {
+    slug: "knisa-thank-you-cards",
+    client: "Knisa",
+    clientType: "Brand materials / unboxing",
+    segment: "plantable-brand-materials",
+    product: "Plantable thank-you cards & inserts",
+    quantity: "Retail unboxing run",
+    purpose: "A thank-you card that turns into a plant",
+    result:
+      "Custom plantable seed-paper thank-you cards for Knisa — branded unboxing inserts that turn a simple thank-you into something the customer can plant and keep.",
+    image: "/images/products/knisa-thankyou-a.png",
+    gallery: [
+      "/images/products/knisa-thankyou-a.png",
+      "/images/products/knisa-thankyou-b.png",
+      "/images/products/knisa-thankyou-c.png",
+      "/images/products/knisa-thankyou-d.png",
     ],
   },
   {
