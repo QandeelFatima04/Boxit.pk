@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Leaf, Recycle, MapPin, Factory } from "lucide-react";
 import { SectionHeading, CtaBand } from "@/components/sections";
+import { GalleryTile } from "@/components/gallery-tile";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -30,6 +31,70 @@ const values = [
     icon: MapPin,
     title: "Made in Lahore",
     text: "We operate from Lahore and deliver across Pakistan, with seed paper tested for local climate conditions.",
+  },
+];
+
+const showcase = [
+  {
+    title: "Seed-paper cards for brands",
+    subtitle:
+      "Custom plantable greeting and corporate cards — SNGPL, L'Oréal Pakistan and Omoré among them.",
+    badge: "Cards",
+    images: [
+      {
+        src: "/images/clients/client-sngpl-eid-card.jpg",
+        alt: "SNGPL Eid Mubarak plantable seed-paper card styled with fresh flowers",
+      },
+      {
+        src: "/images/clients/client-loreal-rooting-card.jpg",
+        alt: "L'Oréal Pakistan 'we are rooting for you' seed-paper card with sunflowers",
+      },
+      {
+        src: "/images/clients/client-sngpl-billion-tree.jpg",
+        alt: "SNGPL Eid seed-paper cards supporting the Billion Tree programme with planting guide",
+      },
+      {
+        src: "/images/clients/client-omore-independence-card.jpg",
+        alt: "Omoré branded Independence Day seed-paper card and envelope",
+      },
+    ],
+  },
+  {
+    title: "Packaging & event favours",
+    subtitle:
+      "Plantable bags and wedding favour boxes — from NLC's branded carrier to seed-paper Shadi Mubarak boxes.",
+    badge: "Packaging",
+    images: [
+      {
+        src: "/images/clients/client-nlc-seed-bag.jpg",
+        alt: "National Logistics Cell branded plantable seed-paper bag with planting guide",
+      },
+      {
+        src: "/images/clients/client-wedding-favor-boxes.jpg",
+        alt: "Seed-paper Shadi Mubarak wedding favour boxes with navy ribbon and gold tassel",
+      },
+      {
+        src: "/images/clients/client-melbrew-pods-dieline.jpg",
+        alt: "MelBrew biodegradable coffee-pod carton dieline artwork",
+      },
+    ],
+  },
+  {
+    title: "Made from our own paper stock",
+    subtitle:
+      "We produce the seed paper ourselves — from blank deckle-edge sheets to shaped seed bombs.",
+    badge: "Our stock",
+    defaultIndex: 1,
+    images: [
+      {
+        src: "/images/clients/client-blank-seed-sheets.jpg",
+        alt: "Stacks of blank handmade seed-paper sheets produced in-house",
+      },
+      {
+        src: "/images/clients/client-seed-bombs-shapes.jpg",
+        alt: "Colourful seed bombs moulded into butterflies, bears and gingerbread shapes",
+      },
+    ],
   },
 ];
 
@@ -71,6 +136,28 @@ export default function AboutPage() {
                 </h3>
                 <p className="mt-1 text-sm text-muted-foreground">{v.text}</p>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section bg-secondary/30">
+        <div className="container-page">
+          <SectionHeading
+            eyebrow="Seen in the wild"
+            title="Work we've grown with brands"
+            subtitle="A look at real seed-paper cards, packaging and giveaways we've made for Pakistani and international brands — all designed to be planted, not binned."
+          />
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {showcase.map((s) => (
+              <GalleryTile
+                key={s.title}
+                title={s.title}
+                subtitle={s.subtitle}
+                badge={s.badge}
+                defaultIndex={s.defaultIndex}
+                images={s.images}
+              />
             ))}
           </div>
         </div>

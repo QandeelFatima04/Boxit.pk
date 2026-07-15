@@ -100,7 +100,7 @@ const categoryTiles: CategoryTile[] = [
     ring: "from-fuchsia-400 to-pink-500",
     badge: "from-fuchsia-500 to-pink-600",
     link: "text-fuchsia-600",
-    image: "/images/products/artistic-sheets-1.jpg", // placeholder — real photo to come
+    image: "/images/products/dawlance-souvenir-box.jpg",
     badgeIcon: Package,
   },
   {
@@ -177,7 +177,7 @@ const categoryTiles: CategoryTile[] = [
     ring: "from-orange-400 to-amber-500",
     badge: "from-orange-500 to-amber-600",
     link: "text-orange-600",
-    image: "/images/products/plantable-bags-1.jpg",
+    image: "/images/products/metro-tote-bag.png",
     badgeIcon: ShoppingBag,
   },
   {

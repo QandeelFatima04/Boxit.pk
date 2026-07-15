@@ -129,7 +129,7 @@ export const products: Product[] = [
       "Custom-sized shopping bags in our biodegradable / seed-paper stock, printed with your logo and brand colours. The first offline ad your customer carries home.",
     category: "bags-sleeves",
     segments: ["plantable-brand-materials"],
-    image: "/images/products/shopping-bag-metro.jpg",
+    image: "/images/clients/client-metro-kit-flatlay.jpg",
     purchasable: false,
     moq: "From 200 bags",
     leadTime: "7–12 working days after approval",

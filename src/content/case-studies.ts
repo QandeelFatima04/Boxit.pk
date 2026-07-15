@@ -25,6 +25,19 @@ export const caseStudies: CaseStudy[] = [
     ],
   },
   {
+    slug: "nlc-plantable-carrier-bag",
+    client: "NLC — National Logistics Cell",
+    clientType: "Corporate branded packaging",
+    segment: "csr-corporate-gifts",
+    product: "Plantable seed-paper carrier bag",
+    quantity: "Corporate bulk run",
+    purpose: "A branded carrier bag that ends as a plant, not landfill",
+    result:
+      "A seed-paper carrier bag for National Logistics Cell — branded with NLC's logo and 'In step with tomorrow', and printed with a step-by-step planting guide so the bag itself can be planted after use instead of thrown away.",
+    image: "/images/clients/client-nlc-seed-bag.jpg",
+    gallery: ["/images/clients/client-nlc-seed-bag.jpg"],
+  },
+  {
     slug: "corporate-plantable-cards",
     client: "Dawlance · Standard Chartered · Parco",
     clientType: "Corporate seed-paper cards",
@@ -41,6 +54,48 @@ export const caseStudies: CaseStudy[] = [
       "/images/clients/client-dawlance-ptc.jpg",
       "/images/products/agha-steel-invite.png",
     ],
+  },
+  {
+    slug: "sngpl-plantable-eid-cards",
+    client: "SNGPL",
+    clientType: "Seasonal corporate cards",
+    segment: "csr-corporate-gifts",
+    product: "Plantable Eid greeting cards",
+    quantity: "Corporate seasonal run",
+    purpose: "Eid greetings that support a greener Pakistan",
+    result:
+      "Plantable seed-paper Eid Mubarak cards for SNGPL (Sui Northern Gas Pipelines) — a seasonal greeting tied to the Billion Tree programme, printed with a soak-and-plant guide so every card grows instead of being thrown away.",
+    image: "/images/clients/client-sngpl-eid-card.jpg",
+    gallery: [
+      "/images/clients/client-sngpl-eid-card.jpg",
+      "/images/clients/client-sngpl-billion-tree.jpg",
+    ],
+  },
+  {
+    slug: "loreal-plantable-cards",
+    client: "L'Oréal Pakistan",
+    clientType: "Brand materials",
+    segment: "plantable-brand-materials",
+    product: "Plantable seed-paper cards",
+    quantity: "Brand campaign run",
+    purpose: "A branded card recipients keep and plant",
+    result:
+      "A plantable seed-paper card for L'Oréal Pakistan — a 'we are rooting for you' message on seed-embedded paper with soak-and-plant instructions, turning a brand card into a plant recipients keep instead of bin.",
+    image: "/images/clients/client-loreal-rooting-card.jpg",
+    gallery: ["/images/clients/client-loreal-rooting-card.jpg"],
+  },
+  {
+    slug: "omore-plantable-independence-cards",
+    client: "Omoré",
+    clientType: "Seasonal brand cards",
+    segment: "csr-corporate-gifts",
+    product: "Plantable Independence Day cards & envelopes",
+    quantity: "Campaign run",
+    purpose: "An Independence Day giveaway that outlives the campaign",
+    result:
+      "A plantable seed-paper Independence Day card and branded envelope for Omoré — carrying the Omoré mark and a 'Happy Independence Day' message, then planting into flowers instead of ending in the bin.",
+    image: "/images/clients/client-omore-independence-card.jpg",
+    gallery: ["/images/clients/client-omore-independence-card.jpg"],
   },
   {
     slug: "cayano-plantable-business-card",

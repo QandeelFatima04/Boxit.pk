@@ -75,7 +75,31 @@ export default function ProductsPage() {
                         },
                       ]}
                     />
+                    <GalleryTile
+                      title="Shaped seed bombs"
+                      subtitle="Wildflower seed bombs moulded into butterflies, bears, gingerbread and festive shapes."
+                      badge="Seed bombs"
+                      images={[
+                        {
+                          src: "/images/clients/client-seed-bombs-shapes.jpg",
+                          alt: "Colourful wildflower seed bombs moulded into butterflies, bears and gingerbread shapes on a plate",
+                        },
+                      ]}
+                    />
                   </>
+                )}
+                {cat.slug === "bags-sleeves" && (
+                  <GalleryTile
+                    title="NLC plantable carrier bag"
+                    subtitle="A seed-paper shopping bag for National Logistics Cell — printed with a plant-me guide the recipient can follow."
+                    badge="Client work"
+                    images={[
+                      {
+                        src: "/images/clients/client-nlc-seed-bag.jpg",
+                        alt: "National Logistics Cell branded plantable seed-paper carrier bag with orange handle and planting guide",
+                      },
+                    ]}
+                  />
                 )}
               </div>
             </div>
