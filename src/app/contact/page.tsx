@@ -7,7 +7,7 @@ import { site, telLink } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Get in touch with Boxit for custom plantable packaging, corporate gifts and event giveaways. WhatsApp, call or email us in Lahore, Pakistan.",
+    "Reach Boxit by WhatsApp, phone or email. We reply during business hours, Monday to Saturday, and can take your artwork straight away.",
   alternates: { canonical: "/contact" },
 };
 
@@ -21,8 +21,8 @@ export default function ContactPage() {
             Let&apos;s talk packaging
           </h1>
           <p className="mt-5 text-lg text-muted-foreground">
-            The fastest way to a quote is WhatsApp — send your product and
-            quantity and we&apos;ll reply with options and pricing.
+            WhatsApp is the fastest way to reach us. Share your artwork or a
+            reference photo and we&apos;ll tell you what is possible.
           </p>
 
           <div className="mt-7">

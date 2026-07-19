@@ -11,7 +11,7 @@ import { getAllCategories, getProductsByCategory } from "@/lib/content";
 export const metadata: Metadata = {
   title: "Products — Plantable & Biodegradable Packaging",
   description:
-    "Browse Boxit's plantable seed-paper products: bags, tags, cards, calendars, invitations, seed balls and more. Buy ready-made items or request a custom quote.",
+    "Bags, tags, cards, calendars, invitations, seed balls and paper stock. Order a ready-made item or send us your artwork for a custom run.",
   alternates: { canonical: "/products" },
 };
 
@@ -61,7 +61,7 @@ export default function ProductsPage() {
                     />
                     <GalleryTile
                       title="Seed ball bags"
-                      subtitle="Branded cotton drawstring bags — example run for JazzWorld."
+                      subtitle="Branded cotton drawstring bags, from a run we produced for JazzWorld."
                       badge="Bags"
                       defaultIndex={1}
                       images={[
@@ -77,12 +77,12 @@ export default function ProductsPage() {
                     />
                     <GalleryTile
                       title="Shaped seed bombs"
-                      subtitle="Wildflower seed bombs moulded into butterflies, bears, gingerbread and festive shapes."
+                      subtitle="Wildflower seed bombs molded into butterflies, bears, gingerbread and festive shapes."
                       badge="Seed bombs"
                       images={[
                         {
                           src: "/images/clients/client-seed-bombs-shapes.jpg",
-                          alt: "Colourful wildflower seed bombs moulded into butterflies, bears and gingerbread shapes on a plate",
+                          alt: "Colorful wildflower seed bombs molded into butterflies, bears and gingerbread shapes on a plate",
                         },
                       ]}
                     />
@@ -91,7 +91,7 @@ export default function ProductsPage() {
                 {cat.slug === "bags-sleeves" && (
                   <GalleryTile
                     title="NLC plantable carrier bag"
-                    subtitle="A seed-paper shopping bag for National Logistics Cell — printed with a plant-me guide the recipient can follow."
+                    subtitle="A seed-paper shopping bag for National Logistics Cell, printed with a planting guide the recipient can follow."
                     badge="Client work"
                     images={[
                       {
@@ -118,16 +118,16 @@ export default function ProductsPage() {
                   Stocking or reselling plantable products?
                 </h2>
                 <p className="mt-2 text-muted-foreground">
-                  Gift shops, eco-stores and corporate gifting vendors — talk to
-                  us about reseller and private-label supply. Tell us what you
-                  want to stock and we&apos;ll share terms.
+                  We supply gift shops, eco-stores and corporate gifting vendors
+                  on reseller and private-label terms. Tell us what you want to
+                  stock and we&apos;ll share slab pricing.
                 </p>
               </div>
               <Link
                 href="/quote?type=reseller"
                 className="inline-flex shrink-0 items-center justify-center rounded-full bg-brand px-6 py-3 text-sm font-semibold text-white transition hover:opacity-90"
               >
-                Enquire about wholesale
+                Ask about wholesale
               </Link>
             </div>
           </div>

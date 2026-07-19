@@ -7,7 +7,7 @@ import { getFaqs, faqCategories } from "@/lib/content";
 export const metadata: Metadata = {
   title: "FAQ — Plantable Seed Paper & Packaging",
   description:
-    "Answers to common questions about Boxit's plantable seed paper: germination, seeds, printing methods, MOQ, durability, delivery, samples and more.",
+    "How seed paper germinates, which seeds we use, what printing it takes, plus MOQ, durability, delivery and sample answers from the Boxit team.",
   alternates: { canonical: "/faq" },
 };
 
@@ -25,8 +25,8 @@ export default function FaqPage() {
             Everything buyers ask first
           </h1>
           <p className="mt-5 max-w-2xl text-lg text-muted-foreground">
-            Plantable packaging is new to most people. Here are straight answers
-            — and if yours isn&apos;t here, message us on WhatsApp.
+            Plantable packaging is new to most people. Here are straight
+            answers. If your question isn&apos;t covered, message us on WhatsApp.
           </p>
         </div>
       </section>
@@ -54,7 +54,7 @@ export default function FaqPage() {
 
       <CtaBand
         title="Still have a question?"
-        subtitle="Message us with your product and quantity — we'll answer and share sample options."
+        subtitle="Ask us directly on WhatsApp. Most queries about seeds, printing or lead time are answered the same working day."
       />
     </>
   );

@@ -329,13 +329,13 @@ export function ProductsHero() {
             </p>
           </AnimatedLine>
           <h1 className="mt-3 font-[family-name:var(--font-heading)] text-4xl font-bold leading-tight text-foreground sm:text-5xl">
-            <AnimatedHeadline text="Plantable packaging, your way" delay={0.1} />
+            <AnimatedHeadline text="Plantable packaging, made to order" delay={0.1} />
           </h1>
           <AnimatedLine delay={0.5}>
             <p className="mx-auto mt-5 max-w-xl text-lg text-muted-foreground lg:mx-0">
-              Tap <strong>Add to Quote</strong> on any product to build a list,
-              then send it over for pricing, MOQ and lead time — everything is
-              made-to-order and custom-printed with your brand.
+              Tap <strong>Add to quote</strong> on any product to build a list,
+              then send it over. We&apos;ll come back with pricing, minimum
+              quantities and lead times.
             </p>
           </AnimatedLine>
           <motion.div

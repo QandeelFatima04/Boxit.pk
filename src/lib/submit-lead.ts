@@ -27,6 +27,9 @@ export async function submitLead(
     if (data.ok) track(EVENT_BY_TYPE[payload.type], { type: payload.type });
     return data;
   } catch {
-    return { ok: false, error: "Network error. Please try WhatsApp instead." };
+    return {
+      ok: false,
+      error: "We couldn't reach our server. Check your connection and try again, or send this on WhatsApp.",
+    };
   }
 }

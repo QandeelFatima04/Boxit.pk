@@ -15,7 +15,7 @@ export const caseStudies: CaseStudy[] = [
     quantity: "Corporate bulk run",
     purpose: "A branded CSR kit for Metro's sustainability campaign",
     result:
-      "A full plantable CSR kit — seed-paper tote bag, laptop sleeve, seed balls and a planting guide — branded for Metro's sustainability team. A giveaway recipients could actually use, then plant.",
+      "A full plantable CSR kit for Metro's sustainability team: seed-paper tote bag, laptop sleeve, seed balls and a planting guide, all branded and packed as one set. The tote and sleeve stay in daily use; the seed balls go straight into a pot.",
     image: "/images/clients/client-metro-kit-flatlay.jpg",
     gallery: [
       "/images/clients/client-metro-kit-flatlay.jpg",
@@ -31,9 +31,9 @@ export const caseStudies: CaseStudy[] = [
     segment: "csr-corporate-gifts",
     product: "Plantable seed-paper carrier bag",
     quantity: "Corporate bulk run",
-    purpose: "A branded carrier bag that ends as a plant, not landfill",
+    purpose: "A branded carrier bag with a second life as a plant",
     result:
-      "A seed-paper carrier bag for National Logistics Cell — branded with NLC's logo and 'In step with tomorrow', and printed with a step-by-step planting guide so the bag itself can be planted after use instead of thrown away.",
+      "A seed-paper carrier bag for National Logistics Cell, branded with NLC's logo and 'In step with tomorrow'. A planting guide is printed on the bag itself, so whoever carries it home already knows how to soak and sow it.",
     image: "/images/clients/client-nlc-seed-bag.jpg",
     gallery: ["/images/clients/client-nlc-seed-bag.jpg"],
   },
@@ -46,7 +46,7 @@ export const caseStudies: CaseStudy[] = [
     quantity: "Multi-brand card runs",
     purpose: "Plantable greeting cards for corporate gifting and campaigns",
     result:
-      "Custom plantable seed-paper greeting cards produced for Dawlance, Standard Chartered, Parco, Agha Steel and Reon Energy — branded corporate cards that recipients plant instead of bin.",
+      "Custom plantable seed-paper greeting cards produced for Dawlance, Standard Chartered, Parco, Agha Steel and Reon Energy. Each run matched to that company's own colors and card format, printed on seed paper made in our facility.",
     image: "/images/clients/client-corporate-cards.jpg",
     gallery: [
       "/images/clients/client-corporate-cards.jpg",
@@ -64,7 +64,7 @@ export const caseStudies: CaseStudy[] = [
     quantity: "Corporate seasonal run",
     purpose: "Eid greetings that support a greener Pakistan",
     result:
-      "Plantable seed-paper Eid Mubarak cards for SNGPL (Sui Northern Gas Pipelines) — a seasonal greeting tied to the Billion Tree programme, printed with a soak-and-plant guide so every card grows instead of being thrown away.",
+      "Plantable seed-paper Eid Mubarak cards for SNGPL (Sui Northern Gas Pipelines), tied to the Billion Tree programme. The card carries the Eid greeting on one side and a planting guide on the other, so the greeting itself becomes a contribution to the campaign.",
     image: "/images/clients/client-sngpl-eid-card.jpg",
     gallery: [
       "/images/clients/client-sngpl-eid-card.jpg",
@@ -78,9 +78,9 @@ export const caseStudies: CaseStudy[] = [
     segment: "plantable-brand-materials",
     product: "Plantable seed-paper cards",
     quantity: "Brand campaign run",
-    purpose: "A branded card recipients keep and plant",
+    purpose: "A branded card where the message and the material say the same thing",
     result:
-      "A plantable seed-paper card for L'Oréal Pakistan — a 'we are rooting for you' message on seed-embedded paper with soak-and-plant instructions, turning a brand card into a plant recipients keep instead of bin.",
+      "A plantable seed-paper card for L'Oréal Pakistan carrying a 'we are rooting for you' message, with a planting guide alongside it. The wording and the material make the same point, and the recipient gets it in a second.",
     image: "/images/clients/client-loreal-rooting-card.jpg",
     gallery: ["/images/clients/client-loreal-rooting-card.jpg"],
   },
@@ -93,7 +93,7 @@ export const caseStudies: CaseStudy[] = [
     quantity: "Campaign run",
     purpose: "An Independence Day giveaway that outlives the campaign",
     result:
-      "A plantable seed-paper Independence Day card and branded envelope for Omoré — carrying the Omoré mark and a 'Happy Independence Day' message, then planting into flowers instead of ending in the bin.",
+      "A plantable seed-paper Independence Day card and matching branded envelope for Omoré, carrying the Omoré mark and a 'Happy Independence Day' message. Sown after 14 August, the card comes up as flowers a few weeks later.",
     image: "/images/clients/client-omore-independence-card.jpg",
     gallery: ["/images/clients/client-omore-independence-card.jpg"],
   },
@@ -106,7 +106,7 @@ export const caseStudies: CaseStudy[] = [
     quantity: "Custom business-card order",
     purpose: "A plantable business card for Cayano's Managing Director",
     result:
-      "A custom seed-paper business card for Cayano's Managing Director — designed and made in Lahore, delivered to London. Most business cards get binned; this one gets planted.",
+      "A custom seed-paper business card for Cayano's Managing Director, designed and made in Lahore and delivered to London. It gives him something to talk about the moment he hands it across the table.",
     image: "/images/clients/client-cayano-bizcard.jpg",
     gallery: [
       "/images/clients/client-cayano-bizcard.jpg",
@@ -122,7 +122,7 @@ export const caseStudies: CaseStudy[] = [
     quantity: "Corporate gifting run",
     purpose: "A branded plantable gifting set for JazzWorld's teams and clients",
     result:
-      "A plantable gifting set branded for JazzWorld — a seed-paper-cover notebook alongside cotton drawstring pouches of seed balls. Practical branded giveaways recipients actually use, then plant into herbs or flowers.",
+      "A plantable gifting set branded for JazzWorld: a seed-paper-cover notebook with cotton drawstring pouches of seed balls. Two pieces at two price points in one set, so the same design worked for both staff and client gifting.",
     image: "/images/products/jazzworld-notebook.jpg",
     gallery: [
       "/images/products/jazzworld-notebook.jpg",
@@ -139,7 +139,7 @@ export const caseStudies: CaseStudy[] = [
     quantity: "Corporate gifting run",
     purpose: "A branded plantable notebook for Lumovy's team and clients",
     result:
-      "A custom plantable notebook branded for Lumovy Technology Solutions — a seed-paper outer cover on a practical everyday notebook. When the pages run out, the cover plants into herbs or flowers instead of going in the bin.",
+      "A custom plantable notebook branded for Lumovy Technology Solutions, with a seed-paper outer cover on a practical everyday notebook. It sits on a desk for months with the Lumovy name on it, and the cover plants into herbs or flowers once the pages run out.",
     image: "/images/products/lumovy-notebook.jpg",
     gallery: ["/images/products/lumovy-notebook.jpg"],
   },
@@ -150,9 +150,9 @@ export const caseStudies: CaseStudy[] = [
     segment: "plantable-brand-materials",
     product: "Plantable business cards & event materials",
     quantity: "Event print run",
-    purpose: "Plantable cards attendees would keep instead of bin",
+    purpose: "Summit cards that stand out in a stack of a hundred others",
     result:
-      "Plantable seed-paper business cards and event materials produced for Ejad's tech summit — branded cards attendees plant instead of pocket and forget.",
+      "Plantable seed-paper business cards and event materials produced for Ejad's tech summit. On a floor where every stall hands out the same glossy card, a textured seed-paper card is the one attendees stop to look at.",
     image: "/images/products/ejad-tech-summit-a.png",
     gallery: [
       "/images/products/ejad-tech-summit-a.png",
@@ -168,7 +168,7 @@ export const caseStudies: CaseStudy[] = [
     quantity: "Retail unboxing run",
     purpose: "A thank-you card that turns into a plant",
     result:
-      "Custom plantable seed-paper thank-you cards for Knisa — branded unboxing inserts that turn a simple thank-you into something the customer can plant and keep.",
+      "Custom plantable seed-paper thank-you cards for Knisa, sized to drop into the existing retail packaging. The card is the last thing a customer touches when they open the parcel, and it gives them a reason to photograph the unboxing.",
     image: "/images/products/knisa-thankyou-a.png",
     gallery: [
       "/images/products/knisa-thankyou-a.png",
@@ -186,7 +186,7 @@ export const caseStudies: CaseStudy[] = [
     quantity: "Invitation suite",
     purpose: "A plastic-free invitation guests would remember",
     result:
-      "Seed-paper invitations and confetti for a Lahore wedding — a plastic-free suite that guests could plant after the event. (Private client; named on request with permission.)",
+      "Seed-paper invitations and matching confetti for a Lahore wedding, produced as one plastic-free suite. Guests took the confetti home along with the card, ready to sow. (Private client; named on request with permission.)",
     image: "/images/products/wedding-cards-1.jpg",
     gallery: ["/images/products/wedding-cards-1.jpg"],
   },

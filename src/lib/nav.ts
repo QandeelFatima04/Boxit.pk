@@ -24,7 +24,7 @@ export const footerNav = {
     { label: "Cost Estimator", href: "/estimator" },
     { label: "Sample Kit", href: "/sample-kit" },
     { label: "Our Work", href: "/work" },
-    { label: "Request a Quote", href: "/quote" },
+    { label: "Request a quote", href: "/quote" },
   ],
   company: [
     { label: "About", href: "/about" },

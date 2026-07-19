@@ -6,7 +6,7 @@ import { getCaseStudies } from "@/lib/content";
 export const metadata: Metadata = {
   title: "Our Work — Plantable Packaging Case Studies",
   description:
-    "How Pakistani brands, FMCGs and event companies used Boxit's plantable packaging, corporate gifts and invitations to stand out.",
+    "Case studies from Boxit's press: seed-paper cards, carrier bags, wedding favors and CSR giveaways produced for brands across Pakistan.",
   alternates: { canonical: "/work" },
 };
 
@@ -18,11 +18,11 @@ export default function WorkPage() {
         <div className="container-page py-16 sm:py-20">
           <p className="eyebrow">Our work</p>
           <h1 className="mt-4 font-[family-name:var(--font-heading)] text-4xl font-bold sm:text-5xl">
-            Packaging that became the story
+            Projects we've run start to finish
           </h1>
           <p className="mt-5 max-w-2xl text-lg text-muted-foreground">
-            Real campaigns where plantable packaging did more than hold a product
-            — it got photographed, planted and remembered.
+            A selection of real briefs: the format the client needed, the stock
+            we chose, and how the finished piece was printed.
           </p>
         </div>
       </section>
@@ -35,7 +35,7 @@ export default function WorkPage() {
         </div>
       </section>
 
-      <CtaBand title="Want results like these?" />
+      <CtaBand title="Have a similar project in mind?" />
     </>
   );
 }

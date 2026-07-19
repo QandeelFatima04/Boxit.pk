@@ -48,7 +48,7 @@ export default function SampleKitPage() {
         <div className="container-page grid gap-12 py-16 sm:py-20 lg:grid-cols-2 lg:items-center">
           <div>
             <p className="eyebrow">
-              <Sprout className="h-4 w-4" /> The smartest first step
+              <Sprout className="h-4 w-4" /> Start here
             </p>
             <h1 className="mt-4 font-[family-name:var(--font-heading)] text-4xl font-bold leading-tight sm:text-5xl">
               The Green Packaging Sample Kit
@@ -60,7 +60,7 @@ export default function SampleKitPage() {
             <div className="mt-7 flex items-baseline gap-3">
               <span className="text-3xl font-bold">{formatPKR(kit.price)}</span>
               <span className="text-sm font-medium text-brand">
-                Adjusted against your bulk order
+                Credited in full against your first bulk order
               </span>
             </div>
 
@@ -68,7 +68,7 @@ export default function SampleKitPage() {
               <AddToQuoteButton
                 size="lg"
                 item={{ slug: kit.slug, name: kit.name }}
-                label="Add sample kit to quote"
+                label="Add to quote"
               />
               <WhatsAppButton
                 source="sample-kit"
@@ -80,9 +80,7 @@ export default function SampleKitPage() {
               <p className="mt-3 text-sm text-muted-foreground">{kit.leadTime}</p>
             )}
             <p className="mt-2 text-sm text-muted-foreground">
-              Ships nationwide across Pakistan. The kit cost is fully adjusted
-              against your bulk order — so it&apos;s a credit toward your first
-              run, not an extra spend.
+              Ships nationwide across Pakistan.
             </p>
           </div>
 
@@ -112,8 +110,7 @@ export default function SampleKitPage() {
               Custom packaging has a lot of unknowns: which material, what
               thickness, whether seed paper suits your format, whether embossing
               is possible, and how premium the final product can look. The kit
-              turns those unknowns into something you can hold — before you spend
-              on a bulk run.
+              puts all of that in your hands before you commit to a bulk run.
             </p>
           </div>
           <Guarantees />

@@ -58,7 +58,7 @@ export function SiteHeader() {
                 isGlass ? "text-white/90 hover:text-white" : "text-foreground/80 hover:text-foreground"
               }`}
             >
-              Solutions
+              What we do
             </button>
             <div className="invisible absolute left-1/2 top-full z-50 w-64 -translate-x-1/2 pt-3 opacity-0 transition group-hover:visible group-hover:opacity-100">
               <div className="rounded-xl border bg-popover p-2 shadow-lg">
@@ -115,7 +115,7 @@ export function SiteHeader() {
             }`}
           >
             <Link href="/estimator">
-              <Calculator className="h-4 w-4" /> Estimator
+              <Calculator className="h-4 w-4" /> Estimate cost
             </Link>
           </Button>
 

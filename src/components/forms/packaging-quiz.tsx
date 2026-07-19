@@ -117,8 +117,8 @@ export function PackagingQuiz() {
           Your brief is ready
         </h3>
         <p className="mt-2 text-sm text-muted-foreground">
-          We&apos;ve logged your details. Send it to us on WhatsApp to get pricing
-          and sample options fastest.
+          We have your details. Send the brief over on WhatsApp and we&apos;ll
+          come back with pricing and sample options.
         </p>
         <a
           href={done}

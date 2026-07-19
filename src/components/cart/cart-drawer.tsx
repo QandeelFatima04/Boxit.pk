@@ -24,10 +24,10 @@ export function CartDrawer() {
 
         {items.length === 0 ? (
           <div className="flex flex-1 flex-col items-center justify-center gap-3 px-6 text-center">
-            <p className="text-muted-foreground">Your quote list is empty.</p>
+            <p className="text-muted-foreground">Nothing here yet.</p>
             <p className="text-sm text-muted-foreground">
               Browse products and tap{" "}
-              <span className="font-medium text-brand">Add to Quote</span>, or{" "}
+              <span className="font-medium text-brand">Add to quote</span>, or{" "}
               <Link
                 href="/quote"
                 onClick={() => setOpen(false)}
@@ -77,8 +77,8 @@ export function CartDrawer() {
         {items.length > 0 && (
           <SheetFooter className="gap-3">
             <p className="text-xs text-muted-foreground">
-              We&apos;ll quote pricing, MOQ and lead time for these items — no
-              payment now.
+              We&apos;ll send pricing, minimum order quantity and lead time for
+              these items. Nothing is charged now.
             </p>
             <Button asChild size="lg" className="w-full">
               <Link href="/quote" onClick={() => setOpen(false)}>

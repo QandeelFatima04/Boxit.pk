@@ -139,7 +139,7 @@ const categoryTiles: CategoryTile[] = [
   {
     href: "/products/category/seed-balls",
     name: "Seed Balls",
-    description: "Wildflower seed balls — toss-and-grow giveaways and CSR favourites.",
+    description: "Wildflower seed balls. Toss-and-grow giveaways for CSR campaigns and events.",
     card: "from-lime-50",
     ring: "from-lime-400 to-green-500",
     badge: "from-lime-500 to-green-600",
@@ -206,11 +206,11 @@ const categoryTiles: CategoryTile[] = [
 ];
 
 const steps = [
-  { icon: Recycle, title: "Paper and cotton's waste", text: "We start with post-consumer paper and cotton off-cuts headed for the bin.", image: "/images/products/artistic-sheets-1.jpg" },
-  { icon: Leaf,    title: "Paper made from waste",     text: "That waste is pulped and pressed into new seed-embedded paper — no new trees.", image: "/images/products/artistic-sheets-2.jpg" },
-  { icon: ShoppingBag, title: "Moderate into products", text: "The seed paper is made into bags, tags, cards and calendars for your brand.", image: "/images/products/product-spread-grass.jpg" },
-  { icon: Droplets, title: "Need water and little sunshine", text: "Plant it in soil, water it, and give it a little sunshine.", image: "/images/steps/step-plant-it.jpg" },
-  { icon: Sprout,  title: "Here it grows",             text: "Instead of waste, it grows into herbs and flowers.", image: "/images/steps/step-it-grows-6.jpg" },
+  { icon: Recycle, title: "We collect the waste", text: "Post-consumer paper and cotton off-cuts, on their way to being thrown out.", image: "/images/products/artistic-sheets-1.jpg" },
+  { icon: Leaf,    title: "We make the paper",    text: "It is pulped, seeded and pressed into new sheets. No new trees.", image: "/images/products/artistic-sheets-2.jpg" },
+  { icon: ShoppingBag, title: "We print your brand", text: "The sheets become bags, tags, cards and calendars, printed to your artwork.", image: "/images/products/product-spread-grass.jpg" },
+  { icon: Droplets, title: "Your customer plants it", text: "Into soil, with regular water and a few hours of sun.", image: "/images/steps/step-plant-it.jpg" },
+  { icon: Sprout,  title: "It grows",              text: "Herbs and flowers, from what began as waste paper.", image: "/images/steps/step-it-grows-6.jpg" },
 ];
 
 const clientWork = [
@@ -288,18 +288,11 @@ export default function HomePage() {
       ────────────────────────────────────────────────────────────── */}
       <section
         ref={heroRef}
-        className="relative -mt-16 flex min-h-screen items-center justify-center overflow-hidden"
+        className="hero-viewport relative -mt-16 flex items-center justify-center overflow-hidden"
       >
-        {/* Parallax image layer — CSS background for reliable full-bleed rendering */}
-        <motion.div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: "url('/images/hero-banner.jpg')",
-            backgroundSize: "cover",
-            backgroundPosition: "center 55%",
-            y: heroImageY,
-          }}
-        />
+        {/* Parallax image layer — CSS background for reliable full-bleed rendering.
+            Sizing/focal point live in .hero-bg so media queries can retarget them. */}
+        <motion.div className="hero-bg absolute inset-0" style={{ y: heroImageY }} />
         {/* Hidden Next.js Image so the browser preloads / CDN optimises it */}
         <Image
           src="/images/hero-banner.jpg"
@@ -316,7 +309,7 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-transparent" />
 
         {/* ── Centered hero content ── */}
-        <div className="relative z-10 mx-auto max-w-4xl px-6 pt-20 pb-16 text-center">
+        <div className="hero-content relative z-10 mx-auto w-full max-w-4xl px-6 text-center">
 
           {/* Eyebrow pill */}
           <AnimatedLine delay={0.15}>
@@ -324,13 +317,13 @@ export default function HomePage() {
               <span className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-5 py-2 text-sm font-semibold text-white backdrop-blur-sm">
                 <Leaf className="h-4 w-4 text-green-400" />
                 Pakistan&apos;s first plantable seed-paper maker
-                <PulseBadge label="Lahore" />
+                <PulseBadge label="Pakistan" />
               </span>
             </div>
           </AnimatedLine>
 
           {/* Headline — word-by-word reveal */}
-          <h1 className="mt-6 font-[family-name:var(--font-heading)] text-5xl font-bold leading-[1.06] tracking-tight text-white sm:text-6xl lg:text-7xl">
+          <h1 className="hero-gap-sm hero-title font-[family-name:var(--font-heading)] font-bold tracking-tight text-white">
             <AnimatedHeadline text="Seed paper that" delay={0.3} />
             <br />
             <AnimatedHeadline
@@ -341,13 +334,13 @@ export default function HomePage() {
           </h1>
 
           {/* Subline */}
-          <AnimatedLine delay={1.05} className="mt-6 text-lg text-white/75 sm:text-xl max-w-2xl mx-auto leading-relaxed">
+          <AnimatedLine delay={1.05} className="hero-gap-sm hero-sub text-white/75 max-w-2xl mx-auto leading-relaxed">
             Custom plantable products for CSR campaigns, events, retail brands and
-            bulk paper supply — manufactured in Lahore with real seeds inside every sheet.
+            bulk paper supply. Manufactured in Pakistan, with real seeds in every sheet.
           </AnimatedLine>
 
           {/* CTAs */}
-          <AnimatedLine delay={1.25} className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+          <AnimatedLine delay={1.25} className="hero-gap-md flex flex-col items-center gap-3 sm:flex-row sm:justify-center sm:flex-wrap">
             <WhatsAppButton source="hero" label="Get a quote on WhatsApp" />
             <Button
               asChild
@@ -373,7 +366,7 @@ export default function HomePage() {
 
           {/* Stats strip */}
           <AnimatedLine delay={1.45}>
-            <dl className="mt-12 flex flex-wrap justify-center gap-x-10 gap-y-5">
+            <dl className="hero-gap-lg hero-stats flex flex-wrap justify-center">
               {[
                 { label: "MOQ from",     value: "300 units" },
                 { label: "Lead time",    value: "7–15 days" },
@@ -384,7 +377,7 @@ export default function HomePage() {
                   <dt className="text-[11px] font-semibold uppercase tracking-widest text-white/50">
                     {label}
                   </dt>
-                  <dd className="mt-0.5 text-2xl font-bold text-white">{value}</dd>
+                  <dd className="hero-stat-value mt-0.5 font-bold text-white">{value}</dd>
                 </div>
               ))}
             </dl>
@@ -393,7 +386,7 @@ export default function HomePage() {
 
         {/* Scroll cue */}
         <motion.div
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
+          className="hero-scroll-cue absolute bottom-8 left-1/2 -translate-x-1/2"
           animate={{ y: [0, 9, 0] }}
           transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
         >
@@ -412,9 +405,9 @@ export default function HomePage() {
         <div className="container-page section">
           <FadeIn>
             <SectionHeading
-              eyebrow="Brands we work with"
-              title="Partners in sustainability"
-              subtitle="From global names to homegrown brands — these are some of the teams that chose plantable seed paper for their CSR gifts, events and brand materials."
+              eyebrow="Clients"
+              title="Brands that have printed with us"
+              subtitle="Multinationals and local names alike, using plantable seed paper for CSR gifts, events and brand materials."
               align="center"
             />
           </FadeIn>
@@ -429,9 +422,9 @@ export default function HomePage() {
         <div className="container-page">
           <FadeIn>
             <SectionHeading
-              eyebrow="View our popular"
-              title="Plantable paper categories"
-              subtitle="Every category is custom-made, seed-embedded and printed with your brand."
+              eyebrow="Browse"
+              title="What we make"
+              subtitle="Every item is made to order on seed paper and printed with your brand."
               align="center"
             />
           </FadeIn>
@@ -476,7 +469,7 @@ export default function HomePage() {
                     <span
                       className={`mt-4 inline-flex items-center gap-1 text-sm font-semibold ${tile.link} transition-all group-hover:gap-2`}
                     >
-                      Explore <ArrowRight className="h-4 w-4" />
+                      See {tile.name} <ArrowRight className="h-4 w-4" />
                     </span>
                   </Link>
                 </StaggerItem>
@@ -499,8 +492,8 @@ export default function HomePage() {
           <FadeIn>
             <SectionHeading
               eyebrow="Who we work with"
-              title="Find your brief — we'll handle the rest"
-              subtitle="CSR campaigns, events, brand materials or bulk paper stock — each segment has its own products, MOQ and lead time. Start where you are."
+              title="Start where you are"
+              subtitle="CSR campaigns, events, brand materials, bulk paper stock. Each one has its own products, minimums and lead times."
             />
           </FadeIn>
           <StaggerIn className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4" delay={0.1}>
@@ -517,7 +510,7 @@ export default function HomePage() {
                     <p className="mt-1 text-sm font-medium text-brand">{s.audience}</p>
                     <p className="mt-3 flex-1 text-sm text-muted-foreground">{s.hook}</p>
                     <span className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-foreground group-hover:gap-2">
-                      Explore <ArrowRight className="h-4 w-4 transition-all" />
+                      See {s.label} <ArrowRight className="h-4 w-4 transition-all" />
                     </span>
                   </Link>
                 </HoverCard>
@@ -533,8 +526,8 @@ export default function HomePage() {
           <FadeIn>
             <SectionHeading
               eyebrow="What is plantable paper?"
-              title="Tree-free paper with seeds inside — plant it and it grows"
-              subtitle="Our seed paper is made from post-consumer and post-industrial paper. No new trees. When its job is done, it doesn't become waste — it becomes a plant."
+              title="Tree-free paper with seeds inside"
+              subtitle="We make it from post-consumer and post-industrial waste paper, so no new trees are pulped. Here is how a discarded sheet ends up as a plant."
             />
           </FadeIn>
           <StaggerIn className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-5" delay={0.1}>
@@ -572,8 +565,8 @@ export default function HomePage() {
             <div className="flex items-end justify-between gap-4">
               <SectionHeading
                 eyebrow="Popular"
-                title="Start with these"
-                subtitle="Ready-made formats or fully custom bulk orders — we handle both."
+                title="Where most brands start"
+                subtitle="Ready-made formats or fully custom bulk runs. We handle both."
               />
               <Button asChild variant="outline" className="hidden sm:inline-flex shrink-0">
                 <Link href="/products">All products <ArrowRight className="h-4 w-4" /></Link>
@@ -608,20 +601,19 @@ export default function HomePage() {
             <FadeIn delay={0.12}>
               <p className="eyebrow">Seed paper &amp; petal bags</p>
               <h2 className="mt-3 font-[family-name:var(--font-heading)] text-3xl font-bold sm:text-4xl">
-                Colourful plantable bags, embedded with real petals
+                Colorful plantable bags, embedded with real petals
               </h2>
               <p className="mt-4 text-muted-foreground">
-                Handmade seed-paper gift bags in soft pastels — purple, peach,
-                pink and blue — flecked with marigold petals and embedded with
-                seeds. Branded with your logo, carried home by your customer, and
-                planted into flowers when they&apos;re done. The first offline ad
-                your customer keeps.
+                Handmade seed-paper gift bags in soft pastels: purple, peach,
+                pink and blue, flecked with marigold petals. Printed with your
+                logo, carried home by your customer, then planted into flowers.
+                An ad that outlasts the shopping trip.
               </p>
               <ul className="mt-5 space-y-2 text-sm">
                 {[
-                  "Custom sizes, handles & brand-colour printing",
-                  "Seed-embedded, 100% biodegradable stock",
-                  "Made in Lahore — bulk lead times, no imports",
+                  "Custom sizes, handles and brand-color printing",
+                  "Seed-embedded, biodegradable stock",
+                  "Made in Pakistan, so no import lead times",
                 ].map((f) => (
                   <li key={f} className="flex items-center gap-2">
                     <Sprout className="h-4 w-4 shrink-0 text-brand" /> {f}
@@ -651,8 +643,8 @@ export default function HomePage() {
           <FadeIn>
             <SectionHeading
               eyebrow="Real projects"
-              title="Brands that turned gifts into growing things"
-              subtitle="From corporate CSR kits to personalised event giveaways — here's what plantable seed paper did for real campaigns."
+              title="Recent work"
+              subtitle="Corporate CSR kits, event giveaways and branded stationery we have produced for Pakistani campaigns."
             />
           </FadeIn>
           <StaggerIn className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3" delay={0.1}>
@@ -685,8 +677,8 @@ export default function HomePage() {
           <FadeIn>
             <SectionHeading
               eyebrow="How we work"
-              title="Pick a starting point, not a price list"
-              subtitle="We don't sell fixed SKUs — every project is custom. These are the three ways brands usually start with us."
+              title="Pick a starting point"
+              subtitle="Everything is made to order, so pricing follows the brief rather than a catalog. These are the three ways brands usually begin."
               align="center"
             />
           </FadeIn>
@@ -700,13 +692,13 @@ export default function HomePage() {
       <section className="section bg-primary text-primary-foreground">
         <div className="container-page grid items-center gap-10 lg:grid-cols-2">
           <FadeIn>
-            <p className="text-sm font-semibold uppercase tracking-wide text-gold">The smartest first step</p>
+            <p className="text-sm font-semibold uppercase tracking-wide text-gold">Sample kit</p>
             <h2 className="mt-3 font-[family-name:var(--font-heading)] text-3xl font-bold sm:text-4xl">
               Get a sample kit before you commit to bulk
             </h2>
             <p className="mt-4 text-primary-foreground/80">
-              Feel the seed paper, see the printing and finishing samples, and get a 15-minute consultation
-              on which format fits your brief. The kit cost is adjusted against your first bulk order.
+              Handle the paper, compare print and finishing options, and talk through which format suits
+              your brief. Whatever you pay for the kit comes off your first bulk order.
             </p>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
               <Button asChild size="lg" variant="gold">
@@ -714,18 +706,18 @@ export default function HomePage() {
               </Button>
               <Button asChild size="lg" variant="outline"
                 className="border-primary-foreground/30 bg-transparent text-primary-foreground hover:bg-primary-foreground/10">
-                <Link href="/quote">Take the product quiz</Link>
+                <Link href="/quote">Request a quote</Link>
               </Button>
             </div>
           </FadeIn>
           <FadeIn delay={0.15}>
             <ul className="grid gap-3 rounded-2xl bg-primary-foreground/10 p-6">
               {[
-                "Seed-paper + biodegradable stock swatches",
-                "Print, embossing & finishing examples",
-                "Bag, tag, card & sleeve formats",
-                "15-minute packaging consultation",
-                "Cost adjusted against your bulk order",
+                "Seed paper and biodegradable stock swatches",
+                "Print, embossing and finishing examples",
+                "Bag, tag, card and sleeve formats",
+                "A 15-minute call to talk through your brief",
+                "Cost credited against your bulk order",
               ].map((f) => (
                 <li key={f} className="flex items-center gap-2 text-sm">
                   <Sprout className="h-4 w-4 text-gold shrink-0" /> {f}
@@ -740,9 +732,9 @@ export default function HomePage() {
       <section className="section bg-secondary/40">
         <div className="container-page grid gap-10 lg:grid-cols-12">
           <FadeIn className="lg:col-span-4">
-            <SectionHeading eyebrow="FAQ" title="Answers buyers ask first" />
+            <SectionHeading eyebrow="FAQ" title="What buyers ask first" />
             <p className="mt-4 text-sm text-muted-foreground">
-              Still unsure? See the full list, or ask us directly.
+              If your question is not here, ask us directly.
             </p>
             <div className="mt-5 flex flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row">
               <Button asChild variant="outline">

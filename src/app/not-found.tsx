@@ -13,8 +13,8 @@ export default function NotFound() {
           Page not found
         </h1>
         <p className="mt-3 text-muted-foreground">
-          This page may have been moved, or it never grew here in the first
-          place.
+          This page has either moved or never existed. Try our products, or
+          head back to the home page.
         </p>
         <div className="mt-7 flex justify-center gap-3">
           <Button asChild>

@@ -99,12 +99,12 @@ export function ProductCard({ product }: { product: Product }) {
         <p className="mt-1 text-sm text-muted-foreground">{product.tagline}</p>
 
         <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-xs text-muted-foreground">
-          {product.moq && <span>MOQ: {product.moq}</span>}
+          {product.moq && <span>Min. order: {product.moq}</span>}
           {product.leadTime && <span>{product.leadTime}</span>}
         </div>
 
         <div className="mt-auto flex items-center justify-between gap-2 pt-4">
-          <span className="text-sm font-semibold text-brand">Custom-quoted</span>
+          <span className="text-sm font-semibold text-brand">Priced to your brief</span>
           <AddToQuoteButton
             size="sm"
             item={{

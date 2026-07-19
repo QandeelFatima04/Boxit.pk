@@ -12,16 +12,16 @@ export const segments: SegmentPage[] = [
     heroImageAlt:
       "Branded plantable seed-paper corporate greeting cards and CSR campaign material displayed on easels",
     heroSub:
-      "Seed-paper calendars, branded gift boxes, greeting cards and seed balls — customised with your logo and campaign message. Don't just say your company supports sustainability; give people something they can grow.",
+      "Seed-paper calendars, branded gift boxes, greeting cards and seed balls, customized with your logo and campaign message. Every piece carries a planting guide, so your recipient knows exactly what to do with it.",
     pains: [
-      "Throwaway giveaways that end up in the bin before the campaign is even over",
+      "Giveaways that are forgotten by the time the campaign ends",
       "Generic branded merchandise that signals no real sustainability commitment",
       "Coordinating bulk delivery against a tight campaign or event deadline",
     ],
     offer:
-      "We help corporate teams create plantable gifts and CSR campaign material using seed paper and custom finishing — a single vendor for paper, print and bulk delivery.",
+      "We handle plantable CSR gifts end to end: seed paper made in our own facility, printing, custom finishing and bulk delivery on your campaign date. One vendor, one point of contact, one invoice.",
     hook:
-      "Don't just say your company supports sustainability. Give people something they can plant.",
+      "A gift that keeps working for you. Weeks later, it is flowering on someone's desk.",
     productSlugs: [
       "seed-paper-calendars",
       "plantable-diaries",
@@ -36,17 +36,15 @@ export const segments: SegmentPage[] = [
         "Hi Boxit, I'm planning a corporate gifting / CSR campaign. Item: ___. Quantity: ___. Timeline: ___. Please share options and pricing.",
     },
     seo: {
-      seoTitle: "Plantable Corporate Gifts & CSR Campaign Kits Pakistan — Boxit",
+      seoTitle: "Plantable Corporate Gifts & CSR Campaign Kits Pakistan | Boxit",
       metaDescription:
-        "Seed-paper calendars, branded gift boxes, greeting cards and seed balls customised for CSR campaigns in Pakistan. Memorable, sustainable — made in Lahore.",
+        "Seed-paper calendars, branded gift boxes, greeting cards and seed balls customized for CSR campaigns in Pakistan. Memorable, sustainable, made in Pakistan.",
       keywords: [
         "plantable corporate gifts Pakistan",
         "CSR campaign gifts",
         "eco corporate gifting Pakistan",
         "seed paper calendars branded",
-        "sustainable corporate gifting Lahore",
-        "CSR gifts Pakistan",
-        "eco friendly corporate gifts Pakistan",
+        "sustainable corporate gifting Pakistan",
       ],
     },
   },
@@ -57,19 +55,19 @@ export const segments: SegmentPage[] = [
     label: "Seed Paper Stock",
     audience: "Commercial printers, graphic designers, packaging converters and manufacturers",
     heroHeadline:
-      "Wholesale plantable seed paper stock — A4 sheets, custom GSM, bulk quantities for your own production.",
+      "Wholesale plantable seed paper stock. A4 sheets, custom GSM, bulk quantities for your own production.",
     heroImage: "/images/products/artistic-sheets-2.jpg",
     heroImageAlt:
-      "Wholesale plantable seed-paper sheets in bulk, manufactured in Lahore",
+      "Wholesale plantable seed-paper sheets in bulk, manufactured in Pakistan",
     heroSub:
-      "We manufacture seed-embedded paper in-house in Lahore. Buy raw sheets for your own printing, converting or client supply. Multiple GSM options, seasonal seed selection, and deckle-edge or cut-sheet formats available. No import delays — local lead times, local quality control.",
+      "We manufacture seed-embedded paper in-house in Pakistan. Buy raw sheets for your own printing, converting or client supply. Multiple GSM options, seasonal seed selection, and deckle-edge or cut-sheet formats available. Local lead times, local quality control, no import paperwork.",
     pains: [
-      "Unable to source plantable paper stock locally — importing is slow and expensive",
+      "No local source for plantable paper stock, and importing is slow and expensive",
       "Clients asking for eco-friendly substrates but no reliable local supplier",
-      "Needing to test material before committing to a large production run",
+      "Needing to test material on your own press before committing to a large run",
     ],
     offer:
-      "We supply bulk plantable seed-paper sheets directly from our Lahore facility — consistent quality, local lead times, and no import chain. Order a sample pack first, then specify your bulk GSM, size and seed type.",
+      "We supply bulk plantable seed-paper sheets directly from our own facility. Consistent GSM sheet to sheet, so your press settings hold across the run. Order a sample pack first, then specify your bulk GSM, size and seed type.",
     hook:
       "Pakistan's only local manufacturer of plantable seed paper — no import delays, no minimum container.",
     productSlugs: [
@@ -85,17 +83,18 @@ export const segments: SegmentPage[] = [
         "Hi Boxit, I need seed paper stock for my own production / client supply. Quantity: ___. Size: ___. GSM requirement: ___. Please share pricing.",
     },
     seo: {
-      seoTitle: "Wholesale Seed Paper Stock Pakistan — Bulk Plantable Sheets",
+      seoTitle: "Wholesale Seed Paper Stock Pakistan | Bulk Plantable Sheets",
       metaDescription:
-        "Buy wholesale plantable seed paper sheets from Pakistan's only local manufacturer. A4, A5, custom GSM and deckle-edge formats. Sample packs available from Lahore.",
+        "Buy wholesale plantable seed paper sheets from Pakistan's only local manufacturer. A4, A5, custom GSM and deckle-edge formats. Sample packs available.",
       keywords: [
         "seed paper stock Pakistan",
         "wholesale plantable paper",
         "bulk seed paper sheets",
         "plantable paper supplier Pakistan",
-        "seed paper manufacturer Lahore",
+        "seed paper manufacturer Pakistan",
         "biodegradable paper stock Pakistan",
-        "seed paper wholesale Lahore",
+        "custom GSM seed paper",
+        "deckle edge seed paper sheets",
       ],
     },
   },
@@ -106,19 +105,19 @@ export const segments: SegmentPage[] = [
     label: "Plantable Brand Materials",
     audience: "Fashion labels, cosmetics brands, handmade & D2C product businesses",
     heroHeadline:
-      "Plantable hang tags, business cards, inserts and pennants that make your brand's sustainability visible — without a second vendor.",
+      "Plantable hang tags, business cards, inserts and pennants that put your sustainability work in the customer's hand.",
     heroImage: "/images/products/price-tags-1.jpg",
     heroImageAlt:
       "Custom plantable seed-paper hang tags and price tags printed with brand logos",
     heroSub:
-      "Seed-paper hang tags, price tags, branded inserts, business cards and pennants printed with your logo. Your product touches a customer's hand — make sure the tag it wears is part of your brand story, not an afterthought.",
+      "Seed-paper hang tags, price tags, branded inserts, business cards and pennants printed with your logo. The tag is the last thing a customer reads before they buy. It should say as much about you as the product does.",
     pains: [
-      "Generic hang tags and inserts that undercut a premium or eco-conscious product",
-      "Wanting to communicate sustainability credentials at point of contact without over-stating them",
-      "Juggling separate vendors for paper, print and die-cutting",
+      "Generic hang tags and inserts that undercut a carefully made product",
+      "Wanting to show your eco claims are real without sounding like you are exaggerating",
+      "Tags and inserts arriving in a color that does not match the rest of your packaging",
     ],
     offer:
-      "We produce custom plantable hang tags, business cards, inserts and pennants in-house — seed paper stock, printing and cut-to-shape, one team.",
+      "We produce custom plantable hang tags, business cards, inserts and pennants in-house. Cut to your shape, punched, strung and packed in the counts your packing line needs.",
     hook:
       "Your tag is the first thing a customer holds. Make it plantable.",
     productSlugs: [
@@ -138,15 +137,14 @@ export const segments: SegmentPage[] = [
     seo: {
       seoTitle: "Plantable Hang Tags, Business Cards & Brand Inserts Pakistan",
       metaDescription:
-        "Custom plantable seed-paper hang tags, price tags, business cards and inserts for fashion, cosmetics and D2C brands. Printed with your logo — made in Pakistan.",
+        "Custom plantable seed-paper hang tags, price tags, business cards and inserts for fashion, cosmetics and D2C brands. Printed with your logo, made in Pakistan.",
       keywords: [
         "plantable hang tags Pakistan",
         "seed paper business cards",
-        "custom hang tags biodegradable",
         "plantable brand inserts",
         "eco hang tags fashion Pakistan",
         "seed paper price tags Pakistan",
-        "biodegradable hang tags brand",
+        "plantable pennants",
       ],
     },
   },
@@ -155,20 +153,20 @@ export const segments: SegmentPage[] = [
   {
     slug: "weddings-events",
     label: "Weddings & Events",
-    audience: "Wedding planners, event managers & families organising mehndi, nikah and corporate events",
-    heroHeadline: "Plantable invitations and giveaways your guests will remember — and grow.",
+    audience: "Wedding planners, event managers & families organizing mehndi, nikah and corporate events",
+    heroHeadline: "Plantable invitations and giveaways your guests will remember, and grow.",
     heroImage: "/images/products/tags-bookmarks-2.jpg",
     heroImageAlt:
       "Elegant plantable seed-paper wedding invitation cards displayed on easels",
     heroSub:
-      "Seed-paper invitations, envelopes, confetti and favour bags that guests plant after your event. An invitation that becomes flowers is one nobody throws away.",
+      "Seed-paper invitations, envelopes, confetti and favor bags that guests plant after your event. Months later, your date is still flowering in their garden.",
     pains: [
-      "Beautiful invitations that go in the bin the morning after the event",
+      "Spending heavily on invitations that serve one purpose for one evening",
       "Wanting a unique, talked-about detail that photographs well on social",
-      "Plastic-free favour options that still feel premium and on-theme",
+      "Plastic-free favor options that still feel special and on-theme",
     ],
     offer:
-      "We help event planners create fully custom plantable invitations and giveaways — paper, print, finishing and packaging handled by one team.",
+      "We produce fully custom plantable invitations and giveaways for events: hand-made seed paper, printing, foiling, envelopes and boxed sets matched to your theme colors.",
     hook: "An invitation that grows after the wedding.",
     productSlugs: [
       "wedding-invitations",
@@ -183,17 +181,15 @@ export const segments: SegmentPage[] = [
         "Hi Boxit, I'm planning a wedding/event and want plantable invitations or giveaways. Quantity: ___. Event date: ___. Please share samples and pricing.",
     },
     seo: {
-      seoTitle: "Plantable Wedding Invitations & Event Giveaways Pakistan — Boxit",
+      seoTitle: "Plantable Wedding Invitations & Event Giveaways Pakistan | Boxit",
       metaDescription:
         "Seed-paper wedding invitations, confetti and giveaways guests can plant. Plastic-free, memorable event stationery custom printed in Pakistan.",
       keywords: [
         "plantable wedding invitations Pakistan",
         "seed paper invitations",
-        "eco wedding favours",
+        "eco wedding favors",
         "plantable confetti Pakistan",
-        "biodegradable event giveaways",
-        "plantable invitation cards Pakistan",
-        "seed paper wedding cards Lahore",
+        "seed paper wedding cards Pakistan",
       ],
     },
   },

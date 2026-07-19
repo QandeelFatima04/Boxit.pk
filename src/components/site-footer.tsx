@@ -101,7 +101,7 @@ export function SiteFooter() {
             © {new Date().getFullYear()} {site.legalName}. Pakistan&apos;s first
             plantable seed-paper maker.
           </p>
-          <p>Tree-free · Made in {site.city}</p>
+          <p>Tree-free paper · Made in {site.city}</p>
         </div>
       </div>
     </footer>

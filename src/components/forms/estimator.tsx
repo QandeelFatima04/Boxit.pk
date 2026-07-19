@@ -270,8 +270,9 @@ export function Estimator() {
             {result.belowMoq && (
               <p className="flex items-start gap-2 rounded-lg bg-gold/15 p-3 text-xs text-foreground">
                 <Info className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
-                Below our minimum for this item — estimate shown for the{" "}
-                {result.minQty.toLocaleString("en-PK")}-unit MOQ.
+                Our minimum for this item is{" "}
+                {result.minQty.toLocaleString("en-PK")} units, so the estimate
+                below is priced at that quantity.
               </p>
             )}
 
@@ -279,9 +280,9 @@ export function Estimator() {
 
             <p className="flex items-start gap-2 border-t pt-4 text-xs text-muted-foreground">
               <Info className="mt-0.5 h-3.5 w-3.5 shrink-0" />
-              Indicative only. Every project is custom — your exact quote depends
-              on artwork, size and seed selection. We confirm the final price
-              before any production.
+              This is a ballpark. Your final price depends on artwork, size and
+              seed selection, and we confirm it with you before anything goes
+              into production.
             </p>
 
             {/* CTAs */}
@@ -318,7 +319,7 @@ export function Estimator() {
                   onClick={sendEstimate}
                   disabled={sending || (!contact.phone && !contact.email)}
                 >
-                  {sending ? "Sending…" : "Send me this estimate"}
+                  {sending ? "Sending…" : "Email me this estimate"}
                 </Button>
                 <div className="flex flex-col gap-2 sm:flex-row">
                   <WhatsAppButton
@@ -328,7 +329,7 @@ export function Estimator() {
                     className="flex-1"
                   />
                   <Button asChild variant="outline" className="flex-1">
-                    <Link href={quoteHref}>Full quote form</Link>
+                    <Link href={quoteHref}>Request an exact quote</Link>
                   </Button>
                 </div>
               </div>
@@ -337,10 +338,10 @@ export function Estimator() {
                 <div className="mx-auto grid h-11 w-11 place-items-center rounded-full bg-brand text-brand-foreground">
                   <Check className="h-6 w-6" />
                 </div>
-                <p className="font-semibold">Estimate sent 🌱</p>
+                <p className="font-semibold">Estimate sent</p>
                 <p className="text-sm text-muted-foreground">
-                  We&apos;ll come back with an exact quote. For the fastest reply,
-                  ping us on WhatsApp.
+                  We&apos;ll follow up with an exact quote. WhatsApp is faster if
+                  you need it today.
                 </p>
                 <WhatsAppButton
                   source="estimator-sent"

@@ -5,9 +5,9 @@ import { GalleryTile } from "@/components/gallery-tile";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "About — The Green Dream",
+  title: "About — Seed Paper Made in Pakistan",
   description:
-    "Boxit is Pakistan's first plantable seed-paper maker. We turn tree-free paper into custom biodegradable packaging, corporate gifts and event giveaways from Lahore.",
+    "Boxit is Pakistan's first plantable seed-paper maker. We mill our own tree-free paper and convert it into custom bags, tags, cards and calendars.",
   alternates: { canonical: "/about" },
 };
 
@@ -15,22 +15,22 @@ const values = [
   {
     icon: Recycle,
     title: "Tree-free by default",
-    text: "Our seed paper is made from post-consumer and post-industrial paper collected from local offices and schools. No new trees.",
+    text: "Our seed paper is made from post-consumer and post-industrial paper collected from local offices and schools. No new trees are cut for it.",
   },
   {
     icon: Factory,
     title: "We make our own stock",
-    text: "We produce our own paper stock and convert it — with a partner network — into bags, tags, cards, calendars and more.",
+    text: "We produce our own paper stock and, with a partner network, convert it into bags, tags, cards, calendars and more.",
   },
   {
     icon: Leaf,
     title: "Built for customization",
-    text: "No fixed catalogue mindset. We're flexible on material, print, embossing and finishing to match your brief.",
+    text: "We don't work from a fixed catalog. Material, print, embossing and finishing are all decided around your brief.",
   },
   {
     icon: MapPin,
-    title: "Made in Lahore",
-    text: "We operate from Lahore and deliver across Pakistan, with seed paper tested for local climate conditions.",
+    title: "Made in Pakistan",
+    text: "We manufacture locally and deliver nationwide, using seed varieties suited to Pakistani growing conditions.",
   },
 ];
 
@@ -38,7 +38,7 @@ const showcase = [
   {
     title: "Seed-paper cards for brands",
     subtitle:
-      "Custom plantable greeting and corporate cards — SNGPL, L'Oréal Pakistan and Omoré among them.",
+      "Custom plantable greeting and corporate cards for SNGPL, L'Oréal Pakistan and Omoré, among others.",
     badge: "Cards",
     images: [
       {
@@ -51,7 +51,7 @@ const showcase = [
       },
       {
         src: "/images/clients/client-sngpl-billion-tree.jpg",
-        alt: "SNGPL Eid seed-paper cards supporting the Billion Tree programme with planting guide",
+        alt: "SNGPL Eid seed-paper cards supporting the Billion Tree program with planting guide",
       },
       {
         src: "/images/clients/client-omore-independence-card.jpg",
@@ -60,9 +60,9 @@ const showcase = [
     ],
   },
   {
-    title: "Packaging & event favours",
+    title: "Packaging & event favors",
     subtitle:
-      "Plantable bags and wedding favour boxes — from NLC's branded carrier to seed-paper Shadi Mubarak boxes.",
+      "Plantable bags and wedding favor boxes, from NLC's branded carrier to seed-paper Shadi Mubarak boxes.",
     badge: "Packaging",
     images: [
       {
@@ -71,7 +71,7 @@ const showcase = [
       },
       {
         src: "/images/clients/client-wedding-favor-boxes.jpg",
-        alt: "Seed-paper Shadi Mubarak wedding favour boxes with navy ribbon and gold tassel",
+        alt: "Seed-paper Shadi Mubarak wedding favor boxes with navy ribbon and gold tassel",
       },
       {
         src: "/images/clients/client-melbrew-pods-dieline.jpg",
@@ -82,7 +82,7 @@ const showcase = [
   {
     title: "Made from our own paper stock",
     subtitle:
-      "We produce the seed paper ourselves — from blank deckle-edge sheets to shaped seed bombs.",
+      "We produce the seed paper ourselves, from blank deckle-edge sheets to shaped seed bombs.",
     badge: "Our stock",
     defaultIndex: 1,
     images: [
@@ -92,7 +92,7 @@ const showcase = [
       },
       {
         src: "/images/clients/client-seed-bombs-shapes.jpg",
-        alt: "Colourful seed bombs moulded into butterflies, bears and gingerbread shapes",
+        alt: "Colorful seed bombs molded into butterflies, bears and gingerbread shapes",
       },
     ],
   },
@@ -104,16 +104,16 @@ export default function AboutPage() {
       <section className="bg-gradient-to-b from-secondary/60 to-background">
         <div className="container-page py-16 sm:py-24">
           <p className="eyebrow">
-            <Leaf className="h-4 w-4" /> The Green Dream
+            <Leaf className="h-4 w-4" /> Our story
           </p>
           <h1 className="mt-4 max-w-3xl font-[family-name:var(--font-heading)] text-4xl font-bold leading-tight sm:text-5xl">
-            We turn paper that would be thrown away into packaging that grows.
+            We turn collected waste paper into packaging that grows.
           </h1>
           <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
             {site.name} is Pakistan&apos;s first plantable seed-paper maker. We
-            started with a simple idea: packaging shouldn&apos;t end as waste. By
-            embedding seeds into tree-free paper, we let brands turn bags, tags,
-            cards and gifts into something people plant — not bin.
+            collect used paper, pulp it by hand, and set wildflower and herb
+            seeds into every sheet. Brands then print that sheet as bags, tags,
+            cards and gifts their customers can plant at home.
           </p>
         </div>
       </section>
@@ -122,8 +122,8 @@ export default function AboutPage() {
         <div className="container-page">
           <SectionHeading
             eyebrow="What we stand for"
-            title="A packaging partner, not just a paper seller"
-            subtitle="Most green-packaging companies sell material. We help brands move from ordinary packaging to a custom biodegradable experience — from material selection to a finished, branded product."
+            title="We take the job from material to finished product"
+            subtitle="We help you pick the right stock, work out the print and finishing, and deliver a branded biodegradable product ready to hand out."
           />
           <div className="mt-10 grid gap-6 sm:grid-cols-2">
             {values.map((v) => (
@@ -144,9 +144,9 @@ export default function AboutPage() {
       <section className="section bg-secondary/30">
         <div className="container-page">
           <SectionHeading
-            eyebrow="Seen in the wild"
-            title="Work we've grown with brands"
-            subtitle="A look at real seed-paper cards, packaging and giveaways we've made for Pakistani and international brands — all designed to be planted, not binned."
+            eyebrow="Client work"
+            title="What we've made for brands"
+            subtitle="Real seed-paper cards, packaging and giveaways produced for Pakistani and international brands, each one printed and finished to their artwork."
           />
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {showcase.map((s) => (
@@ -165,7 +165,7 @@ export default function AboutPage() {
 
       <CtaBand
         title="Let's make your packaging mean something"
-        subtitle="Tell us what you're building. We'll suggest sustainable directions and get you a sample kit."
+        subtitle="Tell us what you're building. We'll recommend a material and format, and send you a sample kit to check."
       />
     </>
   );

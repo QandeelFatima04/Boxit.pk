@@ -119,7 +119,7 @@ export function Guarantees() {
       <div className="flex items-center gap-2 text-brand">
         <ShieldCheck className="h-5 w-5" />
         <h3 className="font-[family-name:var(--font-heading)] text-xl font-bold text-foreground">
-          Low-risk by design
+          What we commit to
         </h3>
       </div>
       <ul className="mt-4 grid gap-3 sm:grid-cols-2">
@@ -135,8 +135,8 @@ export function Guarantees() {
 }
 
 export function CtaBand({
-  title = "Not sure where to start?",
-  subtitle = "Order a sample kit, or send us your product and quantity on WhatsApp for a 10-minute quote.",
+  title = "Tell us what you need",
+  subtitle = "Send us the product and rough quantity on WhatsApp and we'll come back with pricing. Or start with a sample kit.",
   whatsappText,
 }: {
   title?: string;

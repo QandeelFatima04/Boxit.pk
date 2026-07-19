@@ -37,21 +37,27 @@ export async function POST(request: Request): Promise<NextResponse<OrderResponse
   try {
     body = (await request.json()) as OrderRequest;
   } catch {
-    return NextResponse.json({ ok: false, error: "Invalid JSON" }, { status: 400 });
+    return NextResponse.json(
+      { ok: false, error: "We couldn't read that request. Please try again, or send your order on WhatsApp." },
+      { status: 400 },
+    );
   }
 
   if (!body.items?.length) {
-    return NextResponse.json({ ok: false, error: "Cart is empty" }, { status: 400 });
+    return NextResponse.json(
+      { ok: false, error: "Your quote list is empty. Add a product before placing the order." },
+      { status: 400 },
+    );
   }
   if (!body.customer?.name || !body.customer?.phone) {
     return NextResponse.json(
-      { ok: false, error: "Name and phone are required" },
+      { ok: false, error: "Please add your name and a phone number so we can confirm the order." },
       { status: 400 },
     );
   }
   if (!body.address?.line1 || !body.address?.city) {
     return NextResponse.json(
-      { ok: false, error: "Delivery address is required" },
+      { ok: false, error: "Please add a delivery address, including the city." },
       { status: 400 },
     );
   }
@@ -63,7 +69,10 @@ export async function POST(request: Request): Promise<NextResponse<OrderResponse
     const p = getProduct(it.slug);
     if (!p || !p.purchasable || !p.price) {
       return NextResponse.json(
-        { ok: false, error: `Item not purchasable: ${it.slug}` },
+        {
+          ok: false,
+          error: `"${p?.name ?? it.slug}" is made to order, so it can't be checked out directly. Request a quote for it instead.`,
+        },
         { status: 400 },
       );
     }

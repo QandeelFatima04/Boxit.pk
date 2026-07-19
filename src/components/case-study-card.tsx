@@ -72,7 +72,7 @@ export function CaseStudyCard({ caseStudy: cs }: { caseStudy: CaseStudy }) {
           href={href}
           className="mt-5 inline-flex items-center gap-1 text-sm font-semibold group-hover:gap-2"
         >
-          Read the story <ArrowRight className="h-4 w-4 transition-all" />
+          See the project <ArrowRight className="h-4 w-4 transition-all" />
         </Link>
       </div>
     </div>

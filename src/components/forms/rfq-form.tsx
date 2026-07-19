@@ -59,9 +59,11 @@ export function RfqForm({
     if (res.ok) {
       clear();
       setDone(true);
-      toast.success("Quote request sent! We'll reply with options.");
+      toast.success("Quote request sent. We'll reply with options.");
     } else {
-      toast.error(res.error ?? "Something went wrong.");
+      toast.error(
+        res.error ?? "We couldn't send that. Please try again, or send your brief on WhatsApp.",
+      );
     }
   }
 
@@ -69,11 +71,11 @@ export function RfqForm({
     return (
       <div className="rounded-2xl border bg-secondary/40 p-8 text-center">
         <h3 className="font-[family-name:var(--font-heading)] text-xl font-bold">
-          Request received 🌱
+          Request received
         </h3>
         <p className="mt-2 text-sm text-muted-foreground">
-          We&apos;ll get back with pricing and sample options. For the fastest
-          reply, ping us on WhatsApp.
+          We will come back with pricing and sample options, usually within a
+          working day. WhatsApp is faster if your deadline is tight.
         </p>
         <div className="mt-5 flex justify-center">
           <WhatsAppButton source="rfq-success" />
@@ -96,14 +98,14 @@ export function RfqForm({
             ))}
           </ul>
           <p className="mt-2 text-xs text-muted-foreground">
-            These will be included with your request.
+            We will quote these along with anything you add below.
           </p>
         </div>
       )}
 
       {/* Buyer type selector */}
       <div className="space-y-1.5">
-        <Label htmlFor="r-buyer-type">What are you looking for? *</Label>
+        <Label htmlFor="r-buyer-type">What are you buying for?</Label>
         <select
           id="r-buyer-type"
           name="buyerType"
@@ -111,7 +113,7 @@ export function RfqForm({
           defaultValue={defaultBuyerType ?? ""}
           className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
         >
-          <option value="" disabled>Select your use case…</option>
+          <option value="" disabled>Choose one…</option>
           <option value="csr-corporate">CSR / Corporate Campaign</option>
           <option value="brand-tags-inserts">Brand Tags &amp; Inserts</option>
           <option value="events-weddings">Events / Weddings</option>
@@ -130,7 +132,7 @@ export function RfqForm({
           defaultValue=""
           className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
         >
-          <option value="" disabled>Select a range…</option>
+          <option value="" disabled>Choose a range…</option>
           <option value="300-500">300–500 units</option>
           <option value="500-2000">500–2,000 units</option>
           <option value="2000-plus">2,000+ units</option>
@@ -147,7 +149,7 @@ export function RfqForm({
           defaultValue=""
           className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
         >
-          <option value="" disabled>Select a format…</option>
+          <option value="" disabled>Choose a format…</option>
           <option value="cards">Cards</option>
           <option value="tags">Tags</option>
           <option value="inserts">Inserts / sleeves</option>
@@ -219,7 +221,7 @@ export function RfqForm({
         </div>
         <div className="space-y-1.5">
           <Label htmlFor="r-city">City</Label>
-          <Input id="r-city" name="city" placeholder="e.g. Lahore, Karachi" />
+          <Input id="r-city" name="city" placeholder="Where should we deliver?" />
         </div>
       </div>
 
@@ -234,20 +236,21 @@ export function RfqForm({
           className="cursor-pointer file:mr-3 file:rounded file:border-0 file:bg-secondary file:px-3 file:py-1 file:text-sm"
         />
         <p className="text-xs text-muted-foreground">
-          We&apos;ll note your file and confirm the best way to receive it — large files can be shared on WhatsApp.
+          Anything works: logo, sketch, or a photo of something similar. Send
+          large files to us on WhatsApp instead.
         </p>
       </div>
       <div className="space-y-1.5">
-        <Label htmlFor="r-message">Anything else?</Label>
+        <Label htmlFor="r-message">Tell us about the job</Label>
         <Textarea
           id="r-message"
           name="message"
           rows={3}
-          placeholder="Printing, embossing, brand colours, deadline…"
+          placeholder="Printing, embossing, brand colors, deadline…"
         />
       </div>
       <p className="text-xs text-muted-foreground">
-        Provide an email or phone so we can send your quote.
+        Add an email or phone number so we can send your quote.
       </p>
       <Button type="submit" size="lg" disabled={loading}>
         {loading ? "Sending…" : "Request my quote"}

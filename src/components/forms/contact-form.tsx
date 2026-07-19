@@ -28,9 +28,11 @@ export function ContactForm() {
     setLoading(false);
     if (res.ok) {
       setDone(true);
-      toast.success("Thanks! We'll be in touch shortly.");
+      toast.success("Thanks, we've got your message.");
     } else {
-      toast.error(res.error ?? "Something went wrong.");
+      toast.error(
+        res.error ?? "We couldn't send that. Please try again, or message us on WhatsApp.",
+      );
     }
   }
 
@@ -38,10 +40,10 @@ export function ContactForm() {
     return (
       <div className="rounded-2xl border bg-secondary/40 p-8 text-center">
         <h3 className="font-[family-name:var(--font-heading)] text-xl font-bold">
-          Message received 🌱
+          Message received
         </h3>
         <p className="mt-2 text-sm text-muted-foreground">
-          We&apos;ll reply soon. For a faster response, message us on WhatsApp.
+          We usually reply the same working day. WhatsApp is faster if you are in a hurry.
         </p>
         <div className="mt-5 flex justify-center">
           <WhatsAppButton source="contact-success" />
@@ -71,14 +73,20 @@ export function ContactForm() {
         </div>
       </div>
       <div className="space-y-1.5">
-        <Label htmlFor="message">How can we help?</Label>
-        <Textarea id="message" name="message" rows={4} required />
+        <Label htmlFor="message">What do you need?</Label>
+        <Textarea
+          id="message"
+          name="message"
+          rows={4}
+          required
+          placeholder="Tell us the product, rough quantity and when you need it."
+        />
       </div>
       <p className="text-xs text-muted-foreground">
-        Provide an email or phone so we can reach you.
+        Add an email or phone number so we can reply.
       </p>
       <Button type="submit" size="lg" disabled={loading}>
-        {loading ? "Sending…" : "Send message"}
+        {loading ? "Sending…" : "Send my message"}
       </Button>
     </form>
   );

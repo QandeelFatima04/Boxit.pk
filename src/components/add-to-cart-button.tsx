@@ -19,7 +19,7 @@ export function AddToQuoteButton({
   size = "default",
   variant = "default",
   className,
-  label = "Add to Quote",
+  label = "Add to quote",
 }: Props) {
   const { add } = useCart();
   return (

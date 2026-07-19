@@ -57,19 +57,28 @@ export async function POST(request: Request) {
   try {
     payload = (await request.json()) as LeadPayload;
   } catch {
-    return NextResponse.json({ ok: false, error: "Invalid JSON" }, { status: 400 });
+    return NextResponse.json(
+      { ok: false, error: "We couldn't read that request. Please try again, or send us the details on WhatsApp." },
+      { status: 400 },
+    );
   }
 
   if (!payload.type) {
-    return NextResponse.json({ ok: false, error: "Missing type" }, { status: 400 });
+    return NextResponse.json(
+      { ok: false, error: "Something went wrong at our end. Please try again, or message us on WhatsApp." },
+      { status: 400 },
+    );
   }
   if (payload.email && !isEmail(payload.email)) {
-    return NextResponse.json({ ok: false, error: "Invalid email" }, { status: 400 });
+    return NextResponse.json(
+      { ok: false, error: "That email address doesn't look right. Please check it and resend." },
+      { status: 400 },
+    );
   }
   // Need at least one way to reach the lead.
   if (!payload.email && !payload.phone) {
     return NextResponse.json(
-      { ok: false, error: "Provide an email or phone" },
+      { ok: false, error: "Please add an email or phone number so we can send your quote." },
       { status: 400 },
     );
   }
