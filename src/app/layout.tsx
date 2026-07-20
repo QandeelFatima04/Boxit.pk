@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans, Fraunces } from "next/font/google";
 import "./globals.css";
 import { site } from "@/lib/site";
@@ -62,6 +62,15 @@ export const metadata: Metadata = {
   },
   alternates: { canonical: "/" },
   robots: { index: true, follow: true },
+};
+
+// Emits `width=device-width, initial-scale=1, viewport-fit=cover`.
+// `viewport-fit=cover` is required for the CSS `env(safe-area-inset-*)` values
+// (used by the sticky WhatsApp button) to resolve to real insets on notched devices.
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
 };
 
 export default function RootLayout({

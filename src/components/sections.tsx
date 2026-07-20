@@ -27,7 +27,7 @@ export function SectionHeading({
       )}
     >
       {eyebrow && <p className="eyebrow">{eyebrow}</p>}
-      <h2 className="mt-3 font-[family-name:var(--font-heading)] text-3xl font-bold tracking-tight sm:text-4xl">
+      <h2 className="fluid-h2 mt-3 font-[family-name:var(--font-heading)] font-bold tracking-tight">
         {title}
       </h2>
       {subtitle && (
@@ -76,7 +76,14 @@ export function PricingTiers() {
           key={tier.name}
           className={cn(
             "flex flex-col rounded-2xl border bg-card p-6",
-            tier.highlight && "border-brand ring-2 ring-brand/20 shadow-lg",
+            // Highlighted tier "pops" out slightly larger + raised on desktop.
+            // Scale only at lg (side-by-side); the ~1.05 growth stays within the
+            // gap-6 gutter so it never overlaps neighbours, and mobile is untouched.
+            // `pricing-featured` (globals.css) handles the desktop-only ~1.05
+            // "pop" + raise via an explicit media query — Tailwind v4's responsive
+            // `scale` utilities don't gate reliably against a base value.
+            tier.highlight &&
+              "pricing-featured relative border-brand ring-2 ring-brand/20 shadow-xl",
           )}
         >
           {tier.highlight && (
@@ -148,7 +155,7 @@ export function CtaBand({
       <div className="container-page">
         <div className="relative overflow-hidden rounded-3xl bg-primary px-6 py-14 text-center text-primary-foreground sm:px-12">
           <div className="relative mx-auto max-w-2xl">
-            <h2 className="font-[family-name:var(--font-heading)] text-3xl font-bold sm:text-4xl">
+            <h2 className="fluid-h2 font-[family-name:var(--font-heading)] font-bold">
               {title}
             </h2>
             <p className="mt-4 text-primary-foreground/80">{subtitle}</p>

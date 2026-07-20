@@ -150,13 +150,33 @@
 
 @layer components {
   .container-page {
-    @apply mx-auto w-full max-w-7xl px-5 sm:px-8;
+    @apply mx-auto w-full max-w-7xl;
+    /* Fluid gutters: 20px on phones → 40px on wide screens, smooth between.
+       Matches the old px-5 / sm:px-8 endpoints while removing the hard jump. */
+    padding-inline: clamp(1.25rem, 4vw, 2.5rem);
   }
   .eyebrow {
     @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-brand;
   }
+  /* Fluid vertical rhythm for every section band. Mobile stays ~64px (the old
+     py-16); it scales up to 96px (the old sm:py-24) on large screens instead of
+     stepping at a single breakpoint. */
   .section {
-    @apply py-16 sm:py-24;
+    padding-block: clamp(4rem, 2.5rem + 3.9vw, 6rem);
+  }
+  /* Short viewports (landscape phones, tiny laptops): tighten section spacing
+     so bands don't leave large empty gaps when vertical room is scarce. */
+  @media (max-height: 640px) {
+    .section {
+      padding-block: clamp(2.5rem, 8vh, 4rem);
+    }
+  }
+
+  /* Fluid section headings — same 30px→36px range as the old text-3xl/sm:text-4xl
+     pair, but continuous so headings never look oversized mid-range on laptops. */
+  .fluid-h2 {
+    font-size: clamp(1.875rem, 1.45rem + 1.6vw, 2.25rem);
+    line-height: 1.15;
   }
 
   /* ── Hero viewport sizing ──────────────────────────────────────────
@@ -231,6 +251,22 @@
   .hero-sub { font-size: 1rem; }
 }
 
+/* Very short viewports (landscape phones, e.g. 932x430 / 667x375): hard-compress
+   the hero so the stats row stays within the fold instead of clipping. Applies at
+   any width since narrow landscape phones need it too. */
+@media (max-height: 520px) {
+  .hero-content {
+    padding-top: 3.75rem;
+    padding-bottom: 0.75rem;
+  }
+  .hero-title { font-size: clamp(1.75rem, 1rem + 2.4vw, 2.5rem); }
+  .hero-sub { font-size: 0.95rem; }
+  .hero-gap-sm { margin-top: 0.5rem; }
+  .hero-gap-md { margin-top: 0.75rem; }
+  .hero-gap-lg { margin-top: 0.75rem; }
+  .hero-stats { row-gap: 0.35rem; }
+}
+
 /* ── Logo marquee (auto-scrolling partner strip) ──
    Track holds two identical copies of the row, so shifting by -50%
    lands exactly one set over and loops seamlessly. */
@@ -248,5 +284,27 @@
   .animate-marquee,
   .animate-marquee-reverse {
     animation: none;
+  }
+}
+
+/* ── Highlighted pricing tier "pop" ──────────────────────────────────
+   On desktop (≥1024px, where the three tiles sit side-by-side) the
+   featured tile scales up ~5% and lifts above its neighbours. The growth
+   stays inside the grid's gap-6 gutter, so it never overlaps. On stacked
+   mobile/tablet layouts it renders at natural size. Top-level (not inside
+   @layer) so it compiles reliably in this Tailwind v4 setup. */
+.pricing-featured {
+  scale: 1; /* explicit base so mobile/tablet never inherit the desktop scale */
+  transition: scale 0.3s ease;
+}
+@media (min-width: 1024px) {
+  .pricing-featured {
+    scale: 1.05;
+    z-index: 10;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pricing-featured {
+    transition: none;
   }
 }

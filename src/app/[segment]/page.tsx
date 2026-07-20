@@ -84,7 +84,7 @@ export default async function SegmentPage({
             <p className="text-sm font-semibold uppercase tracking-wide text-brand">
               How Boxit helps
             </p>
-            <p className="mt-3 text-lg font-medium leading-relaxed">{s.offer}</p>
+            <p className="mt-3 text-sm leading-relaxed">{s.offer}</p>
             <div className="mt-5 flex items-center gap-2 rounded-xl bg-card p-4 text-sm">
               <Check className="h-5 w-5 shrink-0 text-brand" />
               <span className="font-medium">{s.hook}</span>
