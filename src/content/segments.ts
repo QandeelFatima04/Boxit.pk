@@ -8,7 +8,7 @@ export const segments: SegmentPage[] = [
     audience: "HR, CSR, ESG & marketing teams at corporates and NGOs",
     heroHeadline:
       "Plantable corporate gifts and CSR campaign material your recipients will photograph, plant, and remember.",
-    heroImage: "/images/clients/client-corporate-cards.jpg",
+    heroImage: "/images/segments/hero-csr-corporate-gifts-v2.jpg",
     heroImageAlt:
       "Branded plantable seed-paper corporate greeting cards and CSR campaign material displayed on easels",
     heroSub:
@@ -56,7 +56,7 @@ export const segments: SegmentPage[] = [
     audience: "Commercial printers, graphic designers, packaging converters and manufacturers",
     heroHeadline:
       "Wholesale plantable seed paper stock. A4 sheets, custom GSM, bulk quantities for your own production.",
-    heroImage: "/images/products/artistic-sheets-2.jpg",
+    heroImage: "/images/segments/hero-seed-paper-stock-v2.jpg",
     heroImageAlt:
       "Wholesale plantable seed-paper sheets in bulk, manufactured in Pakistan",
     heroSub:
@@ -73,6 +73,8 @@ export const segments: SegmentPage[] = [
     productSlugs: [
       "seed-paper-sheets-bulk",
       "seed-paper-a5-pack",
+      "neem-leaf-paper",
+      "cotton-paper",
     ],
     startingFrom: "From PKR 1,200 (A5 sample pack)",
     moq: "From 300 A4 sheets (bulk)",
@@ -106,7 +108,7 @@ export const segments: SegmentPage[] = [
     audience: "Fashion labels, cosmetics brands, handmade & D2C product businesses",
     heroHeadline:
       "Plantable hang tags, business cards, inserts and pennants that put your sustainability work in the customer's hand.",
-    heroImage: "/images/products/price-tags-1.jpg",
+    heroImage: "/images/segments/hero-plantable-brand-materials-v2.jpg",
     heroImageAlt:
       "Custom plantable seed-paper hang tags and price tags printed with brand logos",
     heroSub:
@@ -155,7 +157,7 @@ export const segments: SegmentPage[] = [
     label: "Weddings & Events",
     audience: "Wedding planners, event managers & families organizing mehndi, nikah and corporate events",
     heroHeadline: "Plantable invitations and giveaways your guests will remember, and grow.",
-    heroImage: "/images/products/tags-bookmarks-2.jpg",
+    heroImage: "/images/segments/hero-weddings-events-v2.jpg",
     heroImageAlt:
       "Elegant plantable seed-paper wedding invitation cards displayed on easels",
     heroSub:
