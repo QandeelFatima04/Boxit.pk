@@ -11,6 +11,14 @@ export const segments: SegmentPage[] = [
     heroImage: "/images/segments/hero-csr-corporate-gifts-v2.jpg",
     heroImageAlt:
       "Branded plantable seed-paper corporate greeting cards and CSR campaign material displayed on easels",
+    // Seed-paper calendars, branded gift boxes, greeting cards & seed balls — CSR kits
+    gallery: [
+      "/images/clients/client-corporate-cards.jpg",
+      "/images/clients/client-pm-csr-box.jpg",
+      "/images/clients/client-bkk-giftset.jpg",
+      "/images/products/calendars-1.jpg",
+      "/images/products/seed-balls-1.jpg",
+    ],
     heroSub:
       "Seed-paper calendars, branded gift boxes, greeting cards and seed balls, customized with your logo and campaign message. Every piece carries a planting guide, so your recipient knows exactly what to do with it.",
     pains: [
@@ -59,6 +67,12 @@ export const segments: SegmentPage[] = [
     heroImage: "/images/segments/hero-seed-paper-stock-v2.jpg",
     heroImageAlt:
       "Wholesale plantable seed-paper sheets in bulk, manufactured in Pakistan",
+    // Raw seed-paper sheets in bulk — A4/A5, custom GSM, deckle-edge stock
+    gallery: [
+      "/images/products/artistic-sheets-2.jpg",
+      "/images/products/artistic-sheets-1.jpg",
+      "/images/products/product-spread-grass.jpg",
+    ],
     heroSub:
       "We manufacture seed-embedded paper in-house in Pakistan. Buy raw sheets for your own printing, converting or client supply. Multiple GSM options, seasonal seed selection, and deckle-edge or cut-sheet formats available. Local lead times, local quality control, no import paperwork.",
     pains: [
@@ -111,6 +125,13 @@ export const segments: SegmentPage[] = [
     heroImage: "/images/segments/hero-plantable-brand-materials-v2.jpg",
     heroImageAlt:
       "Custom plantable seed-paper hang tags and price tags printed with brand logos",
+    // Hang tags, price tags, pennants & business cards for product brands
+    gallery: [
+      "/images/products/price-tags-1.jpg",
+      "/images/products/tags-bookmarks-1.jpg",
+      "/images/products/pennants-1.jpg",
+      "/images/clients/client-cayano-bizcard.jpg",
+    ],
     heroSub:
       "Seed-paper hang tags, price tags, branded inserts, business cards and pennants printed with your logo. The tag is the last thing a customer reads before they buy. It should say as much about you as the product does.",
     pains: [
@@ -160,6 +181,13 @@ export const segments: SegmentPage[] = [
     heroImage: "/images/segments/hero-weddings-events-v2.jpg",
     heroImageAlt:
       "Elegant plantable seed-paper wedding invitation cards displayed on easels",
+    // Seed-paper invitations, greeting cards & plantable favour bags for events
+    gallery: [
+      "/images/products/wedding-cards-1.jpg",
+      "/images/products/greeting-cards-1.jpg",
+      "/images/products/petal-bags-colorful.jpg",
+      "/images/products/tags-bookmarks-2.jpg",
+    ],
     heroSub:
       "Seed-paper invitations, envelopes, confetti and favor bags that guests plant after your event. Months later, your date is still flowering in their garden.",
     pains: [

@@ -508,6 +508,12 @@ export default function HomePage() {
                       {s.label}
                     </h3>
                     <p className="mt-1 text-sm font-medium text-brand">{s.audience}</p>
+                    {s.gallery && s.gallery.length > 0 && (
+                      <CaseStudyGallery
+                        images={s.gallery}
+                        alt={`${s.label} — plantable seed-paper products`}
+                      />
+                    )}
                     <p className="mt-3 flex-1 text-sm text-muted-foreground">{s.hook}</p>
                     <span className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-foreground group-hover:gap-2">
                       See {s.label} <ArrowRight className="h-4 w-4 transition-all" />

@@ -90,6 +90,8 @@ export type SegmentPage = {
   heroImage: string;
   /** Alt text for the hero image. */
   heroImageAlt: string;
+  /** Related images shown as an auto-advancing gallery on the segment tile. */
+  gallery?: string[];
   pains: string[];
   offer: string;
   hook: string;
