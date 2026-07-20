@@ -72,11 +72,12 @@ export function SegmentHero({ segment: s }: { segment: SegmentPage }) {
               ))}
             </ul>
 
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <WhatsAppButton
                 source={`segment-${s.slug}`}
                 label={s.cta.label}
                 text={s.cta.whatsappText}
+                className="shrink-0"
               />
               <EstimatorButton />
               <Button asChild size="lg" variant="outline">

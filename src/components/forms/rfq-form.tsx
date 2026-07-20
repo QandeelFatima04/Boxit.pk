@@ -221,7 +221,7 @@ export function RfqForm({
         </div>
         <div className="space-y-1.5">
           <Label htmlFor="r-city">City</Label>
-          <Input id="r-city" name="city" placeholder="Where should we deliver?" />
+          <Input id="r-city" name="city" placeholder="e.g. Lahore, Karachi" />
         </div>
       </div>
 

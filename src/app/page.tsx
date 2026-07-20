@@ -600,7 +600,7 @@ export default function HomePage() {
             </FadeIn>
             <FadeIn delay={0.12}>
               <p className="eyebrow">Seed paper &amp; petal bags</p>
-              <h2 className="mt-3 font-[family-name:var(--font-heading)] text-3xl font-bold sm:text-4xl">
+              <h2 className="fluid-h2 mt-3 font-[family-name:var(--font-heading)] font-bold">
                 Colorful plantable bags, embedded with real petals
               </h2>
               <p className="mt-4 text-muted-foreground">
@@ -693,7 +693,7 @@ export default function HomePage() {
         <div className="container-page grid items-center gap-10 lg:grid-cols-2">
           <FadeIn>
             <p className="text-sm font-semibold uppercase tracking-wide text-gold">Sample kit</p>
-            <h2 className="mt-3 font-[family-name:var(--font-heading)] text-3xl font-bold sm:text-4xl">
+            <h2 className="fluid-h2 mt-3 font-[family-name:var(--font-heading)] font-bold">
               Get a sample kit before you commit to bulk
             </h2>
             <p className="mt-4 text-primary-foreground/80">
