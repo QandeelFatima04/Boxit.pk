@@ -30,10 +30,15 @@ export function Estimator() {
   const [size, setSize] = useState(sizes[0].key);
   const [finishing, setFinishing] = useState<string[]>([]);
 
-  // Lead capture (optional — mirrors the quiz's "send me this" flow).
+  // Lead capture. Email is required — this CTA emails the estimate.
   const [contact, setContact] = useState({ name: "", phone: "", email: "" });
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
+  // Only complain once they've left the field, so the form isn't red on arrival.
+  const [emailTouched, setEmailTouched] = useState(false);
+
+  const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contact.email.trim());
+  const showEmailError = emailTouched && !emailValid;
 
   const result = useMemo(
     () => estimate({ format, quantity, material, printing, size, finishing }),
@@ -94,7 +99,8 @@ export function Estimator() {
   const quoteHref = `/quote?product=${encodeURIComponent(fmt.label)}`;
 
   async function sendEstimate() {
-    if (!contact.phone && !contact.email) return;
+    // Email is required — this CTA emails the estimate, so we can't send without one.
+    if (!emailValid) return;
     setSending(true);
     await submitLead({
       type: "quote",
@@ -291,7 +297,7 @@ export function Estimator() {
                 <p className="text-sm font-semibold">Get your exact quote</p>
                 <div className="grid gap-2 sm:grid-cols-2">
                   <Input
-                    placeholder="Phone / WhatsApp"
+                    placeholder="Phone / WhatsApp (optional)"
                     value={contact.phone}
                     onChange={(e) =>
                       setContact({ ...contact, phone: e.target.value })
@@ -299,13 +305,26 @@ export function Estimator() {
                   />
                   <Input
                     type="email"
-                    placeholder="Email (optional)"
+                    required
+                    aria-required="true"
+                    aria-invalid={showEmailError}
+                    aria-describedby={showEmailError ? "e-email-error" : undefined}
+                    placeholder="Email"
                     value={contact.email}
                     onChange={(e) =>
                       setContact({ ...contact, email: e.target.value })
                     }
+                    onBlur={() => setEmailTouched(true)}
+                    className={cn(showEmailError && "border-destructive")}
                   />
                 </div>
+                {showEmailError && (
+                  <p id="e-email-error" className="text-xs text-destructive">
+                    {contact.email.trim()
+                      ? "That email doesn't look right — check for a typo."
+                      : "Please add your email so we can send the estimate."}
+                  </p>
+                )}
                 <Input
                   placeholder="Name"
                   value={contact.name}
@@ -316,19 +335,28 @@ export function Estimator() {
                 <Button
                   className="w-full"
                   size="lg"
-                  onClick={sendEstimate}
-                  disabled={sending || (!contact.phone && !contact.email)}
+                  onClick={() => {
+                    setEmailTouched(true);
+                    sendEstimate();
+                  }}
+                  disabled={sending || !emailValid}
                 >
                   {sending ? "Sending…" : "Email me this estimate"}
                 </Button>
-                <div className="flex flex-col gap-2 sm:flex-row">
+                {/* Equal-width pair: both fixed to h-11 and kept on one line so
+                    the WhatsApp label can't wrap and outgrow its neighbour. */}
+                <div className="grid gap-2 sm:grid-cols-2">
                   <WhatsAppButton
                     source="estimator"
                     label="Confirm on WhatsApp"
                     text={whatsappText}
-                    className="flex-1"
+                    className="h-11 w-full whitespace-nowrap px-4"
                   />
-                  <Button asChild variant="outline" className="flex-1">
+                  <Button
+                    asChild
+                    variant="outline"
+                    className="h-11 w-full whitespace-nowrap px-4"
+                  >
                     <Link href={quoteHref}>Request an exact quote</Link>
                   </Button>
                 </div>
