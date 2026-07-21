@@ -21,9 +21,13 @@ export function RfqForm({
   const [done, setDone] = useState(false);
   const { items, clear } = useCart();
 
-  // Items the visitor added via "Add to Quote", e.g. "Plantable Calendars ×2"
+  // Items the visitor added, e.g. "Plantable Calendars ×2",
+  // or with a chosen size: "Seed Paper Sheets (9\" × 12\") ×300"
   const quoteListSummary = items
-    .map((i) => `${i.name}${i.qty > 1 ? ` ×${i.qty}` : ""}`)
+    .map((i) => {
+      const size = i.variantLabel ? ` (${i.variantLabel})` : "";
+      return `${i.name}${size}${i.qty > 1 ? ` ×${i.qty}` : ""}`;
+    })
     .join(", ");
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -91,8 +95,9 @@ export function RfqForm({
           <p className="text-sm font-semibold">Items in your quote list</p>
           <ul className="mt-2 space-y-1 text-sm text-muted-foreground">
             {items.map((i) => (
-              <li key={i.slug}>
+              <li key={i.id}>
                 {i.name}
+                {i.variantLabel ? ` (${i.variantLabel})` : ""}
                 {i.qty > 1 ? ` × ${i.qty}` : ""}
               </li>
             ))}

@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 import { submitLead } from "@/lib/submit-lead";
 import { whatsappLink } from "@/lib/site";
 import { track } from "@/lib/track";
+import { useCart } from "@/components/cart/cart-context";
 
 type Step = { key: string; question: string; options: string[] };
 
@@ -74,6 +75,16 @@ export function PackagingQuiz() {
   const [contact, setContact] = useState({ name: "", phone: "", email: "" });
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState<string | null>(null);
+  const { items, clear } = useCart();
+
+  // Anything the visitor added via "Add to quote" must ride along with the
+  // brief — otherwise those items are silently dropped from the request.
+  const quoteListSummary = items
+    .map((i) => {
+      const size = i.variantLabel ? ` (${i.variantLabel})` : "";
+      return `${i.name}${size}${i.qty > 1 ? ` ×${i.qty}` : ""}`;
+    })
+    .join(", ");
 
   const isContactStep = step === STEPS.length;
   const progress = Math.round((step / (STEPS.length + 1)) * 100);
@@ -85,6 +96,7 @@ export function PackagingQuiz() {
 
   function buildWhatsAppText() {
     const lines = STEPS.map((s) => `${s.question} ${answers[s.key] ?? "—"}`);
+    if (quoteListSummary) lines.push(`Items in my quote list: ${quoteListSummary}`);
     return `Hi Boxit, here's my packaging brief:\n${lines.join("\n")}\nName: ${contact.name}`;
   }
 
@@ -92,18 +104,25 @@ export function PackagingQuiz() {
     if (!contact.phone && !contact.email) return;
     setSubmitting(true);
     const waText = buildWhatsAppText();
-    await submitLead({
+    const res = await submitLead({
       type: "quiz",
       name: contact.name,
       phone: contact.phone,
       email: contact.email,
       businessType: answers.businessType,
-      product: answers.product,
+      // Fold the quote list into the product line so it reaches the sales inbox.
+      product: [answers.product, quoteListSummary].filter(Boolean).join(" | "),
       quantity: answers.quantity,
       timeline: answers.timeline,
-      answers,
+      answers: {
+        ...answers,
+        ...(quoteListSummary ? { quoteList: quoteListSummary } : {}),
+      },
     });
     setSubmitting(false);
+    // Only empty the list once the brief is actually recorded, so a failed
+    // submit doesn't lose the items the visitor picked.
+    if (res.ok) clear();
     setDone(whatsappLink(waText));
   }
 
@@ -183,6 +202,25 @@ export function PackagingQuiz() {
           <h3 className="mt-2 font-[family-name:var(--font-heading)] text-2xl font-bold">
             Where should we send your quote?
           </h3>
+
+          {items.length > 0 && (
+            <div className="mt-5 rounded-lg border border-brand/30 bg-secondary/40 p-4">
+              <p className="text-sm font-semibold">Items in your quote list</p>
+              <ul className="mt-2 space-y-1 text-sm text-muted-foreground">
+                {items.map((i) => (
+                  <li key={i.id}>
+                    {i.name}
+                    {i.variantLabel ? ` (${i.variantLabel})` : ""}
+                    {i.qty > 1 ? ` × ${i.qty}` : ""}
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-2 text-xs text-muted-foreground">
+                These are included with your brief.
+              </p>
+            </div>
+          )}
+
           <div className="mt-5 space-y-4">
             <div className="space-y-1.5">
               <Label htmlFor="q-name">Name</Label>
