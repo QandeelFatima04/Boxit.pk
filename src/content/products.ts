@@ -275,8 +275,16 @@ export const products: Product[] = [
       "/images/products/seed-paper-sheets-colored-fan.jpg",
       "/images/products/seed-paper-sheets-stack.jpg",
     ],
-    purchasable: false,
-    moq: "From 300 A4 sheets",
+    purchasable: true,
+    // Priced per sheet by size, not as a flat SKU. Figures are the 01-colour
+    // per-unit rates from the production pricing sheet (see content/estimator.ts,
+    // format key "seed-paper-sheets"): small 9"×12" Rs 100, large 15"×20" Rs 200.
+    unitNoun: "sheets",
+    variants: [
+      { key: "small", label: "9\" × 12\"", price: 100, minQty: 300, hint: "Standard sheet — fits A4 artwork" },
+      { key: "large", label: "15\" × 20\"", price: 200, minQty: 300, hint: "Largest stock size, deckle edge" },
+    ],
+    moq: "From 300 sheets",
     leadTime: "5–10 working days",
     features: ["GSM/thickness options", "Seed selection (seasonal)", "Largest stock size 15\" × 20\" deckle edge"],
   },

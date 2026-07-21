@@ -8,12 +8,40 @@ import { faqs, faqCategories } from "@/content/faqs";
 import { caseStudies } from "@/content/case-studies";
 import { pricingTiers, guarantees } from "@/content/pricing";
 import { blogPosts } from "@/content/blog";
-import type { Product, SegmentSlug } from "@/content/types";
+import { isCheckoutEnabled } from "@/lib/commerce";
+import type { Product, ProductVariant, SegmentSlug } from "@/content/types";
 
 // Products
 export const getAllProducts = () => products;
 export const getProduct = (slug: string) =>
   products.find((p) => p.slug === slug);
+
+/** Look up a size option on a variant-priced product. */
+export const getVariant = (
+  product: Product,
+  variantKey?: string,
+): ProductVariant | undefined =>
+  variantKey ? product.variants?.find((v) => v.key === variantKey) : undefined;
+
+/**
+ * The authoritative unit price and minimum quantity for a product line.
+ * Used by the cart UI *and* by the order API, so a shopper can never be charged
+ * a price the catalogue doesn't agree with.
+ */
+export function resolveUnitPrice(
+  product: Product,
+  variantKey?: string,
+): { price: number; minQty: number } | null {
+  // Priced in the catalogue is not the same as open for online payment.
+  if (!product.purchasable || !isCheckoutEnabled(product.slug)) return null;
+  if (product.variants?.length) {
+    const variant = getVariant(product, variantKey);
+    if (!variant) return null; // a size must be chosen
+    return { price: variant.price, minQty: variant.minQty };
+  }
+  if (!product.price) return null;
+  return { price: product.price, minQty: 1 };
+}
 export const getFeaturedProducts = () => products.filter((p) => p.featured);
 export const getPurchasableProducts = () =>
   products.filter((p) => p.purchasable);

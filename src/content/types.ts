@@ -16,6 +16,23 @@ export type SegmentSlug =
   | "plantable-brand-materials"
   | "seed-paper-stock";
 
+/**
+ * A buyable size option for products priced per unit rather than as a flat SKU
+ * (seed paper sheets: the buyer picks a sheet size and a sheet count).
+ * Prices come from the production pricing sheet — see content/estimator.ts.
+ */
+export type ProductVariant = {
+  key: string;
+  /** Shown in the size picker, e.g. `9" × 12"`. */
+  label: string;
+  /** PKR per single unit (per sheet), before quantity. */
+  price: number;
+  /** Least sellable quantity for this size. */
+  minQty: number;
+  /** Optional short helper text under the option. */
+  hint?: string;
+};
+
 export type Product = {
   slug: string;
   name: string;
@@ -31,7 +48,15 @@ export type Product = {
   imageFrame?: "tall";
   /** Fixed-price productized item → purchasable. Otherwise → request a quote. */
   purchasable: boolean;
-  price?: number; // PKR, required when purchasable
+  price?: number; // PKR, required when purchasable *unless* variants are used
+  /**
+   * Size options priced per unit. When present, `price` is not used — the line
+   * total is variant.price × qty, and the buyer must pick a size before adding
+   * to the cart.
+   */
+  variants?: ProductVariant[];
+  /** What a quantity counts, for variant products ("sheets", "bags"…). */
+  unitNoun?: string;
   moq?: string; // e.g. "300 A4 sheets"
   leadTime?: string; // e.g. "5–7 working days"
   features?: string[];

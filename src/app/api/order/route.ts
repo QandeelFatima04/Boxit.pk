@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getProduct } from "@/lib/content";
+import { getProduct, getVariant, resolveUnitPrice } from "@/lib/content";
 import { computeShipping } from "@/lib/commerce";
 import {
   getPaymentInstruction,
@@ -7,7 +7,7 @@ import {
   type PaymentInstruction,
 } from "@/lib/payments";
 
-type IncomingItem = { slug: string; qty: number };
+type IncomingItem = { slug: string; qty: number; variant?: string };
 
 export type OrderRequest = {
   items: IncomingItem[];
@@ -64,21 +64,66 @@ export async function POST(request: Request): Promise<NextResponse<OrderResponse
 
   // Recompute totals server-side from the catalogue (never trust client prices).
   let subtotal = 0;
-  const resolved: { slug: string; name: string; qty: number; price: number }[] = [];
+  const resolved: {
+    slug: string;
+    name: string;
+    qty: number;
+    price: number;
+    variant?: string;
+    variantLabel?: string;
+  }[] = [];
   for (const it of body.items) {
     const p = getProduct(it.slug);
-    if (!p || !p.purchasable || !p.price) {
+    if (!p) {
+      return NextResponse.json(
+        { ok: false, error: `We couldn't find "${it.slug}" in our catalogue.` },
+        { status: 400 },
+      );
+    }
+
+    // Sized products must name a size we actually sell.
+    if (p.variants?.length && !getVariant(p, it.variant)) {
       return NextResponse.json(
         {
           ok: false,
-          error: `"${p?.name ?? it.slug}" is made to order, so it can't be checked out directly. Request a quote for it instead.`,
+          error: `Please choose a size for "${p.name}" before checking out.`,
         },
         { status: 400 },
       );
     }
-    const qty = Math.max(1, Math.floor(it.qty));
-    subtotal += p.price * qty;
-    resolved.push({ slug: p.slug, name: p.name, qty, price: p.price });
+
+    const pricing = resolveUnitPrice(p, it.variant);
+    if (!pricing) {
+      return NextResponse.json(
+        {
+          ok: false,
+          error: `"${p.name}" is made to order, so it can't be checked out directly. Request a quote for it instead.`,
+        },
+        { status: 400 },
+      );
+    }
+
+    const qty = Math.floor(it.qty);
+    if (!Number.isFinite(qty) || qty < pricing.minQty) {
+      return NextResponse.json(
+        {
+          ok: false,
+          error: `"${p.name}" has a minimum order of ${pricing.minQty.toLocaleString("en-PK")} ${p.unitNoun ?? "units"}.`,
+        },
+        { status: 400 },
+      );
+    }
+
+    const variant = getVariant(p, it.variant);
+    subtotal += pricing.price * qty;
+    resolved.push({
+      slug: p.slug,
+      name: p.name,
+      qty,
+      price: pricing.price,
+      variant: variant?.key,
+      variantLabel: variant?.label,
+    });
   }
 
   const shipping = computeShipping(subtotal);

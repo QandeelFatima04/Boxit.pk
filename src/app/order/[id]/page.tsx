@@ -77,9 +77,11 @@ export default function OrderConfirmationPage({
               <h2 className="font-semibold">Summary</h2>
               <ul className="mt-4 space-y-2 text-sm">
                 {order.items.map((i) => (
-                  <li key={i.slug} className="flex justify-between">
+                  <li key={i.id ?? i.slug} className="flex justify-between">
                     <span className="text-muted-foreground">
-                      {i.name} × {i.qty}
+                      {i.name}
+                      {i.variantLabel ? ` (${i.variantLabel})` : ""} ×{" "}
+                      {i.qty.toLocaleString("en-PK")}
                     </span>
                     <span>{formatPKR((i.price ?? 0) * i.qty)}</span>
                   </li>

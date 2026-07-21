@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Check, Sprout } from "lucide-react";
-import { AddToQuoteButton } from "@/components/add-to-cart-button";
+import { AddToCartButton } from "@/components/add-to-cart-button";
 import { WhatsAppButton } from "@/components/whatsapp-button";
 import { formatPKR } from "@/lib/format";
 import { Guarantees } from "@/components/sections";
@@ -65,10 +65,14 @@ export default function SampleKitPage() {
             </div>
 
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-              <AddToQuoteButton
+              <AddToCartButton
                 size="lg"
-                item={{ slug: kit.slug, name: kit.name }}
-                label="Add to quote"
+                item={{
+                  slug: kit.slug,
+                  name: kit.name,
+                  price: kit.price,
+                  image: kit.image,
+                }}
               />
               <WhatsAppButton
                 source="sample-kit"
