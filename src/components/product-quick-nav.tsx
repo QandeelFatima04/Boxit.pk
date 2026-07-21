@@ -191,12 +191,15 @@ export function ProductQuickNav() {
           .boxit-panel-in { animation-name: boxitPanelFade; animation-duration: 0.15s; }
         }
       `}</style>
-      <div className="container-page py-10 sm:py-12">
+      {/* Compact vertical rhythm so the whole browse section — heading,
+          category row, recommended carousel and the view-all link — fits a
+          ~670px laptop viewport at 100% zoom. */}
+      <div className="container-page pb-4 pt-5 sm:pb-4 sm:pt-6">
         <p className="eyebrow">Browse products</p>
-        <h2 className="mt-2 font-[family-name:var(--font-heading)] text-2xl font-bold sm:text-3xl">
+        <h2 className="mt-1.5 font-[family-name:var(--font-heading)] text-2xl font-bold sm:text-3xl">
           Shop by product category
         </h2>
-        <p className="mt-2 max-w-xl text-muted-foreground">
+        <p className="mt-1.5 max-w-xl text-muted-foreground">
           Choose a category to explore the available products.
         </p>
 
@@ -204,7 +207,7 @@ export function ProductQuickNav() {
         <div
           role="tablist"
           aria-label="Product categories"
-          className="mt-6 flex snap-x gap-3 overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:none] sm:grid sm:grid-cols-2 sm:overflow-visible lg:grid-cols-3 xl:grid-cols-5 [&::-webkit-scrollbar]:hidden"
+          className="mt-4 flex snap-x gap-3 overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:none] sm:grid sm:grid-cols-2 sm:overflow-visible md:grid-cols-3 lg:grid-cols-5 [&::-webkit-scrollbar]:hidden"
         >
           {CATEGORIES.map((cat) => {
             const selected = cat.id === active.id;
@@ -217,7 +220,7 @@ export function ProductQuickNav() {
                 aria-controls={`panel-${cat.id}`}
                 id={`tab-${cat.id}`}
                 onClick={() => selectCategory(cat.id)}
-                className={`group flex min-h-[44px] min-w-[220px] shrink-0 snap-start flex-col gap-2 rounded-2xl border p-4 text-left transition-[border-color,box-shadow] sm:min-w-0 ${
+                className={`group flex min-h-[44px] min-w-[220px] shrink-0 snap-start flex-col gap-1.5 rounded-2xl border p-3 text-left transition-[border-color,box-shadow] sm:min-w-0 ${
                   selected
                     ? "border-brand bg-brand text-white shadow-sm"
                     : "border-border bg-card text-foreground hover:border-brand/60 hover:bg-brand/5"
@@ -259,7 +262,7 @@ export function ProductQuickNav() {
         </div>
 
         {/* Products for the selected category */}
-        <div className="mt-9">
+        <div className="mt-4">
           <div className="flex items-center justify-between gap-4">
             <h3 className="font-[family-name:var(--font-heading)] text-lg font-semibold sm:text-xl">
               Recommended products in {active.label}
@@ -275,7 +278,7 @@ export function ProductQuickNav() {
             id={`panel-${active.id}`}
             role="tabpanel"
             aria-labelledby={`tab-${active.id}`}
-            className="boxit-panel-in mt-4"
+            className="boxit-panel-in mt-3"
             style={{ animationDuration: reduceMotion ? "0.15s" : undefined }}
             data-reduce={reduceMotion ? "true" : undefined}
           >
@@ -460,7 +463,7 @@ function ProductTile({ item }: { item: NavItem }) {
       draggable={false}
       className="group flex w-[68%] shrink-0 snap-start flex-col overflow-hidden rounded-2xl border bg-card transition hover:border-brand hover:shadow-lg hover:shadow-black/5 sm:w-56 lg:w-60"
     >
-      <div className="relative aspect-[4/3] overflow-hidden bg-secondary/30">
+      <div className="relative aspect-[16/9] overflow-hidden bg-secondary/30">
         {src ? (
           <Image
             src={src}
@@ -478,7 +481,7 @@ function ProductTile({ item }: { item: NavItem }) {
           </div>
         )}
       </div>
-      <div className="flex flex-1 items-center justify-between gap-2 p-4">
+      <div className="flex flex-1 items-center justify-between gap-2 p-3">
         <span className="text-sm font-semibold leading-tight">{item.label}</span>
         <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-brand/10 text-brand transition group-hover:bg-brand group-hover:text-white">
           <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>

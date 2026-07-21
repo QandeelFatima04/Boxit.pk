@@ -94,8 +94,10 @@ export default async function ProductPage({
         ]}
       />
 
-      <section className="container-page py-12 sm:py-16">
-        <nav className="mb-6 text-sm text-muted-foreground">
+      {/* Tightened so the image, details and all four CTAs share the first
+          screen on a ~670px-tall laptop viewport. */}
+      <section className="container-page py-6 sm:py-8">
+        <nav className="mb-4 text-sm text-muted-foreground">
           <Link href="/products" className="hover:text-brand">
             Products
           </Link>
@@ -114,9 +116,10 @@ export default async function ProductPage({
           <span className="text-foreground">{product.name}</span>
         </nav>
 
-        <div className="grid gap-10 lg:grid-cols-2">
-          {/* Media */}
-          <div className="relative aspect-square overflow-hidden rounded-3xl border bg-gradient-to-br from-secondary via-accent to-cream">
+        <div className="grid gap-6 lg:grid-cols-2 lg:gap-8">
+          {/* Media — square on phones, height-capped on laptops so a tall
+              viewport isn't consumed by the photo alone. */}
+          <div className="relative aspect-square overflow-hidden rounded-3xl border bg-gradient-to-br from-secondary via-accent to-cream lg:aspect-auto lg:h-[min(62svh,30rem)]">
             {product.image ? (
               <Image
                 src={product.image}
@@ -147,7 +150,7 @@ export default async function ProductPage({
               {product.tagline}
             </p>
 
-            <div className="mt-6">
+            <div className="mt-4">
               {flatPrice ? (
                 <span className="text-3xl font-bold">{formatPKR(flatPrice)}</span>
               ) : cheapestVariant ? (
@@ -164,12 +167,12 @@ export default async function ProductPage({
               )}
             </div>
 
-            <p className="mt-5 leading-relaxed text-muted-foreground">
+            <p className="mt-3 leading-relaxed text-muted-foreground">
               {product.description}
             </p>
 
             {/* facts */}
-            <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm">
+            <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-sm">
               {product.moq && (
                 <span className="flex items-center gap-2">
                   <Package className="h-4 w-4 text-brand" /> MOQ: {product.moq}
@@ -195,7 +198,10 @@ export default async function ProductPage({
 
             {hasSizes && <SheetConfigurator product={product} />}
 
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            {/* 2×2 grid: equal-width CTAs that never overflow the column (a
+                flex row pushed the page into horizontal scroll). Stacks on
+                phones; each cell stretches so all four share one size. */}
+            <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2 [&>*]:w-full">
               {flatPrice ? (
                 <AddToCartButton
                   size="lg"
@@ -222,10 +228,13 @@ export default async function ProductPage({
                 </Link>
               </Button>
               <EstimatorButton />
+              {/* Matches Button size="lg" (h-12/px-7/text-base) so all four
+                  CTAs share one height and baseline. */}
               <WhatsAppButton
                 source={`product-${product.slug}`}
-                label="Get a quote on WhatsApp"
+                label="WhatsApp us"
                 text={`Hi Boxit, I'd like a quote for "${product.name}". Quantity: ___.`}
+                className="h-12 shrink-0 whitespace-nowrap px-7 text-base"
               />
             </div>
 

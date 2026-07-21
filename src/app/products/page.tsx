@@ -46,16 +46,13 @@ export default function ProductsPage() {
                 {cat.slug === "seed-balls" && (
                   <>
                     <GalleryTile
-                      title="Seed balls in production"
-                      subtitle="Real batches, hand-rolled and drying at our nursery."
+                      title="Shaped seed bombs"
+                      subtitle="Wildflower seed bombs molded into butterflies, bears, gingerbread and festive shapes."
+                      badge="Seed bombs"
                       images={[
                         {
-                          src: "/images/products/seed-ball-earth-1.jpg",
-                          alt: "Thousands of blue-green wildflower seed balls drying at the nursery",
-                        },
-                        {
-                          src: "/images/products/seed-ball-earth-2.jpg",
-                          alt: "Close-up carpet of blue and green wildflower seed balls",
+                          src: "/images/clients/client-seed-bombs-shapes.jpg",
+                          alt: "Colorful wildflower seed bombs molded into butterflies, bears and gingerbread shapes on a plate",
                         },
                       ]}
                     />
@@ -76,13 +73,16 @@ export default function ProductsPage() {
                       ]}
                     />
                     <GalleryTile
-                      title="Shaped seed bombs"
-                      subtitle="Wildflower seed bombs molded into butterflies, bears, gingerbread and festive shapes."
-                      badge="Seed bombs"
+                      title="Seed balls in production"
+                      subtitle="Real batches, hand-rolled and drying at our nursery."
                       images={[
                         {
-                          src: "/images/clients/client-seed-bombs-shapes.jpg",
-                          alt: "Colorful wildflower seed bombs molded into butterflies, bears and gingerbread shapes on a plate",
+                          src: "/images/products/seed-ball-earth-1.jpg",
+                          alt: "Thousands of blue-green wildflower seed balls drying at the nursery",
+                        },
+                        {
+                          src: "/images/products/seed-ball-earth-2.jpg",
+                          alt: "Close-up carpet of blue and green wildflower seed balls",
                         },
                       ]}
                     />

@@ -135,7 +135,8 @@ export type BlogPost = {
   date: string; // ISO
   author: string;
   tags: string[];
-  /** Markdown-ish body (rendered as paragraphs). */
+  /** Markdown-ish body: `##`/`###`, `-`/`1.` lists, tables, bold, italic, links.
+   *  Rendered by components/post-body.tsx. */
   body: string;
   cover?: string;
   seo?: Seo;

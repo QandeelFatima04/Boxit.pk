@@ -10,7 +10,7 @@ export const blogPosts: BlogPost[] = [
     date: "2026-01-15",
     author: "Boxit",
     tags: ["Education", "Seed Paper"],
-    cover: "/images/products/artistic-sheets-1.jpg",
+    cover: "/images/products/seed-paper-a5-printed.jpg",
     body: `Plantable seed paper is biodegradable paper with real seeds embedded into the pulp. You plant it in soil, water it, and it grows into herbs, flowers or vegetables.
 
 ## What is seed paper made from?
@@ -41,7 +41,7 @@ Ready to test it? [Order a sample pack](/sample-kit) before committing to a bulk
     date: "2026-02-02",
     author: "Boxit",
     tags: ["Corporate Gifting", "CSR", "Ideas"],
-    cover: "/images/products/calendars-1.jpg",
+    cover: "/images/clients/client-metro-kit-flatlay.jpg",
     body: `Most corporate giveaways sit in a drawer within days. A plantable gift asks the recipient to do something with it: plant it, water it, and watch it grow.
 
 ## Why plantable gifts work for CSR campaigns
@@ -87,7 +87,7 @@ Tie the gift to a specific message. "We planted X trees" is abstract. "Plant thi
     date: "2026-02-20",
     author: "Boxit",
     tags: ["Weddings", "Events", "Invitations"],
-    cover: "/images/products/wedding-cards-1.jpg",
+    cover: "/images/products/tags-bookmarks-2.jpg",
     body: `Plantable wedding invitations are seed-paper cards with real seeds pressed into the pulp. After the wedding, guests plant the card in soil, water it, and it grows into flowers or herbs. The keepsake becomes something that blooms.
 
 ## Why plantable wedding invitations?
@@ -140,7 +140,7 @@ They tear it into small pieces, cover with a thin layer of soil, water lightly, 
     date: "2026-03-05",
     author: "Boxit",
     tags: ["Seed Paper Stock", "Printers", "Wholesale"],
-    cover: "/images/products/artistic-sheets-2.jpg",
+    cover: "/images/products/seed-paper-sheets-colored-fan.jpg",
     body: `Demand for seed paper is rising in Pakistan. Brands want it for CSR campaigns, packaging inserts, invitations and tags. For printers and designers, the hard part has been sourcing it locally instead of importing it with unpredictable lead times and minimum container quantities.
 
 ## Why source locally?
@@ -193,7 +193,7 @@ Order a [sample pack (A5, 25 sheets)](/products/seed-paper-a5-pack) and run it t
     date: "2026-03-25",
     author: "Boxit",
     tags: ["Education", "Sustainability", "Seed Paper"],
-    cover: "/images/products/artistic-sheets-1.jpg",
+    cover: "/images/products/product-spread-grass.jpg",
     body: `When a brand chooses seed paper over conventional paper, what's the actual environmental difference? Here's a clear comparison.
 
 ## How conventional paper is made
@@ -249,7 +249,7 @@ Start with a [sample kit](/sample-kit) to feel the difference.`,
     date: "2026-04-10",
     author: "Boxit",
     tags: ["Education", "How To", "Seed Paper"],
-    cover: "/images/products/seed-balls-1.jpg",
+    cover: "/images/products/seed-balls-bkk.jpg",
     body: `Seed paper only does its job if it grows. Planting it takes five minutes and no gardening experience. Here is the method we share with every client.
 
 ## Step by step
@@ -297,7 +297,7 @@ When you hand a recipient a plantable card, include a short planting guide. It m
     date: "2026-04-24",
     author: "Boxit",
     tags: ["Education", "Seed Paper"],
-    cover: "/images/products/artistic-sheets-1.jpg",
+    cover: "/images/products/seed-ball-earth-1.jpg",
     body: `One of the first questions buyers ask is "what actually grows from it?" The answer depends on the seed we embed, and that is your choice.
 
 ## Common seed options
@@ -342,7 +342,7 @@ Natural germination depends on seed type, soil, water, sunlight and handling, so
     date: "2026-05-08",
     author: "Boxit",
     tags: ["Education", "Printing", "Seed Paper"],
-    cover: "/images/products/tags-bookmarks-3.jpg",
+    cover: "/images/products/seed-paper-a5-printed-cards.jpg",
     body: `Seed paper is a real print substrate, not a novelty. It does behave a little differently from standard stock, so here is what you can do with it.
 
 ## Can seed paper be printed on?
@@ -387,7 +387,7 @@ Design with bold artwork, choose the right GSM for the format, and let us guide 
     date: "2026-05-22",
     author: "Boxit",
     tags: ["Education", "Printing", "Seed Paper"],
-    cover: "/images/products/price-tags-1.jpg",
+    cover: "/images/products/tags-bookmarks-1.jpg",
     body: `GSM (grams per square meter) is how paper weight is measured. The higher the number, the thicker and stiffer the sheet. For seed paper it affects feel, folding, durability and how the paper plants. Here is how to choose.
 
 ## Lower GSM (thinner)
@@ -436,7 +436,7 @@ You don't need to memorize numbers. Tell us the product and the use case, we wil
     date: "2026-06-05",
     author: "Boxit",
     tags: ["CSR", "Corporate Gifting", "Strategy"],
-    cover: "/images/products/calendars-1.jpg",
+    cover: "/images/products/branded-inserts-corporate.jpg",
     body: `Plantable paper is a good material, but a material on its own is not a campaign. Here is a simple framework for building a CSR campaign around it that actually lands.
 
 ## 1. Start with the message, not the product

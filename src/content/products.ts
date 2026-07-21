@@ -58,7 +58,7 @@ export const products: Product[] = [
   },
   {
     slug: "plantable-greeting-cards-set",
-    name: "Plantable Greeting Cards (Set of 10)",
+    name: "Plantable Greeting Cards",
     tagline: "Cards that grow into flowers",
     description:
       "Ten blank plantable greeting cards with envelopes. Write your message, gift it, then plant the card. Ideal for personal gifting and small businesses.",
@@ -90,7 +90,7 @@ export const products: Product[] = [
   },
   {
     slug: "plantable-bookmarks",
-    name: "Plantable Bookmarks (Set of 10)",
+    name: "Plantable Bookmarks",
     tagline: "Read it, then grow it",
     description:
       "Seed-paper bookmarks that grow into herbs once the book is finished. Light, flat and cheap to post, which makes them an easy giveaway for bookshops, libraries and reading campaigns.",
@@ -410,19 +410,28 @@ export const products: Product[] = [
     features: ["Cut to fit your existing box", "Seed-paper or biodegradable stock", "Care-card and planting-guide printing"],
   },
   {
-    slug: "wedding-invitations",
-    name: "Plantable Wedding Invitations",
-    tagline: "An invitation that grows after the wedding",
+    slug: "plantable-pennants",
+    name: "Plantable Pennants",
+    tagline: "Decorative pennants you hang, then plant",
     description:
-      "Custom plantable invitations with matching envelopes and tags. Guests plant the card after the day, and it flowers in the season that follows. Seed choice is yours, and we will tell you what suits the month you are printing for.",
+      "Seed-paper pennants in custom shapes and sizes, strung on twine for product launches, events and store décor. Hang them across a stall or a shopfront, then let guests take one home and plant it.",
     category: "event",
-    segments: ["weddings-events"],
-    image: "/images/products/walima-invites.png",
+    segments: ["weddings-events", "plantable-brand-materials"],
+    image: "/images/products/pennants-1.jpg",
     purchasable: false,
-    moq: "From 300–500 sets",
-    leadTime: "10–15 working days",
-    features: ["Custom design & print", "Matching envelopes & tags", "Seed selection"],
-    featured: true,
+    moq: "From 500 pennants",
+    leadTime: "7–10 working days",
+    features: [
+      "Custom shape, size and print",
+      "String/twine included",
+      "Mixed herb or wildflower seeds",
+    ],
+    seo: {
+      seoTitle: "Plantable Pennants — Seed Paper Event Decor Pakistan",
+      metaDescription:
+        "Custom seed-paper pennants for events, launches and brand décor. Guests take them home and plant them. Made in Pakistan.",
+      keywords: ["plantable pennants Pakistan", "seed paper pennants", "eco event decor Pakistan"],
+    },
   },
   {
     slug: "plantable-invitation-cards",
@@ -538,28 +547,19 @@ export const products: Product[] = [
     },
   },
   {
-    slug: "plantable-pennants",
-    name: "Plantable Pennants",
-    tagline: "Decorative pennants you hang, then plant",
+    slug: "wedding-invitations",
+    name: "Plantable Wedding Invitations",
+    tagline: "An invitation that grows after the wedding",
     description:
-      "Seed-paper pennants in custom shapes and sizes, strung on twine for product launches, events and store décor. Hang them across a stall or a shopfront, then let guests take one home and plant it.",
+      "Custom plantable invitations with matching envelopes and tags. Guests plant the card after the day, and it flowers in the season that follows. Seed choice is yours, and we will tell you what suits the month you are printing for.",
     category: "event",
-    segments: ["weddings-events", "plantable-brand-materials"],
-    image: "/images/products/pennants-1.jpg",
+    segments: ["weddings-events"],
+    image: "/images/products/walima-invites.png",
     purchasable: false,
-    moq: "From 500 pennants",
-    leadTime: "7–10 working days",
-    features: [
-      "Custom shape, size and print",
-      "String/twine included",
-      "Mixed herb or wildflower seeds",
-    ],
-    seo: {
-      seoTitle: "Plantable Pennants — Seed Paper Event Decor Pakistan",
-      metaDescription:
-        "Custom seed-paper pennants for events, launches and brand décor. Guests take them home and plant them. Made in Pakistan.",
-      keywords: ["plantable pennants Pakistan", "seed paper pennants", "eco event decor Pakistan"],
-    },
+    moq: "From 300–500 sets",
+    leadTime: "10–15 working days",
+    features: ["Custom design & print", "Matching envelopes & tags", "Seed selection"],
+    featured: true,
   },
 
   // ---------- Added to cover every item in the instant estimator ----------

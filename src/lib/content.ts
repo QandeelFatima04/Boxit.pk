@@ -80,3 +80,29 @@ export const getBlogPosts = () =>
   [...blogPosts].sort((a, b) => (a.date < b.date ? 1 : -1));
 export const getBlogPost = (slug: string) =>
   blogPosts.find((p) => p.slug === slug);
+
+/** Posts sharing the most tags with `slug`, newest first. */
+export const getRelatedBlogPosts = (slug: string, limit = 3) => {
+  const post = getBlogPost(slug);
+  if (!post) return [];
+  return getBlogPosts()
+    .filter((p) => p.slug !== slug)
+    .map((p) => ({
+      post: p,
+      shared: p.tags.filter((t) => post.tags.includes(t)).length,
+    }))
+    .sort((a, b) => b.shared - a.shared)
+    .slice(0, limit)
+    .map((r) => r.post);
+};
+
+export const formatPostDate = (iso: string) =>
+  new Date(iso).toLocaleDateString("en-PK", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+
+/** Rounded reading time at ~200 wpm, floored at one minute. */
+export const readingTime = (body: string) =>
+  Math.max(1, Math.round(body.trim().split(/\s+/).length / 200));

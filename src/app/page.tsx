@@ -288,14 +288,14 @@ export default function HomePage() {
       ────────────────────────────────────────────────────────────── */}
       <section
         ref={heroRef}
-        className="hero-viewport relative -mt-16 flex items-center justify-center overflow-hidden"
+        className="hero-viewport relative -mt-16 flex items-center overflow-hidden"
       >
         {/* Parallax image layer — CSS background for reliable full-bleed rendering.
             Sizing/focal point live in .hero-bg so media queries can retarget them. */}
         <motion.div className="hero-bg absolute inset-0" style={{ y: heroImageY }} />
         {/* Hidden Next.js Image so the browser preloads / CDN optimises it */}
         <Image
-          src="/images/hero-banner.jpg"
+          src="/images/hero-banner-wide.jpg"
           alt=""
           fill
           priority
@@ -304,16 +304,16 @@ export default function HomePage() {
           sizes="100vw"
         />
 
-        {/* Gradient overlays — readable text on any part of image */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/45 to-black/30" />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-transparent" />
+        {/* Readability scrim — a left-side gradient only, so the products on the
+            right stay unobstructed. Fades out well before they begin. */}
+        <div className="hero-scrim absolute inset-0" />
 
-        {/* ── Centered hero content ── */}
-        <div className="hero-content relative z-10 mx-auto w-full max-w-4xl px-6 text-center">
+        {/* ── Hero content — left column over the empty lawn ── */}
+        <div className="hero-content hero-col relative z-10 w-full px-6 text-center lg:text-left">
 
           {/* Eyebrow pill */}
           <AnimatedLine delay={0.15}>
-            <div className="flex justify-center">
+            <div className="flex justify-center lg:justify-start">
               <span className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-5 py-2 text-sm font-semibold text-white backdrop-blur-sm">
                 <Leaf className="h-4 w-4 text-green-400" />
                 Pakistan&apos;s first plantable seed-paper maker
@@ -334,46 +334,54 @@ export default function HomePage() {
           </h1>
 
           {/* Subline */}
-          <AnimatedLine delay={1.05} className="hero-gap-sm hero-sub text-white/75 max-w-2xl mx-auto leading-relaxed">
-            Custom plantable products for CSR campaigns, events, retail brands and
-            bulk paper supply. Manufactured in Pakistan, with real seeds in every sheet.
+          <AnimatedLine delay={1.05} className="hero-gap-sm hero-sub text-white/80 max-w-2xl mx-auto leading-relaxed lg:mx-0">
+            Turn your packaging, promotions and events into something customers
+            can plant and remember.
           </AnimatedLine>
 
           {/* CTAs */}
-          <AnimatedLine delay={1.25} className="hero-gap-md flex flex-col items-center gap-3 sm:flex-row sm:justify-center sm:flex-wrap">
-            <WhatsAppButton source="hero" label="Get a quote on WhatsApp" />
-            <Button
-              asChild
-              size="lg"
-              variant="outline"
-              className="border-white/40 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20 hover:border-white/60"
-            >
-              <Link href="/estimator">
-                <Calculator className="h-4 w-4" /> Estimate cost
-              </Link>
-            </Button>
-            <Button
-              asChild
-              size="lg"
-              variant="outline"
-              className="border-white/40 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20 hover:border-white/60"
-            >
-              <Link href="/sample-kit">
-                Request samples <ArrowRight className="h-4 w-4" />
-              </Link>
-            </Button>
+          {/* Row 1: the primary WhatsApp CTA. Row 2: the two secondary CTAs
+              side by side, so they share a baseline. */}
+          <AnimatedLine delay={1.25} className="hero-gap-md flex flex-col items-center gap-3 lg:items-start">
+            <WhatsAppButton
+              source="hero"
+              label="Get a quote on WhatsApp"
+              className="h-12 px-7 text-base"
+            />
+            <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-center lg:justify-start">
+              <Button
+                asChild
+                size="lg"
+                variant="outline"
+                className="border-white/40 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20 hover:border-white/60"
+              >
+                <Link href="/estimator">
+                  <Calculator className="h-4 w-4" /> Estimate cost
+                </Link>
+              </Button>
+              <Button
+                asChild
+                size="lg"
+                variant="outline"
+                className="border-white/40 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20 hover:border-white/60"
+              >
+                <Link href="/sample-kit">
+                  Request samples <ArrowRight className="h-4 w-4" />
+                </Link>
+              </Button>
+            </div>
           </AnimatedLine>
 
           {/* Stats strip */}
           <AnimatedLine delay={1.45}>
-            <dl className="hero-gap-lg hero-stats flex flex-wrap justify-center">
+            <dl className="hero-gap-lg hero-stats grid grid-cols-2 sm:grid-cols-4">
               {[
                 { label: "MOQ from",     value: "300 units" },
                 { label: "Lead time",    value: "7–15 days" },
                 { label: "Made in",      value: site.city },
                 { label: "Seed options", value: "Seasonal" },
               ].map(({ label, value }) => (
-                <div key={label} className="text-center">
+                <div key={label} className="text-center lg:text-left">
                   <dt className="text-[11px] font-semibold uppercase tracking-widest text-white/50">
                     {label}
                   </dt>

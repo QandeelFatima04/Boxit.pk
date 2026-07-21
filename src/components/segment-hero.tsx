@@ -67,20 +67,24 @@ export function SegmentHero({ segment: s }: { segment: SegmentPage }) {
               ))}
             </ul>
 
+            {/* Row 1: full-width WhatsApp CTA (its label is long and
+                segment-specific). Row 2: the two short CTAs at equal width,
+                stacking on phones. */}
             <div className="mt-8 flex flex-col gap-3 lg:mt-6">
-              <div className="flex flex-col gap-3 sm:flex-row">
-                <WhatsAppButton
-                  source={`segment-${s.slug}`}
-                  label={s.cta.label}
-                  text={s.cta.whatsappText}
-                />
+              <WhatsAppButton
+                source={`segment-${s.slug}`}
+                label={s.cta.label}
+                text={s.cta.whatsappText}
+                className="h-12 w-full px-7 text-base"
+              />
+              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 [&>*]:w-full">
+                <Button asChild size="lg" variant="outline">
+                  <Link href="/sample-kit">
+                    Order a sample kit <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </Button>
                 <EstimatorButton />
               </div>
-              <Button asChild size="lg" variant="outline" className="sm:self-start">
-                <Link href="/sample-kit">
-                  Order a sample kit <ArrowRight className="h-4 w-4" />
-                </Link>
-              </Button>
             </div>
           </FadeIn>
         </div>

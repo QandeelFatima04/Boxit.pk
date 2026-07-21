@@ -21,7 +21,7 @@ export const pricingTiers: PricingTier[] = [
     name: "Brand Launch",
     positioning: "For brands putting a full packaging set into market at once.",
     bestFor: "Brands launching or rebranding",
-    priceHint: "Priced to your brief",
+    priceHint: "Price on request",
     includes: [
       "Material chosen per item, not one-size-fits-all",
       "Bags, tags, cards, inserts, sleeves and toppers",
@@ -37,7 +37,7 @@ export const pricingTiers: PricingTier[] = [
     name: "Corporate / CSR Campaign",
     positioning: "For gifting and CSR campaigns that need to land with staff, clients or media.",
     bestFor: "Corporate gifting and CSR teams",
-    priceHint: "Priced to your brief",
+    priceHint: "Price on request",
     includes: [
       "Seed paper cards, calendars and gift packaging",
       "Your campaign message printed throughout",

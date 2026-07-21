@@ -7,13 +7,14 @@ export const solutionsNav: NavLink[] = [
   { label: "Weddings & Events", href: "/weddings-events" },
 ];
 
+// The first six show in the desktop bar (see site-header); the mobile sheet lists all.
 export const mainNav: NavLink[] = [
   { label: "Products", href: "/products" },
   { label: "Sample Kit", href: "/sample-kit" },
   { label: "Our Work", href: "/work" },
+  { label: "Blog", href: "/blog" },
   { label: "About", href: "/about" },
   { label: "FAQ", href: "/faq" },
-  { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact" },
 ];
 

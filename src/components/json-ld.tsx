@@ -100,6 +100,47 @@ export function ProductJsonLd({
   );
 }
 
+export function ArticleJsonLd({
+  title,
+  description,
+  slug,
+  date,
+  author,
+  image,
+}: {
+  title: string;
+  description: string;
+  slug: string;
+  date: string;
+  author: string;
+  image?: string;
+}) {
+  return (
+    <JsonLd
+      data={{
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        headline: title,
+        description,
+        datePublished: date,
+        dateModified: date,
+        author: { "@type": "Organization", name: author },
+        publisher: {
+          "@type": "Organization",
+          name: site.legalName,
+          url: site.url,
+        },
+        image: image ? `${site.url}${image}` : undefined,
+        mainEntityOfPage: {
+          "@type": "WebPage",
+          "@id": `${site.url}/blog/${slug}`,
+        },
+        url: `${site.url}/blog/${slug}`,
+      }}
+    />
+  );
+}
+
 export function BreadcrumbJsonLd({
   items,
 }: {

@@ -114,13 +114,15 @@ export function ProductCard({ product }: { product: Product }) {
           {product.leadTime && <span>{product.leadTime}</span>}
         </div>
 
-        <div className="mt-auto flex items-center justify-between gap-2 pt-4">
-          <span className="text-sm font-semibold text-brand">
+        <div className="mt-auto flex flex-wrap items-center justify-between gap-2 pt-4">
+          {/* whitespace-nowrap keeps the price label on one line so it reads
+              as a single value against the CTA, rather than wrapping. */}
+          <span className="whitespace-nowrap text-sm font-semibold text-brand">
             {flatPrice
               ? formatPKR(flatPrice)
               : cheapestVariant
                 ? `From ${formatPKR(cheapestVariant)} / sheet`
-                : "Priced to your brief"}
+                : "Price on request"}
           </span>
           {flatPrice ? (
             <AddToCartButton

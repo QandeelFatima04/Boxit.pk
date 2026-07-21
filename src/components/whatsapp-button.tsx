@@ -42,12 +42,14 @@ export function WhatsAppButton({
           right: "calc(1.25rem + env(safe-area-inset-right))",
         }}
         className={cn(
-          "fixed z-50 flex items-center gap-2 rounded-full bg-[#25D366] px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-black/15 transition hover:scale-105 hover:bg-[#1ebe5b]",
+          // Compact pill: icon-only on phones, icon + label from sm up. z-40 so
+          // it sits under dialogs/sheets (z-50) rather than over them.
+          "fixed z-40 flex h-11 items-center gap-2 rounded-full bg-[#25D366] px-3 text-sm font-semibold text-white shadow-lg shadow-black/15 transition hover:scale-105 hover:bg-[#1ebe5b] sm:px-4",
           className,
         )}
       >
-        <WhatsAppIcon className="h-6 w-6" />
-        <span className="hidden sm:inline">WhatsApp us</span>
+        <WhatsAppIcon className="h-5 w-5 shrink-0" />
+        <span className="hidden whitespace-nowrap sm:inline">WhatsApp us</span>
       </a>
     );
   }

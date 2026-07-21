@@ -155,6 +155,42 @@
        Matches the old px-5 / sm:px-8 endpoints while removing the hard jump. */
     padding-inline: clamp(1.25rem, 4vw, 2.5rem);
   }
+  /* Blog shell — a wider max-width with larger gutters than the site default,
+     so long-form content isn't stretched edge-to-edge on laptops and monitors.
+     `.container-page` is deliberately left alone: the header and 19 other pages
+     depend on it. `.blog-cta` re-aligns the shared CtaBand, which ships its own
+     `.container-page`, to these same edges. */
+  .container-blog,
+  .blog-cta .container-page {
+    margin-inline: auto;
+    width: 100%;
+    max-width: 90rem; /* 1440px */
+    padding-inline: 1.25rem; /* 20px — mobile */
+  }
+  @media (min-width: 640px) {
+    .container-blog,
+    .blog-cta .container-page {
+      padding-inline: 2rem; /* 32px — tablet */
+    }
+  }
+  @media (min-width: 1024px) {
+    .container-blog,
+    .blog-cta .container-page {
+      padding-inline: 3rem; /* 48px — laptop */
+    }
+  }
+  @media (min-width: 1280px) {
+    .container-blog,
+    .blog-cta .container-page {
+      padding-inline: 4rem; /* 64px — desktop */
+    }
+  }
+  @media (min-width: 1536px) {
+    .container-blog,
+    .blog-cta .container-page {
+      padding-inline: 5rem; /* 80px — wide desktop */
+    }
+  }
   .eyebrow {
     @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-brand;
   }
@@ -192,10 +228,29 @@
   }
 
   .hero-bg {
-    background-image: url("/images/hero-banner.jpg");
+    /* Wide crop: lawn on the left, products on the right (from ~47% across). */
+    background-image: url("/images/hero-banner-wide.jpg");
     background-size: cover;
-    background-position: center 55%;
+    background-position: center center;
     background-repeat: no-repeat;
+  }
+
+  /* Readability scrim. Darkens only the left column and fades to fully
+     transparent before the products begin, so they are never overlaid. */
+  .hero-scrim {
+    background: linear-gradient(
+      to right,
+      rgb(0 0 0 / 0.62) 0%,
+      rgb(0 0 0 / 0.5) 28%,
+      rgb(0 0 0 / 0.22) 44%,
+      rgb(0 0 0 / 0) 58%
+    );
+  }
+
+  /* Hero text column — constrained to the empty lawn on the left. */
+  .hero-col {
+    margin-inline: auto;
+    max-width: 48rem;
   }
 
   .hero-content {
@@ -217,16 +272,43 @@
   .hero-gap-md { margin-top: clamp(1rem, 3.6vh, 2rem); }
   .hero-gap-lg { margin-top: clamp(1.25rem, 5.3vh, 3rem); }
 
+  /* Four columns inside the narrow left hero column, so the gap has to stay
+     tight enough that "Seed options" never wraps onto its own row. */
   .hero-stats {
-    column-gap: clamp(1.5rem, 0.5rem + 2.5vw, 2.5rem);
+    column-gap: clamp(0.875rem, 1.4vw, 1.5rem);
     row-gap: clamp(0.5rem, 2.2vh, 1.25rem);
   }
-  .hero-stat-value { font-size: clamp(1.25rem, 0.9rem + 1vw, 1.5rem); }
+  .hero-stat-value {
+    font-size: clamp(1.05rem, 0.75rem + 0.75vw, 1.35rem);
+    white-space: nowrap;
+  }
 }
 
-/* Mobile: shift the focal point so the bags stay in frame on narrow crops */
-@media (max-width: 768px) {
-  .hero-bg { background-position: 60% 60%; }
+/* Desktop: text sits in a left column over the lawn; the products (right ~53%
+   of the crop) stay clear. Below lg the content re-centres. */
+@media (min-width: 1024px) {
+  /* Anchor the crop left so any horizontal overflow is trimmed from the empty
+     grass on the far right, pushing the products further from the text. */
+  .hero-bg { background-position: left center; }
+  .hero-col {
+    margin-inline: 0;
+    max-width: min(44%, 38rem);
+    padding-inline-start: clamp(2rem, 5vw, 5rem);
+  }
+}
+
+/* Mobile / tablet: centre the copy and pan the crop so the products stay in
+   frame behind it, with a vertical scrim instead of a left-side one. */
+@media (max-width: 1023px) {
+  .hero-bg { background-position: 72% center; }
+  .hero-scrim {
+    background: linear-gradient(
+      to bottom,
+      rgb(0 0 0 / 0.55) 0%,
+      rgb(0 0 0 / 0.45) 45%,
+      rgb(0 0 0 / 0.6) 100%
+    );
+  }
 }
 
 /* Short laptops (1366x768, 1536x864 with browser chrome, 1024x768):
