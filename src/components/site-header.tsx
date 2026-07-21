@@ -50,22 +50,29 @@ export function SiteHeader({
     [],
   );
 
-  // The mega menu is a white panel; leaving the bar transparent behind it would
-  // strand the nav text over the hero photo, so an open menu forces the solid
-  // treatment. The hero itself is untouched.
-  const isGlass = isHomepage && !scrolled && !megaOpen;
+  // On the homepage the bar sits over the hero photo, so it carries its own
+  // dark-green scrim and white text for the whole page rather than only until
+  // the first scroll — a transparent bar was illegible against the brighter
+  // parts of the image. Only the bar is tinted; the hero itself is untouched.
+  const onDark = isHomepage;
+  // Scrolled (or with the mega panel open) the scrim firms up slightly so the
+  // sticky header reads as a solid surface rather than a floating tint.
+  const settled = scrolled || megaOpen;
 
   return (
     <header
       className={`sticky top-0 z-50 transition-all duration-500 ${
-        isGlass
-          ? "border-transparent bg-transparent"
+        onDark
+          ? `${
+              settled ? "bg-[rgba(8,35,24,0.92)]" : "bg-[rgba(8,35,24,0.82)]"
+            } border-b border-white/10 shadow-sm shadow-black/20 backdrop-blur-md`
           : "border-b border-border/60 bg-background/90 backdrop-blur"
       }`}
     >
       <div className="container-page flex h-16 items-center justify-between gap-4">
-        {/* Logo — white text when over hero, brand-colored otherwise */}
-        <div className={isGlass ? "[&_*]:!text-white [&_svg_*]:!fill-white" : ""}>
+        {/* The "Boxit" wordmark goes white against the hero scrim; the B mark is
+            an image and keeps its brand green on both treatments. */}
+        <div className={onDark ? "[&_span]:!text-white" : ""}>
           <Logo />
         </div>
 
@@ -73,7 +80,7 @@ export function SiteHeader({
           <div className="group relative">
             <button
               className={`text-sm font-medium transition ${
-                isGlass ? "text-white/90 hover:text-white" : "text-foreground/80 hover:text-foreground"
+                onDark ? "text-white/90 hover:text-white" : "text-foreground/80 hover:text-foreground"
               }`}
             >
               Solutions
@@ -94,7 +101,7 @@ export function SiteHeader({
           </div>
           <ProductsMegaMenu
             categories={productsMenu}
-            glass={isGlass}
+            onDark={onDark}
             onOpenChange={handleMegaOpenChange}
           />
           {/* Products now has its own trigger above, so it is dropped here. */}
@@ -106,7 +113,7 @@ export function SiteHeader({
                 key={link.href}
                 href={link.href}
                 className={`text-sm font-medium transition ${
-                  isGlass ? "text-white/90 hover:text-white" : "text-foreground/80 hover:text-foreground"
+                  onDark ? "text-white/90 hover:text-white" : "text-foreground/80 hover:text-foreground"
                 }`}
               >
                 {link.label}
@@ -120,7 +127,7 @@ export function SiteHeader({
             title="Your quote list"
             onClick={() => setCartOpen(true)}
             className={`relative grid h-10 w-10 place-items-center rounded-full transition ${
-              isGlass ? "text-white hover:bg-white/15" : "hover:bg-muted"
+              onDark ? "text-white hover:bg-white/15" : "hover:bg-muted"
             }`}
           >
             <ShoppingBag className="h-5 w-5" />
@@ -136,7 +143,7 @@ export function SiteHeader({
             size="sm"
             variant="outline"
             className={`hidden lg:inline-flex transition-all ${
-              isGlass
+              onDark
                 ? "border-white/40 bg-white/10 text-white hover:bg-white/20 hover:border-white/60"
                 : ""
             }`}
@@ -150,7 +157,7 @@ export function SiteHeader({
             asChild
             size="sm"
             className={`hidden sm:inline-flex transition-all ${
-              isGlass
+              onDark
                 ? "bg-white text-black hover:bg-white/90 border-0 shadow-none"
                 : ""
             }`}
@@ -162,7 +169,7 @@ export function SiteHeader({
             <SheetTrigger
               aria-label="Open menu"
               className={`grid h-10 w-10 place-items-center rounded-full transition lg:hidden ${
-                isGlass ? "text-white hover:bg-white/15" : "hover:bg-muted"
+                onDark ? "text-white hover:bg-white/15" : "hover:bg-muted"
               }`}
             >
               <Menu className="h-5 w-5" />

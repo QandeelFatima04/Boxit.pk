@@ -24,12 +24,12 @@ import type { MegaMenuCategory } from "@/lib/mega-menu";
  */
 export function ProductsMegaMenu({
   categories,
-  glass,
+  onDark,
   onOpenChange,
 }: {
   categories: MegaMenuCategory[];
-  /** Header is transparent over the hero — trigger text goes white. */
-  glass?: boolean;
+  /** Header carries a dark scrim over the hero — trigger text goes white. */
+  onDark?: boolean;
   onOpenChange?: (open: boolean) => void;
 }) {
   const baseId = useId();
@@ -196,7 +196,7 @@ export function ProductsMegaMenu({
         className={cn(
           "inline-flex items-center gap-1 rounded-md px-1 py-1 text-sm font-medium transition",
           "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand",
-          glass
+          onDark
             ? "text-white/90 hover:text-white focus-visible:outline-white"
             : "text-foreground/80 hover:text-foreground",
         )}
