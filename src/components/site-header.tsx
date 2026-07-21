@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { usePathname } from "next/navigation";
 import { Calculator, Menu, ShoppingBag } from "lucide-react";
 import { Logo } from "@/components/logo";
@@ -15,11 +15,19 @@ import {
 } from "@/components/ui/sheet";
 import { mainNav, solutionsNav } from "@/lib/nav";
 import { useCart } from "@/components/cart/cart-context";
+import { ProductsMegaMenu } from "@/components/nav/products-mega-menu";
+import { ProductsMobileNav } from "@/components/nav/products-mobile-nav";
+import type { MegaMenuCategory } from "@/lib/mega-menu";
 
-export function SiteHeader() {
+export function SiteHeader({
+  productsMenu,
+}: {
+  productsMenu: MegaMenuCategory[];
+}) {
   const [open, setOpen] = useState(false);
   const { count, setOpen: setCartOpen } = useCart();
   const [scrolled, setScrolled] = useState(false);
+  const [megaOpen, setMegaOpen] = useState(false);
   const pathname = usePathname();
   const isHomepage = pathname === "/";
 
@@ -35,7 +43,17 @@ export function SiteHeader() {
     return () => window.removeEventListener("scroll", handler);
   }, [isHomepage]);
 
-  const isGlass = isHomepage && !scrolled;
+  // Stable identity: the menu reports its open state from an effect, so a fresh
+  // callback each render would re-fire it on every render.
+  const handleMegaOpenChange = useCallback(
+    (value: boolean) => setMegaOpen(value),
+    [],
+  );
+
+  // The mega menu is a white panel; leaving the bar transparent behind it would
+  // strand the nav text over the hero photo, so an open menu forces the solid
+  // treatment. The hero itself is untouched.
+  const isGlass = isHomepage && !scrolled && !megaOpen;
 
   return (
     <header
@@ -74,17 +92,26 @@ export function SiteHeader() {
               </div>
             </div>
           </div>
-          {mainNav.slice(0, 6).map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={`text-sm font-medium transition ${
-                isGlass ? "text-white/90 hover:text-white" : "text-foreground/80 hover:text-foreground"
-              }`}
-            >
-              {link.label}
-            </Link>
-          ))}
+          <ProductsMegaMenu
+            categories={productsMenu}
+            glass={isGlass}
+            onOpenChange={handleMegaOpenChange}
+          />
+          {/* Products now has its own trigger above, so it is dropped here. */}
+          {mainNav
+            .slice(0, 6)
+            .filter((link) => link.href !== "/products")
+            .map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`text-sm font-medium transition ${
+                  isGlass ? "text-white/90 hover:text-white" : "text-foreground/80 hover:text-foreground"
+                }`}
+              >
+                {link.label}
+              </Link>
+            ))}
         </nav>
 
         <div className="flex items-center gap-2">
@@ -140,7 +167,8 @@ export function SiteHeader() {
             >
               <Menu className="h-5 w-5" />
             </SheetTrigger>
-            <SheetContent side="right" className="w-80">
+            {/* The category accordion can outgrow short viewports — let it scroll. */}
+            <SheetContent side="right" className="w-80 overflow-y-auto pb-8">
               <SheetHeader>
                 <SheetTitle>
                   <Logo />
@@ -157,14 +185,25 @@ export function SiteHeader() {
                   </Link>
                 ))}
                 <p className="px-3 pt-3 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                  Products
+                </p>
+                <ProductsMobileNav
+                  categories={productsMenu}
+                  onNavigate={() => setOpen(false)}
+                />
+
+                <p className="px-3 pt-3 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
                   Explore
                 </p>
-                {mainNav.map((link) => (
-                  <Link key={link.href} href={link.href} onClick={() => setOpen(false)}
-                    className="rounded-lg px-3 py-2 text-sm font-medium hover:bg-muted">
-                    {link.label}
-                  </Link>
-                ))}
+                {/* Products is covered by the accordion above. */}
+                {mainNav
+                  .filter((link) => link.href !== "/products")
+                  .map((link) => (
+                    <Link key={link.href} href={link.href} onClick={() => setOpen(false)}
+                      className="rounded-lg px-3 py-2 text-sm font-medium hover:bg-muted">
+                      {link.label}
+                    </Link>
+                  ))}
                 <Button asChild variant="outline" className="mt-4">
                   <Link href="/estimator" onClick={() => setOpen(false)}>
                     <Calculator className="h-4 w-4" /> Estimate cost

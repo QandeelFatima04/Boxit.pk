@@ -11,6 +11,7 @@ import { Analytics } from "@/components/analytics";
 import { UtmCapture } from "@/components/utm-capture";
 import { Toaster } from "@/components/ui/sonner";
 import { OrganizationJsonLd } from "@/components/json-ld";
+import { buildProductsMenu } from "@/lib/mega-menu";
 
 const sans = Plus_Jakarta_Sans({
   variable: "--font-sans",
@@ -76,6 +77,10 @@ export const viewport: Viewport = {
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+  // Built here on the server so only the menu's own fields cross into the
+  // client bundle, not the whole catalogue.
+  const productsMenu = buildProductsMenu();
+
   return (
     <html
       lang="en"
@@ -86,7 +91,7 @@ export default function RootLayout({
         <UtmCapture />
         <OrganizationJsonLd />
         <CartProvider>
-          <SiteHeader />
+          <SiteHeader productsMenu={productsMenu} />
           <main className="flex-1">{children}</main>
           <SiteFooter />
           <CartDrawer />
