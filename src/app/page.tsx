@@ -206,11 +206,11 @@ const categoryTiles: CategoryTile[] = [
 ];
 
 const steps = [
-  { icon: Recycle, title: "We collect the waste", text: "Post-consumer paper and cotton off-cuts, on their way to being thrown out.", image: "/images/products/artistic-sheets-1.jpg" },
-  { icon: Leaf,    title: "We make the paper",    text: "It is pulped, seeded and pressed into new sheets. No new trees.", image: "/images/products/artistic-sheets-2.jpg" },
+  { icon: Recycle, title: "We collect the waste", text: "Post-consumer paper and cotton off-cuts, on their way to being thrown out.", image: "/images/steps/step-collect-waste.jpg" },
+  { icon: Leaf,    title: "We make the paper",    text: "It is pulped, seeded and pressed into new sheets. No new trees.", image: "/images/steps/step-make-paper.jpg" },
   { icon: ShoppingBag, title: "We print your brand", text: "The sheets become bags, tags, cards and calendars, printed to your artwork.", image: "/images/products/product-spread-grass.jpg" },
-  { icon: Droplets, title: "Your customer plants it", text: "Into soil, with regular water and a few hours of sun.", image: "/images/steps/step-plant-it.jpg" },
-  { icon: Sprout,  title: "It grows",              text: "Herbs and flowers, from what began as waste paper.", image: "/images/steps/step-it-grows-6.jpg" },
+  { icon: Droplets, title: "Your customer plants it", text: "Into soil, with regular water and a few hours of sun.", image: "/images/steps/step-plant-flag.jpg" },
+  { icon: Sprout,  title: "It grows",              text: "Herbs and flowers, from what began as waste paper.", image: "/images/steps/step-it-grows.jpg" },
 ];
 
 const clientWork = [
