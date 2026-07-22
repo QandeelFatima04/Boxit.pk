@@ -554,7 +554,7 @@ export const products: Product[] = [
       "Custom plantable invitations with matching envelopes and tags. Guests plant the card after the day, and it flowers in the season that follows. Seed choice is yours, and we will tell you what suits the month you are printing for.",
     category: "event",
     segments: ["weddings-events"],
-    image: "/images/products/walima-invites.png",
+    image: "/images/products/wedding-invitations-easel.jpg",
     purchasable: false,
     moq: "From 300–500 sets",
     leadTime: "10–15 working days",
