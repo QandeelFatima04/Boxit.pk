@@ -126,7 +126,7 @@ export const products: Product[] = [
   // ---------- Custom / bulk → Request a quote ----------
   {
     slug: "custom-shopping-bags",
-    name: "Custom Plantable Shopping Bags",
+    name: "Corporate Souvenir Set",
     tagline: "Your retail bag, biodegradable and brandable",
     description:
       "Shopping bags cut to your own size in biodegradable or seed-paper stock, printed with your logo and brand colors. Built to carry real retail weight: we match GSM and handle type to what your customers actually buy.",
