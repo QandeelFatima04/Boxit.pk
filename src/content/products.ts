@@ -559,7 +559,6 @@ export const products: Product[] = [
     moq: "From 300–500 sets",
     leadTime: "10–15 working days",
     features: ["Custom design & print", "Matching envelopes & tags", "Seed selection"],
-    featured: true,
   },
 
   // ---------- Added to cover every item in the instant estimator ----------
