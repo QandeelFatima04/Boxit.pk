@@ -24,10 +24,23 @@ function headerSafe(v: string): string {
   return String(v ?? "").replace(/[\r\n]/g, " ").trim();
 }
 
+function rfc2822Date(d: Date): string {
+  // "Fri, 25 Jul 2026 20:30:00 +0000"
+  return d.toUTCString().replace(/GMT$/, "+0000");
+}
+
+function messageId(domain: string): string {
+  const rand = Math.random().toString(36).slice(2) + Date.now().toString(36);
+  return `<${rand}@${domain}>`;
+}
+
 function buildMessage(mail: OutMail): string {
   const from = headerSafe(mail.fromAddr);
   const fromName = headerSafe(mail.fromName);
+  const domain = from.includes("@") ? from.split("@")[1] : "boxit.pk";
   const headers =
+    `Date: ${rfc2822Date(new Date())}\r\n` +
+    `Message-ID: ${messageId(domain)}\r\n` +
     `From: ${fromName ? `${fromName} <${from}>` : from}\r\n` +
     `To: ${headerSafe(mail.to)}\r\n` +
     (mail.replyTo ? `Reply-To: ${headerSafe(mail.replyTo)}\r\n` : "") +
@@ -35,6 +48,7 @@ function buildMessage(mail: OutMail): string {
     `MIME-Version: 1.0\r\n` +
     `Content-Type: text/plain; charset=utf-8\r\n` +
     `Content-Transfer-Encoding: 8bit\r\n` +
+    `X-Mailer: Boxit-Web\r\n` +
     `\r\n`;
   // Normalize newlines and dot-stuff lines that begin with "." per RFC 5321.
   const body = String(mail.text)
