@@ -6,6 +6,7 @@ import {
   LinkedinIcon,
 } from "@/components/social-icons";
 import { Logo } from "@/components/logo";
+import { NewsletterSignup } from "@/components/forms/newsletter-signup";
 import { footerNav } from "@/lib/nav";
 import { site, telLink } from "@/lib/site";
 
@@ -38,6 +39,17 @@ function Column({
 export function SiteFooter() {
   return (
     <footer className="mt-12 border-t bg-cream">
+      {/* TOFU nurture: catch visitors who aren't ready for samples or a quote. */}
+      <div className="border-b">
+        <div className="container-page py-10">
+          <NewsletterSignup
+            variant="inline"
+            source="footer"
+            className="max-w-xl"
+          />
+        </div>
+      </div>
+
       <div className="container-page grid gap-10 py-14 md:grid-cols-2 lg:grid-cols-6">
         <div className="lg:col-span-2">
           <Logo />

@@ -7,6 +7,8 @@ const EVENT_BY_TYPE: Record<LeadPayload["type"], KeyEvent> = {
   quote: "quote_request",
   quiz: "quiz_complete",
   sample_kit: "sample_kit_request",
+  newsletter: "form_submit",
+  lead_magnet: "catalogue_download",
 };
 
 export async function submitLead(

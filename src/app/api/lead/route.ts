@@ -10,7 +10,7 @@ export const runtime = "nodejs";
 // attributable to a channel.
 
 export type LeadPayload = {
-  type: "contact" | "quote" | "quiz" | "sample_kit";
+  type: "contact" | "quote" | "quiz" | "sample_kit" | "newsletter" | "lead_magnet";
   name?: string;
   email?: string;
   phone?: string;
@@ -36,6 +36,8 @@ const LABELS: Record<LeadPayload["type"], string> = {
   quote: "quote request",
   quiz: "packaging quiz",
   sample_kit: "sample kit request",
+  newsletter: "newsletter signup",
+  lead_magnet: "guide download",
 };
 
 // Notify the team inbox, and (if we have their address) confirm to the lead.
@@ -63,13 +65,33 @@ async function sendEmail(payload: LeadPayload) {
   if (payload.email && isEmail(payload.email)) {
     const label = LABELS[payload.type] ?? "request";
     const hello = payload.name ? `Hi ${payload.name},` : "Hi,";
+
+    // Newsletter opt-ins get a subscribe-style confirmation, not a
+    // "we'll get back to you" reply — nobody is waiting on an answer.
+    // Lead-magnet downloads get the guide link emailed as a fallback.
+    const isNewsletter = payload.type === "newsletter";
+    const isLeadMagnet = payload.type === "lead_magnet";
+    const opening = isLeadMagnet
+      ? `Here's your guide — download it any time from the link below. We'll also ` +
+        `send occasional plantable-packaging ideas; unsubscribe any time.`
+      : isNewsletter
+      ? `You're on the list. We'll send occasional ideas on plantable packaging, ` +
+        `seed paper and CSR gifting in Pakistan — no spam, unsubscribe any time.`
+      : `Thanks for reaching out to Boxit — we've received your ${label} and our team will get back to you shortly.`;
+
+    // `answers.download` carries the guide URL when this is a lead-magnet download.
+    const downloadUrl = payload.answers?.download;
+
     const body =
       `${hello}\n\n` +
-      `Thanks for reaching out to Boxit — we've received your ${label} and our team will get back to you shortly.\n\n` +
+      `${opening}\n\n` +
+      (isLeadMagnet && downloadUrl ? `Download your guide:\n${downloadUrl}\n\n` : "") +
       (payload.product ? `Product: ${payload.product}\n` : "") +
       (payload.quantity ? `Quantity: ${payload.quantity}\n` : "") +
       (payload.message ? `Your message: ${payload.message}\n` : "") +
-      `\nIf it's urgent, reply to this email or message us on WhatsApp.\n\n` +
+      (isNewsletter || isLeadMagnet
+        ? `\nWant to move faster? Reply to this email or message us on WhatsApp any time.\n\n`
+        : `\nIf it's urgent, reply to this email or message us on WhatsApp.\n\n`) +
       `— Boxit\nhttps://boxit.pk`;
     try {
       await sendMailLocal({
@@ -77,7 +99,11 @@ async function sendEmail(payload: LeadPayload) {
         fromAddr: MAIL_FROM,
         to: payload.email,
         replyTo: NOTIFY_TO,
-        subject: "We've received your request — Boxit",
+        subject: isLeadMagnet
+          ? "Your plantable CSR gifting guide — Boxit"
+          : isNewsletter
+          ? "You're subscribed — Boxit"
+          : "We've received your request — Boxit",
         text: body,
       });
     } catch (err) {

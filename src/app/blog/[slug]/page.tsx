@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { CtaBand } from "@/components/sections";
+import { LeadMagnet } from "@/components/forms/lead-magnet";
 import { PostBody } from "@/components/post-body";
 import { ArticleJsonLd, BreadcrumbJsonLd } from "@/components/json-ld";
 import {
@@ -160,6 +161,15 @@ export default async function BlogPostPage({
           </div>
         </section>
       )}
+
+      {/* TOFU nurture: an article reader may not be ready to buy — trade a
+          useful guide for their email so they re-enter the funnel later,
+          before the MOFU/BOFU band. */}
+      <section className="section pt-0">
+        <div className="container-page max-w-3xl">
+          <LeadMagnet source="blog-post" />
+        </div>
+      </section>
 
       <CtaBand />
     </>

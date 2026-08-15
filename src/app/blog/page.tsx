@@ -4,6 +4,7 @@ import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { CtaBand } from "@/components/sections";
+import { LeadMagnet } from "@/components/forms/lead-magnet";
 import { getBlogPosts, formatPostDate, readingTime } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -134,6 +135,14 @@ export default function BlogPage() {
               </div>
             </Link>
           ))}
+        </div>
+      </section>
+
+      {/* TOFU nurture: a gated guide captures readers who aren't ready for
+          samples/quote yet, in exchange for a genuinely useful download. */}
+      <section className="pb-4">
+        <div className="container-blog">
+          <LeadMagnet source="blog-index" />
         </div>
       </section>
 
