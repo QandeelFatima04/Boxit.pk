@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { Calculator, Check, Info } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -126,99 +127,121 @@ export function Estimator() {
 
   return (
     <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
-      {/* ---------------- Inputs ---------------- */}
-      <div className="space-y-5 rounded-2xl border bg-card p-6 sm:p-8">
-        <div className="space-y-1.5">
-          <Label htmlFor="e-format">Product</Label>
-          <select
-            id="e-format"
-            className={selectClass}
-            value={format}
-            onChange={(e) => changeFormat(e.target.value)}
-          >
-            {formats.map((f) => (
-              <option key={f.key} value={f.key}>
-                {f.label}
-              </option>
-            ))}
-          </select>
+      {/* ---------------- Inputs ----------------
+          Fields are paired two-up from sm so the whole control set stays inside
+          one laptop viewport — a buyer shouldn't have to scroll to reach the
+          choices that drive the price. */}
+      <div className="space-y-4 rounded-2xl border bg-card p-5 sm:p-6">
+        <div className="flex items-center gap-4">
+          {/* Preview of the selected product, so the price is attached to a
+              picture of the thing being priced. */}
+          <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-xl border bg-secondary/30 sm:h-20 sm:w-20">
+            <Image
+              key={fmt.image}
+              src={fmt.image}
+              alt={fmt.label}
+              fill
+              className="object-cover"
+              sizes="(max-width: 640px) 64px, 80px"
+            />
+          </div>
+          <div className="min-w-0 flex-1 space-y-1.5">
+            <Label htmlFor="e-format">Product</Label>
+            <select
+              id="e-format"
+              className={selectClass}
+              value={format}
+              onChange={(e) => changeFormat(e.target.value)}
+            >
+              {formats.map((f) => (
+                <option key={f.key} value={f.key}>
+                  {f.label}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
 
-        <div className="space-y-1.5">
-          <Label htmlFor="e-qty">
-            Quantity{" "}
-            <span className="font-normal text-muted-foreground">
-              (MOQ {fmt.minQty.toLocaleString("en-PK")})
-            </span>
-          </Label>
-          <Input
-            id="e-qty"
-            type="number"
-            min={fmt.minQty}
-            step={50}
-            value={quantity}
-            onChange={(e) => setQuantity(Number(e.target.value) || 0)}
-            onBlur={(e) =>
-              setQuantity(Math.max(fmt.minQty, Number(e.target.value) || 0))
-            }
-          />
+        {/* Quantity and Size are short enough to sit two-up even on a phone. */}
+        <div className="grid grid-cols-2 gap-4">
+          <div className="space-y-1.5">
+            <Label htmlFor="e-qty">
+              Quantity{" "}
+              <span className="font-normal text-muted-foreground">
+                (MOQ {fmt.minQty.toLocaleString("en-PK")})
+              </span>
+            </Label>
+            <Input
+              id="e-qty"
+              type="number"
+              min={fmt.minQty}
+              step={50}
+              value={quantity}
+              onChange={(e) => setQuantity(Number(e.target.value) || 0)}
+              onBlur={(e) =>
+                setQuantity(Math.max(fmt.minQty, Number(e.target.value) || 0))
+              }
+            />
+          </div>
+
+          <div className="space-y-1.5">
+            <Label>Size</Label>
+            <div className="grid grid-cols-2 gap-2">
+              {sizes.map((s) => {
+                const active = size === s.key;
+                return (
+                  <button
+                    key={s.key}
+                    type="button"
+                    onClick={() => setSize(s.key)}
+                    className={cn(
+                      "h-10 rounded-lg border text-center text-sm font-medium transition hover:border-brand",
+                      active && "border-brand bg-secondary text-brand",
+                    )}
+                  >
+                    {s.label}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
         </div>
 
-        <div className="space-y-2">
-          <Label>Size</Label>
-          <div className="grid grid-cols-2 gap-2">
-            {sizes.map((s) => {
-              const active = size === s.key;
-              return (
-                <button
-                  key={s.key}
-                  type="button"
-                  onClick={() => setSize(s.key)}
-                  className={cn(
-                    "rounded-lg border p-3 text-center text-sm font-medium transition hover:border-brand",
-                    active && "border-brand bg-secondary text-brand",
-                  )}
-                >
-                  {s.label}
-                </button>
-              );
-            })}
+        <div className="grid gap-4 sm:grid-cols-2">
+          <div className="space-y-1.5">
+            <Label htmlFor="e-material">Material</Label>
+            <select
+              id="e-material"
+              className={selectClass}
+              value={material}
+              onChange={(e) => setMaterial(e.target.value)}
+            >
+              {availableMaterials.map((m) => (
+                <option key={m.key} value={m.key}>
+                  {m.label}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className="space-y-1.5">
+            <Label htmlFor="e-printing">Printing</Label>
+            <select
+              id="e-printing"
+              className={selectClass}
+              value={printing}
+              onChange={(e) => setPrinting(e.target.value)}
+            >
+              {printingOptions.map((p) => (
+                <option key={p.key} value={p.key}>
+                  {p.label}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
 
         <div className="space-y-1.5">
-          <Label htmlFor="e-material">Material</Label>
-          <select
-            id="e-material"
-            className={selectClass}
-            value={material}
-            onChange={(e) => setMaterial(e.target.value)}
-          >
-            {availableMaterials.map((m) => (
-              <option key={m.key} value={m.key}>
-                {m.label}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        <div className="space-y-1.5">
-          <Label htmlFor="e-printing">Printing</Label>
-          <select
-            id="e-printing"
-            className={selectClass}
-            value={printing}
-            onChange={(e) => setPrinting(e.target.value)}
-          >
-            {printingOptions.map((p) => (
-              <option key={p.key} value={p.key}>
-                {p.label}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        <div className="space-y-2">
           <Label>Finishing (optional)</Label>
           <div className="grid gap-2 sm:grid-cols-2">
             {finishingOptions.map((o) => {
@@ -229,7 +252,7 @@ export function Estimator() {
                   type="button"
                   onClick={() => toggleFinishing(o.key)}
                   className={cn(
-                    "flex items-center gap-2 rounded-lg border p-3 text-left text-sm font-medium transition hover:border-brand",
+                    "flex items-center gap-2 rounded-lg border px-3 py-2.5 text-left text-sm font-medium transition hover:border-brand",
                     active && "border-brand bg-secondary",
                   )}
                 >

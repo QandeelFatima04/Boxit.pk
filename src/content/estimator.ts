@@ -35,6 +35,8 @@ export type EstimatorFormat = {
    * plantable seed paper by definition.
    */
   allowNoSeeds?: boolean;
+  /** Preview shown next to the product picker so the buyer sees what they priced. */
+  image: string;
 };
 
 export type EstimatorOption = {
@@ -50,35 +52,35 @@ export type EstimatorOption = {
 // Formats — exact products, prices and MOQs from the pricing sheet.
 // ---------------------------------------------------------------------------
 export const formats: EstimatorFormat[] = [
-  { key: "business-cards", label: "Business cards", perUnit1c: 22, perUnit4c: 25, minQty: 1200, unitNoun: "cards", leadTime: "5–8 working days" },
-  { key: "tags", label: "Tags", perUnit1c: 35, perUnit4c: 30, minQty: 500, unitNoun: "tags", leadTime: "7–10 working days" },
-  { key: "greeting-cards", label: "Greeting cards", perUnit1c: 100, perUnit4c: 80, minQty: 300, unitNoun: "cards", leadTime: "7–10 working days" },
-  { key: "bookmarks", label: "Bookmarks", perUnit1c: 45, perUnit4c: 75, minQty: 500, unitNoun: "bookmarks", leadTime: "7–10 working days" },
-  { key: "envelopes", label: "Envelopes (flap / v-shape)", perUnit1c: 100, minQty: 300, unitNoun: "envelopes", leadTime: "7–10 working days" },
-  { key: "coasters", label: "Coasters (round)", perUnit1c: 40, minQty: 500, unitNoun: "coasters", leadTime: "7–10 working days" },
-  { key: "calendars", label: "Calendars", perUnit1c: 750, perUnit4c: 800, minQty: 200, unitNoun: "calendars", leadTime: "10–15 working days" }, // sheet 01-colour range Rs 750–1500
-  { key: "diaries", label: "Diaries, A5 (seed paper cover)", perUnit1c: 600, perUnit4c: 750, minQty: 300, unitNoun: "diaries", leadTime: "10–15 working days" }, // sheet range Rs 600–1100
-  { key: "notebooks", label: "Notebooks (seed paper cover)", perUnit1c: 400, perUnit4c: 600, minQty: 300, unitNoun: "notebooks", leadTime: "10–15 working days" }, // sheet range Rs 400–700
-  { key: "seed-paper-sheets", label: "Seed paper sheets", perUnit1c: 100, perUnit1cLarge: 200, minQty: 300, unitNoun: "sheets", leadTime: "5–10 working days", allowNoSeeds: true }, // small 9"×12", large 15"×20"
-  { key: "shopping-bags", label: "Shopping bags", perUnit1c: 200, perUnit4c: 230, perUnit1cLarge: 350, minQty: 200, unitNoun: "bags", leadTime: "7–12 working days" }, // small 8"×6.5"×2.5", large 10"×13"×3.5"; sheet 04-colour range Rs 230–400
-  { key: "gift-boxes", label: "Corporate gift boxes (unfilled)", perUnit1c: 100, perUnit4c: 150, minQty: 300, unitNoun: "boxes", leadTime: "10–15 working days" },
-  { key: "seed-balls", label: "Seed balls", perUnit1c: 35, minQty: 500, unitNoun: "balls", leadTime: "5–10 working days" },
-  { key: "seed-ball-pouches", label: "Pouches for seed balls", perUnit1c: 80, perUnit4c: 100, minQty: 250, unitNoun: "pouches", leadTime: "5–10 working days" },
-  { key: "sleeves-inserts", label: "Sleeves & inserts", perUnit1c: 50, minQty: 500, unitNoun: "units", leadTime: "7–10 working days" },
-  { key: "pennants", label: "Pennants", perUnit1c: 25, perUnit4c: 30, minQty: 500, unitNoun: "pennants", leadTime: "7–10 working days" },
-  { key: "letterheads", label: "Letterheads", perUnit1c: 100, perUnit4c: 125, minQty: 500, unitNoun: "sheets", leadTime: "7–10 working days" },
-  { key: "pencils", label: "Pencils", perUnit1c: 100, minQty: 300, unitNoun: "pencils", leadTime: "7–10 working days" },
-  { key: "ball-points", label: "Ball points", perUnit1c: 100, minQty: 300, unitNoun: "ball points", leadTime: "7–10 working days" },
-  { key: "brochures", label: "Brochures", perUnit1c: 50, perUnit4c: 50, minQty: 500, unitNoun: "brochures", leadTime: "7–10 working days" },
-  { key: "event-stationery", label: "Event stationery", perUnit1c: 50, minQty: 500, unitNoun: "items", leadTime: "7–10 working days" },
-  { key: "boxes-seed-paper", label: "Boxes (outer seed paper)", perUnit1c: 400, perUnit4c: 450, minQty: 300, unitNoun: "boxes", leadTime: "10–15 working days" },
-  { key: "deckle-seed-paper", label: "Deckle edge seed paper", perUnit1c: 75, minQty: 300, unitNoun: "sheets", leadTime: "7–10 working days", allowNoSeeds: true },
-  { key: "deckle-paper", label: "Deckle edge paper (without seeds)", perUnit1c: 70, minQty: 300, unitNoun: "sheets", leadTime: "7–10 working days", allowNoSeeds: true },
-  { key: "cotton-paper", label: "Cotton paper", perUnit1c: 150, minQty: 100, unitNoun: "sheets", leadTime: "7–10 working days", allowNoSeeds: true },
-  { key: "recyclable-diary", label: "Recyclable diary (fabric cover)", perUnit1c: 800, perUnit4c: 800, minQty: 300, unitNoun: "diaries", leadTime: "10–15 working days" },
-  { key: "souvenir-economical", label: "Corporate souvenir set — Economical", perUnit1c: 1000, minQty: 200, unitNoun: "sets", leadTime: "10–15 working days" },
-  { key: "souvenir-executive", label: "Corporate souvenir set — Executive", perUnit1c: 3000, minQty: 100, unitNoun: "sets", leadTime: "10–15 working days" },
-  { key: "souvenir-premium", label: "Corporate souvenir set — Premium", perUnit1c: 5000, minQty: 100, unitNoun: "sets", leadTime: "10–15 working days" },
+  { key: "business-cards", label: "Business cards", perUnit1c: 22, perUnit4c: 25, minQty: 1200, unitNoun: "cards", leadTime: "5–8 working days", image: "/images/clients/client-cayano-bizcard.jpg" },
+  { key: "tags", label: "Tags", perUnit1c: 35, perUnit4c: 30, minQty: 500, unitNoun: "tags", leadTime: "7–10 working days", image: "/images/products/hang-tags-branded-1.jpg" },
+  { key: "greeting-cards", label: "Greeting cards", perUnit1c: 100, perUnit4c: 80, minQty: 300, unitNoun: "cards", leadTime: "7–10 working days", image: "/images/products/greeting-cards-1.jpg" },
+  { key: "bookmarks", label: "Bookmarks", perUnit1c: 45, perUnit4c: 75, minQty: 500, unitNoun: "bookmarks", leadTime: "7–10 working days", image: "/images/products/tags-bookmarks-1.jpg" },
+  { key: "envelopes", label: "Envelopes (flap / v-shape)", perUnit1c: 100, minQty: 300, unitNoun: "envelopes", leadTime: "7–10 working days", image: "/images/products/plantable-envelopes-blue-1.jpg" },
+  { key: "coasters", label: "Coasters (round)", perUnit1c: 40, minQty: 500, unitNoun: "coasters", leadTime: "7–10 working days", image: "/images/products/coasters-1.jpg" },
+  { key: "calendars", label: "Calendars", perUnit1c: 750, perUnit4c: 800, minQty: 200, unitNoun: "calendars", leadTime: "10–15 working days", image: "/images/products/calendars-1-clear.jpg" }, // sheet 01-colour range Rs 750–1500
+  { key: "diaries", label: "Diaries, A5 (seed paper cover)", perUnit1c: 600, perUnit4c: 750, minQty: 300, unitNoun: "diaries", leadTime: "10–15 working days", image: "/images/products/diary-1.jpg" }, // sheet range Rs 600–1100
+  { key: "notebooks", label: "Notebooks (seed paper cover)", perUnit1c: 400, perUnit4c: 600, minQty: 300, unitNoun: "notebooks", leadTime: "10–15 working days", image: "/images/products/plantable-notebook-eco-pen.jpg" }, // sheet range Rs 400–700
+  { key: "seed-paper-sheets", label: "Seed paper sheets", perUnit1c: 100, perUnit1cLarge: 200, minQty: 300, unitNoun: "sheets", leadTime: "5–10 working days", allowNoSeeds: true, image: "/images/products/seed-paper-sheets-colored-fan.jpg" }, // small 9"×12", large 15"×20"
+  { key: "shopping-bags", label: "Shopping bags", perUnit1c: 200, perUnit4c: 230, perUnit1cLarge: 350, minQty: 200, unitNoun: "bags", leadTime: "7–12 working days", image: "/images/products/shopping-bag-metro.jpg" }, // small 8"×6.5"×2.5", large 10"×13"×3.5"; sheet 04-colour range Rs 230–400
+  { key: "gift-boxes", label: "Corporate gift boxes (unfilled)", perUnit1c: 100, perUnit4c: 150, minQty: 300, unitNoun: "boxes", leadTime: "10–15 working days", image: "/images/products/dawlance-souvenir-box.jpg" },
+  { key: "seed-balls", label: "Seed balls", perUnit1c: 35, minQty: 500, unitNoun: "balls", leadTime: "5–10 working days", image: "/images/products/seed-balls-bkk.jpg" },
+  { key: "seed-ball-pouches", label: "Pouches for seed balls", perUnit1c: 80, perUnit4c: 100, minQty: 250, unitNoun: "pouches", leadTime: "5–10 working days", image: "/images/products/seed-ball-bags-1.jpg" },
+  { key: "sleeves-inserts", label: "Sleeves & inserts", perUnit1c: 50, minQty: 500, unitNoun: "units", leadTime: "7–10 working days", image: "/images/products/knisa-thankyou-a.png" },
+  { key: "pennants", label: "Pennants", perUnit1c: 25, perUnit4c: 30, minQty: 500, unitNoun: "pennants", leadTime: "7–10 working days", image: "/images/products/pennants-1.jpg" },
+  { key: "letterheads", label: "Letterheads", perUnit1c: 100, perUnit4c: 125, minQty: 500, unitNoun: "sheets", leadTime: "7–10 working days", image: "/images/products/letterhead-usaid-linen.png" },
+  { key: "pencils", label: "Pencils", perUnit1c: 100, minQty: 300, unitNoun: "pencils", leadTime: "7–10 working days", image: "/images/products/newspaper-pencils-wall.png" },
+  { key: "ball-points", label: "Ball points", perUnit1c: 100, minQty: 300, unitNoun: "ball points", leadTime: "7–10 working days", image: "/images/products/ballpoint-kraft-a.png" },
+  { key: "brochures", label: "Brochures", perUnit1c: 50, perUnit4c: 50, minQty: 500, unitNoun: "brochures", leadTime: "7–10 working days", image: "/images/products/branded-inserts-corporate.jpg" },
+  { key: "event-stationery", label: "Event stationery", perUnit1c: 50, minQty: 500, unitNoun: "items", leadTime: "7–10 working days", image: "/images/products/event-stationery-cards.jpg" },
+  { key: "boxes-seed-paper", label: "Boxes (outer seed paper)", perUnit1c: 400, perUnit4c: 450, minQty: 300, unitNoun: "boxes", leadTime: "10–15 working days", image: "/images/clients/client-wedding-favor-boxes.jpg" },
+  { key: "deckle-seed-paper", label: "Deckle edge seed paper", perUnit1c: 75, minQty: 300, unitNoun: "sheets", leadTime: "7–10 working days", allowNoSeeds: true, image: "/images/products/seed-paper-sheets-stack.jpg" },
+  { key: "deckle-paper", label: "Deckle edge paper (without seeds)", perUnit1c: 70, minQty: 300, unitNoun: "sheets", leadTime: "7–10 working days", allowNoSeeds: true, image: "/images/products/deckle-edge-no-seeds-blank.jpg" },
+  { key: "cotton-paper", label: "Cotton paper", perUnit1c: 150, minQty: 100, unitNoun: "sheets", leadTime: "7–10 working days", allowNoSeeds: true, image: "/images/products/cotton-paper-rag-trio.png" },
+  { key: "recyclable-diary", label: "Recyclable diary (fabric cover)", perUnit1c: 800, perUnit4c: 800, minQty: 300, unitNoun: "diaries", leadTime: "10–15 working days", image: "/images/products/jazzworld-notebook.jpg" },
+  { key: "souvenir-economical", label: "Corporate souvenir set — Economical", perUnit1c: 1000, minQty: 200, unitNoun: "sets", leadTime: "10–15 working days", image: "/images/products/sample-kit-spread.jpg" },
+  { key: "souvenir-executive", label: "Corporate souvenir set — Executive", perUnit1c: 3000, minQty: 100, unitNoun: "sets", leadTime: "10–15 working days", image: "/images/products/product-spread-grass.jpg" },
+  { key: "souvenir-premium", label: "Corporate souvenir set — Premium", perUnit1c: 5000, minQty: 100, unitNoun: "sets", leadTime: "10–15 working days", image: "/images/clients/client-metro-kit-flatlay.jpg" },
 ];
 
 export const materials: EstimatorOption[] = [

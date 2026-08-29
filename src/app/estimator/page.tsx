@@ -17,21 +17,21 @@ export const metadata: Metadata = {
 
 export default function EstimatorPage() {
   return (
-    <section className="section">
+    <section className="py-6 sm:py-8 lg:py-10">
       <div className="container-page max-w-5xl">
         <p className="eyebrow">
           <Calculator className="h-4 w-4" /> Cost estimator
         </p>
-        <h1 className="mt-4 font-[family-name:var(--font-heading)] text-4xl font-bold sm:text-5xl">
+        <h1 className="mt-2 font-[family-name:var(--font-heading)] text-2xl font-bold sm:text-3xl lg:text-4xl">
           Estimate your packaging cost
         </h1>
-        <p className="mt-5 max-w-2xl text-lg text-muted-foreground">
+        <p className="mt-2 max-w-3xl text-sm text-muted-foreground sm:text-base">
           Choose a format, quantity and finishing to see a ballpark range. Every
-          project is custom, so treat this as a planning figure. For a firm
+          project is custom, so treat this as a planning figure — for a firm
           price, request a quote from our team.
         </p>
 
-        <div className="mt-10">
+        <div className="mt-4">
           <Estimator />
         </div>
 

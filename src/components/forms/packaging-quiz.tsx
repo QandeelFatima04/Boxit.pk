@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -76,6 +76,19 @@ export function PackagingQuiz() {
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState<string | null>(null);
   const { items, clear } = useCart();
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  // Steps have different heights, so a later question can end up under the
+  // fold after answering. Pull the card back into view (minimally) each time
+  // the step changes, but never on first paint.
+  const mounted = useRef(false);
+  useEffect(() => {
+    if (!mounted.current) {
+      mounted.current = true;
+      return;
+    }
+    cardRef.current?.scrollIntoView({ block: "nearest", behavior: "smooth" });
+  }, [step]);
 
   // Anything the visitor added via "Add to quote" must ride along with the
   // brief — otherwise those items are silently dropped from the request.
@@ -153,9 +166,12 @@ export function PackagingQuiz() {
   }
 
   return (
-    <div className="rounded-2xl border bg-card p-6 sm:p-8">
+    <div
+      ref={cardRef}
+      className="scroll-mt-24 rounded-2xl border bg-card p-5 sm:p-6"
+    >
       {/* Progress */}
-      <div className="mb-6 h-1.5 w-full overflow-hidden rounded-full bg-muted">
+      <div className="mb-4 h-1.5 w-full overflow-hidden rounded-full bg-muted">
         <div
           className="h-full rounded-full bg-brand transition-all"
           style={{ width: `${Math.max(progress, 8)}%` }}
@@ -167,16 +183,18 @@ export function PackagingQuiz() {
           <p className="text-xs font-semibold uppercase tracking-wide text-brand">
             Step {step + 1} of {STEPS.length + 1}
           </p>
-          <h3 className="mt-2 font-[family-name:var(--font-heading)] text-2xl font-bold">
+          <h3 className="mt-1.5 font-[family-name:var(--font-heading)] text-xl font-bold sm:text-2xl">
             {STEPS[step].question}
           </h3>
-          <div className="mt-5 grid gap-3 sm:grid-cols-2">
+          {/* Two columns even on phones: six stacked options push the last
+              choices under the fold on a 375px-tall-ish screen. */}
+          <div className="mt-4 grid grid-cols-2 gap-2.5">
             {STEPS[step].options.map((opt) => (
               <button
                 key={opt}
                 onClick={() => choose(STEPS[step].key, opt)}
                 className={cn(
-                  "rounded-xl border p-4 text-left text-sm font-medium transition hover:border-brand hover:bg-secondary/50",
+                  "rounded-xl border px-4 py-3 text-left text-sm font-medium transition hover:border-brand hover:bg-secondary/50",
                   answers[STEPS[step].key] === opt && "border-brand bg-secondary",
                 )}
               >
@@ -187,7 +205,7 @@ export function PackagingQuiz() {
           {step > 0 && (
             <Button
               variant="ghost"
-              className="mt-6"
+              className="mt-4"
               onClick={() => setStep((s) => s - 1)}
             >
               <ArrowLeft className="h-4 w-4" /> Back
