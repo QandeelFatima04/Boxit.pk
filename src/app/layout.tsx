@@ -12,6 +12,7 @@ import { UtmCapture } from "@/components/utm-capture";
 import { Toaster } from "@/components/ui/sonner";
 import { OrganizationJsonLd } from "@/components/json-ld";
 import { buildProductsMenu } from "@/lib/mega-menu";
+import { MotionProvider } from "@/components/motion-provider";
 
 const sans = Plus_Jakarta_Sans({
   variable: "--font-sans",
@@ -86,17 +87,35 @@ export default function RootLayout({
       lang="en"
       className={`${sans.variable} ${heading.variable} h-full scroll-smooth`}
     >
+      <head>
+        {/* Scroll-reveal sections are server-rendered at opacity:0 and are
+            un-hidden by framer-motion on hydration. With scripting off that
+            never happens, so force the finished state — the page stays
+            readable instead of rendering as a column of blank bands. */}
+        <noscript>
+          <style>{`[style*="opacity:0"]{opacity:1!important;transform:none!important;filter:none!important}`}</style>
+        </noscript>
+      </head>
       <body className="flex min-h-full flex-col">
+        {/* First tabbable element: lets keyboard and screen-reader users jump
+            the header nav, which is ~40 links deep with the mega-menu open. */}
+        <a href="#content" className="skip-link">
+          Skip to content
+        </a>
         <Analytics />
         <UtmCapture />
         <OrganizationJsonLd />
-        <CartProvider>
-          <SiteHeader productsMenu={productsMenu} />
-          <main className="flex-1">{children}</main>
-          <SiteFooter />
-          <CartDrawer />
-          <WhatsAppButton variant="sticky" />
-        </CartProvider>
+        <MotionProvider>
+          <CartProvider>
+            <SiteHeader productsMenu={productsMenu} />
+            <main id="content" tabIndex={-1} className="flex-1">
+              {children}
+            </main>
+            <SiteFooter />
+            <CartDrawer />
+            <WhatsAppButton variant="sticky" />
+          </CartProvider>
+        </MotionProvider>
         <Toaster richColors position="top-center" />
       </body>
     </html>

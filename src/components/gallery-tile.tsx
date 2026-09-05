@@ -6,6 +6,7 @@
 // Drop the real files into /public/images/products/ and they appear automatically.
 
 import { useState } from "react";
+import Image from "next/image";
 
 export type GalleryImage = { src: string; alt: string };
 
@@ -25,15 +26,21 @@ function Fallback() {
   );
 }
 
-/** <img> that falls back gracefully, catching errors that fire before hydration. */
-function SafeImg({ src, alt, className }: { src: string; alt: string; className?: string }) {
+/**
+ * Optimised image that falls back gracefully, catching errors that fire before
+ * hydration. Goes through next/image so a 80x60 thumbnail downloads a thumbnail
+ * and not the multi-megabyte original.
+ */
+function SafeImg({ src, alt, sizes }: { src: string; alt: string; sizes: string }) {
   const [broken, setBroken] = useState(false);
   if (broken) return <Fallback />;
   return (
-    <img
+    <Image
       src={src}
       alt={alt}
-      className={className}
+      fill
+      sizes={sizes}
+      className="object-cover"
       // Catches loads that already failed before React attached the handler.
       ref={(el) => {
         if (el && el.complete && el.naturalWidth === 0) setBroken(true);
@@ -66,7 +73,7 @@ export function GalleryTile({
           key={images[active].src}
           src={images[active].src}
           alt={images[active].alt}
-          className="h-full w-full object-cover"
+          sizes="(max-width: 768px) 100vw, 33vw"
         />
         <span className="absolute left-3 top-3 rounded-full bg-gold px-2.5 py-1 text-xs font-semibold text-gold-foreground">
           {badge}
@@ -94,7 +101,7 @@ export function GalleryTile({
                     : "border-transparent opacity-70 hover:opacity-100"
                 }`}
               >
-                <SafeImg src={g.src} alt="" className="h-full w-full object-cover" />
+                <SafeImg src={g.src} alt="" sizes="80px" />
               </button>
             ))}
           </div>

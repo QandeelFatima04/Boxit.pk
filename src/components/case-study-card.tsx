@@ -52,8 +52,14 @@ export function CaseStudyCard({ caseStudy: cs }: { caseStudy: CaseStudy }) {
                     : "border-transparent opacity-70 hover:opacity-100"
                 }`}
               >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={src} alt="" className="h-full w-full object-cover" />
+                <Image
+                  src={src}
+                  alt=""
+                  fill
+                  className="object-cover"
+                  // Rendered at 64x48 CSS px; 128px covers a 2x screen.
+                  sizes="64px"
+                />
               </button>
             ))}
           </div>

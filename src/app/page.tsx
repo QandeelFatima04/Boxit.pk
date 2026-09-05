@@ -37,8 +37,6 @@ import {
   FadeIn,
   StaggerIn,
   StaggerItem,
-  AnimatedHeadline,
-  AnimatedLine,
   PulseBadge,
   HoverCard,
 } from "@/components/ui/animate";
@@ -48,7 +46,6 @@ import {
   getFaqs,
 } from "@/lib/content";
 import { site } from "@/lib/site";
-import { Logo } from "@/components/logo";
 import { LogoMarquee } from "@/components/logo-marquee";
 
 // Homepage category tiles — an explicit list so we can mix real category pages
@@ -268,8 +265,6 @@ const clientWork = [
   },
 ];
 
-const ease = [0.22, 1, 0.36, 1] as const;
-
 export default function HomePage() {
   const segments = getAllSegments();
   const featured = getFeaturedProducts();
@@ -290,19 +285,22 @@ export default function HomePage() {
         ref={heroRef}
         className="hero-viewport relative -mt-16 flex items-center overflow-hidden"
       >
-        {/* Parallax image layer — CSS background for reliable full-bleed rendering.
-            Sizing/focal point live in .hero-bg so media queries can retarget them. */}
-        <motion.div className="hero-bg absolute inset-0" style={{ y: heroImageY }} />
-        {/* Hidden Next.js Image so the browser preloads / CDN optimises it */}
-        <Image
-          src="/images/hero-banner-wide.jpg"
-          alt=""
-          fill
-          priority
-          aria-hidden
-          className="invisible absolute"
-          sizes="100vw"
-        />
+        {/* Parallax image layer. One preloaded <next/image> — it is the LCP
+            element, so it is served as WebP/AVIF at the viewport's width and
+            given a <link rel=preload> in the head. (`preload` replaces the
+            `priority` prop, deprecated in Next 16.) */}
+        <motion.div className="hero-bg absolute inset-0" style={{ y: heroImageY }}>
+          <Image
+            src="/images/hero-banner-wide.jpg"
+            alt=""
+            fill
+            preload
+            aria-hidden
+            // Focal point is set per breakpoint by `.hero-bg img` in globals.css.
+            className="object-cover"
+            sizes="100vw"
+          />
+        </motion.div>
 
         {/* Readability scrim — a left-side gradient only, so the products on the
             right stay unobstructed. Fades out well before they begin. */}
@@ -312,7 +310,7 @@ export default function HomePage() {
         <div className="hero-content hero-col relative z-10 w-full px-6 text-center lg:text-left">
 
           {/* Eyebrow pill */}
-          <AnimatedLine delay={0.15}>
+          <div className="hero-reveal">
             <div className="flex justify-center lg:justify-start">
               <span className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-5 py-2 text-sm font-semibold text-white backdrop-blur-sm">
                 <Leaf className="h-4 w-4 text-green-400" />
@@ -320,29 +318,25 @@ export default function HomePage() {
                 <PulseBadge label="Pakistan" />
               </span>
             </div>
-          </AnimatedLine>
+          </div>
 
           {/* Headline — word-by-word reveal */}
-          <h1 className="hero-gap-sm hero-title font-[family-name:var(--font-heading)] font-bold tracking-tight text-white">
-            <AnimatedHeadline text="Seed paper that" delay={0.3} />
+          <h1 className="hero-reveal hero-reveal-1 hero-gap-sm hero-title font-[family-name:var(--font-heading)] font-bold tracking-tight text-white">
+            Seed paper that
             <br />
-            <AnimatedHeadline
-              text="grows."
-              delay={0.7}
-              className="italic text-green-400"
-            />
+            <span className="italic text-green-400">grows.</span>
           </h1>
 
           {/* Subline */}
-          <AnimatedLine delay={1.05} className="hero-gap-sm hero-sub text-white/80 max-w-2xl mx-auto leading-relaxed lg:mx-0">
+          <p className="hero-reveal hero-reveal-2 hero-gap-sm hero-sub text-white/80 max-w-2xl mx-auto leading-relaxed lg:mx-0">
             Turn your packaging, promotions and events into something customers
             can plant and remember.
-          </AnimatedLine>
+          </p>
 
           {/* CTAs */}
           {/* Row 1: the primary WhatsApp CTA. Row 2: the two secondary CTAs
               side by side, so they share a baseline. */}
-          <AnimatedLine delay={1.25} className="hero-gap-md flex flex-col items-center gap-3 lg:items-start">
+          <div className="hero-reveal hero-reveal-3 hero-gap-md flex flex-col items-center gap-3 lg:items-start">
             <WhatsAppButton
               source="hero"
               label="Get a quote on WhatsApp"
@@ -370,10 +364,10 @@ export default function HomePage() {
                 </Link>
               </Button>
             </div>
-          </AnimatedLine>
+          </div>
 
           {/* Stats strip */}
-          <AnimatedLine delay={1.45}>
+          <div className="hero-reveal hero-reveal-4">
             <dl className="hero-gap-lg hero-stats grid grid-cols-2 sm:grid-cols-4">
               {[
                 { label: "MOQ from",     value: "300 units" },
@@ -389,7 +383,7 @@ export default function HomePage() {
                 </div>
               ))}
             </dl>
-          </AnimatedLine>
+          </div>
         </div>
 
         {/* Scroll cue */}

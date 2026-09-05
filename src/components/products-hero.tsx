@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Calculator } from "lucide-react";
-import { AnimatedHeadline, AnimatedLine } from "@/components/ui/animate";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 // One full story loop, in seconds: empty pot → drop seed paper → rain →
@@ -323,27 +322,20 @@ export function ProductsHero() {
       <div className="container-page grid items-center gap-10 py-16 sm:py-20 lg:grid-cols-2 lg:gap-12">
         {/* Copy */}
         <div className="text-center lg:text-left">
-          <AnimatedLine>
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand">
-              Products
-            </p>
-          </AnimatedLine>
-          <h1 className="mt-3 font-[family-name:var(--font-heading)] text-4xl font-bold leading-tight text-foreground sm:text-5xl">
-            <AnimatedHeadline text="Plantable packaging, made to order" delay={0.1} />
+          {/* CSS reveals, not JS ones: this is the above-the-fold copy on
+              /products, so it must paint before the bundle hydrates. */}
+          <p className="hero-reveal text-sm font-semibold uppercase tracking-[0.2em] text-brand">
+            Products
+          </p>
+          <h1 className="hero-reveal hero-reveal-1 mt-3 font-[family-name:var(--font-heading)] text-4xl font-bold leading-tight text-foreground sm:text-5xl">
+            Plantable packaging, made to order
           </h1>
-          <AnimatedLine delay={0.5}>
-            <p className="mx-auto mt-5 max-w-xl text-lg text-muted-foreground lg:mx-0">
-              Tap <strong>Add to quote</strong> on any product to build a list,
-              then send it over. We&apos;ll come back with pricing, minimum
-              quantities and lead times.
-            </p>
-          </AnimatedLine>
-          <motion.div
-            className="mt-8 flex flex-wrap justify-center gap-3 lg:justify-start"
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease, delay: 0.8 }}
-          >
+          <p className="hero-reveal hero-reveal-2 mx-auto mt-5 max-w-xl text-lg text-muted-foreground lg:mx-0">
+            Tap <strong>Add to quote</strong> on any product to build a list,
+            then send it over. We&apos;ll come back with pricing, minimum
+            quantities and lead times.
+          </p>
+          <div className="hero-reveal hero-reveal-3 mt-8 flex flex-wrap justify-center gap-3 lg:justify-start">
             <Link
               href="/quote"
               className="inline-flex items-center justify-center rounded-full bg-brand px-7 py-3 text-sm font-semibold text-white transition hover:opacity-90"
@@ -362,7 +354,7 @@ export function ProductsHero() {
             >
               Order a sample kit
             </Link>
-          </motion.div>
+          </div>
         </div>
 
         {/* Top-down pot story animation */}

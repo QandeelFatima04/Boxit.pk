@@ -146,6 +146,24 @@
   ::selection {
     @apply bg-brand/20 text-foreground;
   }
+
+  /* Motion accessibility (WCAG 2.3.3). Users who ask their OS for reduced
+     motion get the finished state instantly instead of transitions, parallax
+     and the looping badge pulse. `scroll-behavior` is reset too, so the
+     `scroll-smooth` above does not fight the same preference. */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
 }
 
 @layer components {
@@ -191,6 +209,20 @@
       padding-inline: 5rem; /* 80px — wide desktop */
     }
   }
+  /* Skip-to-content link — visually hidden until it takes keyboard focus,
+     so keyboard and screen-reader users can jump the 40-odd header links. */
+  .skip-link {
+    @apply sr-only;
+  }
+  /* `:focus`, not `:focus-visible` — the link must appear for any focus that
+     reaches it, including programmatic focus and browsers that withhold
+     :focus-visible from mouse-initiated focus. */
+  .skip-link:focus {
+    @apply not-sr-only fixed left-4 top-4 z-[100] rounded-md bg-brand px-4 py-2
+      text-sm font-semibold text-brand-foreground shadow-lg outline-none
+      ring-2 ring-white ring-offset-2 ring-offset-brand;
+  }
+
   .eyebrow {
     @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-brand;
   }
@@ -227,13 +259,42 @@
     min-height: 100svh; /* excludes mobile browser chrome */
   }
 
+  /* Parallax layer for the hero photo. The photo itself is a <next/image>
+     child (object-cover, centered) rather than a CSS background: a background
+     image cannot be preloaded or served as WebP/AVIF, and having both meant
+     the same 350KB banner was fetched twice on every visit. */
   .hero-bg {
-    /* Wide crop: lawn on the left, products on the right (from ~47% across). */
-    background-image: url("/images/hero-banner-wide.jpg");
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
+    overflow: hidden;
   }
+  /* Wide crop: lawn on the left, products on the right (from ~47% across).
+     Retargeted per breakpoint further down, the way background-position was. */
+  .hero-bg img {
+    object-position: center center;
+  }
+
+  /* Above-the-fold reveal. A CSS animation, not a JS one, so the hero paints
+     — and the LCP lands — without waiting for the bundle to download and
+     hydrate. The `prefers-reduced-motion` block in the base layer collapses
+     these to their final state. */
+  @keyframes hero-rise {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+      filter: blur(3px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+      filter: none;
+    }
+  }
+  .hero-reveal {
+    animation: hero-rise 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .hero-reveal-1 { animation-delay: 0.06s; }
+  .hero-reveal-2 { animation-delay: 0.14s; }
+  .hero-reveal-3 { animation-delay: 0.22s; }
+  .hero-reveal-4 { animation-delay: 0.3s; }
 
   /* Readability scrim. Darkens only the left column and fades to fully
      transparent before the products begin, so they are never overlaid. */
@@ -288,8 +349,10 @@
    of the crop) stay clear. Below lg the content re-centres. */
 @media (min-width: 1024px) {
   /* Anchor the crop left so any horizontal overflow is trimmed from the empty
-     grass on the far right, pushing the products further from the text. */
-  .hero-bg { background-position: left center; }
+     grass on the far right, pushing the products further from the text.
+     `object-position` on the <img>, since the photo is no longer a CSS
+     background. */
+  .hero-bg img { object-position: left center; }
   .hero-col {
     margin-inline: 0;
     max-width: min(44%, 38rem);
@@ -300,7 +363,7 @@
 /* Mobile / tablet: centre the copy and pan the crop so the products stay in
    frame behind it, with a vertical scrim instead of a left-side one. */
 @media (max-width: 1023px) {
-  .hero-bg { background-position: 72% center; }
+  .hero-bg img { object-position: 72% center; }
   .hero-scrim {
     background: linear-gradient(
       to bottom,
