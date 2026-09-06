@@ -11,6 +11,10 @@ const nextConfig: NextConfig = {
     // 25-30% smaller than the WebP the optimiser served before. Order matters
     // — the first entry matching the browser's Accept header wins.
     formats: ["image/avif", "image/webp"],
+    // Next 16 requires an explicit allowlist. 75 is the site default; 60 is for
+    // the partner logo marquee, whose marks render ~76px tall — the difference
+    // is invisible there and roughly halves that strip's weight.
+    qualities: [60, 75],
     // The catalogue photos are immutable once published, so let the optimiser
     // keep each derivative for a year instead of re-encoding on cache misses.
     minimumCacheTTL: 31536000,
