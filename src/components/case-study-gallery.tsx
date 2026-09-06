@@ -47,7 +47,7 @@ export function CaseStudyGallery({
             i === active ? "opacity-100" : "opacity-0"
           }`}
           sizes="(max-width: 1024px) 100vw, 33vw"
-          priority={i === 0}
+          preload={i === 0}
         />
       ))}
       {images.length > 1 && (

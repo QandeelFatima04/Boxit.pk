@@ -110,7 +110,7 @@ export default async function BlogPostPage({
               fill
               className="object-cover"
               sizes="(max-width: 1024px) 100vw, 56rem"
-              priority
+              preload
             />
           </div>
         </div>

@@ -28,6 +28,10 @@ export function Logo({
         height={LOGO_H}
         // Slightly smaller on phones so the mark never crowds the 64px bar.
         className="h-8 w-auto sm:h-9"
+        // Rendered 32-36px tall (~26px wide). Without `sizes`, next/image falls
+        // back to 100vw and the browser picks a candidate sized for the whole
+        // viewport — it was pulling two copies, 54KB each, for this mark.
+        sizes="32px"
         // Eager, not preloaded: the mark is above the fold on every page, but
         // the hero photo is the LCP element and should keep the preload slot.
         // (`priority` is deprecated as of Next 16.)

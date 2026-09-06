@@ -127,7 +127,7 @@ export default async function ProductPage({
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"
-                priority
+                preload
               />
             ) : (
               <div className="grid h-full w-full place-items-center">

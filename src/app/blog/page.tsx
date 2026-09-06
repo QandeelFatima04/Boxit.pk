@@ -53,7 +53,7 @@ export default function BlogPage() {
                     fill
                     className="object-cover transition duration-300 group-hover:scale-105"
                     sizes="(max-width: 1024px) 100vw, 50vw"
-                    priority
+                    preload
                   />
                 </div>
               )}

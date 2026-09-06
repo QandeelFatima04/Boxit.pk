@@ -18,7 +18,7 @@ export default function WorkPage() {
         <div className="container-page py-16 sm:py-20">
           <p className="eyebrow">Our work</p>
           <h1 className="mt-4 font-[family-name:var(--font-heading)] text-4xl font-bold sm:text-5xl">
-            Projects we've run start to finish
+            Projects we&apos;ve run start to finish
           </h1>
           <p className="mt-5 max-w-2xl text-lg text-muted-foreground">
             A selection of real briefs: the format the client needed, the stock

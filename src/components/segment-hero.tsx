@@ -36,7 +36,7 @@ export function SegmentHero({ segment: s }: { segment: SegmentPage }) {
                 src={s.heroImage}
                 alt={s.heroImageAlt}
                 fill
-                priority
+                preload
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />

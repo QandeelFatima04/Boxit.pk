@@ -26,22 +26,26 @@ export function SiteHeader({
 }) {
   const [open, setOpen] = useState(false);
   const { count, setOpen: setCartOpen } = useCart();
-  const [scrolled, setScrolled] = useState(false);
+  // Only the homepage tracks scroll; every other page is solid from the first
+  // paint (see `scrolled` below).
+  const [scrolledOnHome, setScrolledOnHome] = useState(false);
   const [megaOpen, setMegaOpen] = useState(false);
   const pathname = usePathname();
   const isHomepage = pathname === "/";
 
   useEffect(() => {
-    // Non-homepage pages always show solid header
-    if (!isHomepage) {
-      setScrolled(true);
-      return;
-    }
-    const handler = () => setScrolled(window.scrollY > 80);
+    if (!isHomepage) return;
+    const handler = () => setScrolledOnHome(window.scrollY > 80);
     handler(); // run immediately on mount
     window.addEventListener("scroll", handler, { passive: true });
     return () => window.removeEventListener("scroll", handler);
   }, [isHomepage]);
+
+  // Derived, not stored: off the homepage the header is always solid, so it
+  // renders that way on the very first paint. Setting it from the effect
+  // instead meant a frame of transparent header on every inner page, plus the
+  // cascading re-render that `react-hooks/set-state-in-effect` flags.
+  const scrolled = isHomepage ? scrolledOnHome : true;
 
   // Stable identity: the menu reports its open state from an effect, so a fresh
   // callback each render would re-fire it on every render.
@@ -79,7 +83,7 @@ export function SiteHeader({
         <nav className="hidden items-center gap-6 lg:flex">
           <div className="group relative">
             <button
-              className={`text-sm font-medium transition ${
+              className={`tap-24 text-sm font-medium transition ${
                 onDark ? "text-white/90 hover:text-white" : "text-foreground/80 hover:text-foreground"
               }`}
             >
@@ -112,7 +116,7 @@ export function SiteHeader({
               <Link
                 key={link.href}
                 href={link.href}
-                className={`text-sm font-medium transition ${
+                className={`tap-24 text-sm font-medium transition ${
                   onDark ? "text-white/90 hover:text-white" : "text-foreground/80 hover:text-foreground"
                 }`}
               >

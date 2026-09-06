@@ -348,7 +348,7 @@ export function ProductsMegaMenu({
                 href="/products"
                 onClick={() => closeMenu()}
                 className={cn(
-                  "mt-3 inline-flex items-center gap-1.5 rounded-md text-sm font-medium text-foreground/70 transition",
+                  "tap-24 mt-3 inline-flex items-center gap-1.5 rounded-md text-sm font-medium text-foreground/70 transition",
                   "hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand",
                 )}
               >

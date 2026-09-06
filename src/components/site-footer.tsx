@@ -25,7 +25,7 @@ function Column({
           <li key={l.href}>
             <Link
               href={l.href}
-              className="text-sm text-muted-foreground transition hover:text-brand"
+              className="tap-24 text-sm text-muted-foreground transition hover:text-brand"
             >
               {l.label}
             </Link>
@@ -57,12 +57,12 @@ export function SiteFooter() {
             {site.description}
           </p>
           <div className="mt-5 space-y-2 text-sm text-muted-foreground">
-            <a href={telLink()} className="flex items-center gap-2 hover:text-brand">
+            <a href={telLink()} className="tap-24 flex items-center gap-2 hover:text-brand">
               <Phone className="h-4 w-4" /> {site.phoneDisplay}
             </a>
             <a
               href={`mailto:${site.email}`}
-              className="flex items-center gap-2 hover:text-brand"
+              className="tap-24 flex items-center gap-2 hover:text-brand"
             >
               <Mail className="h-4 w-4" /> {site.email}
             </a>

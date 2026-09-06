@@ -108,7 +108,7 @@ export function ProductCard({ product }: { product: Product }) {
 
         <div className="flex items-start justify-between gap-2">
           <h3 className="font-[family-name:var(--font-heading)] text-lg font-semibold leading-tight">
-            <Link href={`/products/${product.slug}`} className="hover:text-brand">
+            <Link href={`/products/${product.slug}`} className="tap-24 hover:text-brand">
               {product.name}
             </Link>
           </h3>

@@ -223,6 +223,25 @@
       ring-2 ring-white ring-offset-2 ring-offset-brand;
   }
 
+  /* WCAG 2.5.8 (AA) — minimum 24x24px pointer target.
+     These links are 18-23px tall by design. The pseudo-element enlarges only
+     the *hit area*: it is part of the anchor for hit-testing but is out of
+     flow, so text size, line-height and spacing are untouched. Every list this
+     is applied to has a vertical pitch of 28px or more, so the enlarged areas
+     never overlap each other. */
+  .tap-24 {
+    position: relative;
+  }
+  .tap-24::after {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    top: 50%;
+    height: 24px;
+    min-width: 24px;
+    transform: translateY(-50%);
+  }
+
   .eyebrow {
     @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-brand;
   }
