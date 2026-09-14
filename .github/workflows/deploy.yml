@@ -30,12 +30,28 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p ~/.ssh && chmod 700 ~/.ssh
-          printf '%s\n' "${{ secrets.VPS_SSH_KEY }}" > ~/.ssh/id_deploy
+          # tr -d '\r': these secrets are pasted by hand, often out of a file
+          # on Windows. A stray CR makes OpenSSH reject the key with a useless
+          # "invalid format", so strip them here instead.
+          printf '%s\n' "${{ secrets.VPS_SSH_KEY }}" | tr -d '\r' > ~/.ssh/id_deploy
           chmod 600 ~/.ssh/id_deploy
           # Pinned from a secret rather than StrictHostKeyChecking=no, so a
           # spoofed host can never receive the deploy key.
-          printf '%s\n' "${{ secrets.VPS_KNOWN_HOSTS }}" > ~/.ssh/known_hosts
+          printf '%s\n' "${{ secrets.VPS_KNOWN_HOSTS }}" | tr -d '\r' > ~/.ssh/known_hosts
           chmod 644 ~/.ssh/known_hosts
+
+          # Fail here, with a sentence that says what to fix, rather than forty
+          # lines later with a bare "Permission denied (publickey)".
+          if ! ssh-keygen -y -f ~/.ssh/id_deploy > /dev/null 2>&1; then
+            echo "!! VPS_SSH_KEY is not a usable private key — paste the whole" >&2
+            echo "   file, BEGIN/END lines included. See DEPLOY.md." >&2
+            exit 1
+          fi
+          if ! [ -s ~/.ssh/known_hosts ]; then
+            echo "!! VPS_KNOWN_HOSTS is empty — see DEPLOY.md step 3." >&2
+            exit 1
+          fi
+          echo "deploy key: $(ssh-keygen -lf ~/.ssh/id_deploy | awk '{print $2, $3}')"
 
       - name: Build and restart on the VPS
         env:

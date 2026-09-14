@@ -41,7 +41,7 @@ folders, not git checkouts — `.env.production` is symlinked in from `shared/`.
 Separate from your personal key, used only by GitHub Actions:
 
 ```bash
-ssh-keygen -t ed25519 -C "github-actions-deploy" -f ~/.ssh/boxit_deploy -N ""
+ssh-keygen -t ed25519 -C "github-actions-deploy-boxit" -f ~/.ssh/boxit_deploy -N ""
 ```
 
 ### 2. Authorise it on the VPS
@@ -50,10 +50,16 @@ ssh-keygen -t ed25519 -C "github-actions-deploy" -f ~/.ssh/boxit_deploy -N ""
 ssh-copy-id -i ~/.ssh/boxit_deploy.pub root@91.230.110.175
 ```
 
+Check it works the way Actions will use it — on its own, non-interactively:
+
+```bash
+ssh -i ~/.ssh/boxit_deploy -o IdentitiesOnly=yes -o BatchMode=yes root@91.230.110.175 whoami
+```
+
 ### 3. Capture the host fingerprint
 
 ```bash
-ssh-keyscan -H 91.230.110.175
+ssh-keyscan -H 91.230.110.175 | grep -v '^#' > ~/.ssh/boxit_known_hosts
 ```
 
 ### 4. Add four secrets
@@ -63,7 +69,7 @@ Repo → **Settings → Secrets and variables → Actions → Secrets**:
 | Secret | Value |
 | --- | --- |
 | `VPS_SSH_KEY` | The **private** key from step 1 — `cat ~/.ssh/boxit_deploy`, `BEGIN`/`END` lines included |
-| `VPS_KNOWN_HOSTS` | Full output of step 3 |
+| `VPS_KNOWN_HOSTS` | The file from step 3 |
 | `VPS_HOST` | `91.230.110.175` |
 | `VPS_USER` | `root` |
 
@@ -98,3 +104,36 @@ ln -sfnT /var/www/boxit/releases/<previous-timestamp> /var/www/boxit/current && 
   that; this is not a regression.
 - A deploy takes a few minutes, almost all of it `npm ci` and `next build`. The
   live site keeps serving the old release throughout.
+
+## When a deploy fails at "Build and restart on the VPS"
+
+That step is the SSH connection. The workflow checks the key before it dials
+out, so read the top of the step first — it says outright if `VPS_SSH_KEY` or
+`VPS_KNOWN_HOSTS` is unusable.
+
+If the key is fine and the connection is still refused, the public half is not
+authorised on the box. The deploy key's fingerprint is printed by that step;
+compare it against the server:
+
+```bash
+ssh root@91.230.110.175 "ssh-keygen -lf /root/.ssh/authorized_keys"
+```
+
+The server's own log is the deciding evidence — a rejected deploy shows up as
+`Connection closed by authenticating user root <runner-ip> [preauth]`:
+
+```bash
+ssh root@91.230.110.175 "grep -a sshd /var/log/auth.log | tail -50"
+```
+
+**Deploying by hand** (while CI is broken, or to skip the queue) runs the same
+script the workflow does:
+
+```bash
+tr -d '\r' < scripts/deploy-remote.sh | ssh -i ~/.ssh/id_ed25519 root@91.230.110.175 \
+  "bash -s -- /var/www/boxit 'pm2 restart boxit --update-env' \
+   https://github.com/QandeelFatima04/Boxit.pk.git main http://127.0.0.1:3002/"
+```
+
+`tr -d '\r'` matters on Windows: the checkout carries CRLF, and the remote bash
+dies on `set: pipefail: invalid option name` without it.
