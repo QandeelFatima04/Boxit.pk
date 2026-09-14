@@ -67,7 +67,7 @@ export const segments: SegmentPage[] = [
     heroImage: "/images/segments/hero-seed-paper-stock-v2.jpg",
     heroImageAlt:
       "Wholesale plantable seed-paper sheets in bulk, manufactured in Pakistan",
-    // Raw seed-paper sheets in bulk — A4/A5, custom GSM, deckle-edge stock
+    // Raw seed-paper sheets in bulk — A4, custom GSM, deckle-edge stock
     gallery: [
       "/images/products/artistic-sheets-2.jpg",
       "/images/products/artistic-sheets-1.jpg",
@@ -86,11 +86,10 @@ export const segments: SegmentPage[] = [
       "Pakistan's only local manufacturer of plantable seed paper — no import delays, no minimum container.",
     productSlugs: [
       "seed-paper-sheets-bulk",
-      "seed-paper-a5-pack",
       "neem-leaf-paper",
       "cotton-paper",
     ],
-    startingFrom: "From PKR 1,200 (A5 sample pack)",
+    startingFrom: "Custom-quoted",
     moq: "From 300 A4 sheets (bulk)",
     leadTime: "5–10 working days",
     cta: {
@@ -101,7 +100,7 @@ export const segments: SegmentPage[] = [
     seo: {
       seoTitle: "Wholesale Seed Paper Stock Pakistan | Bulk Plantable Sheets",
       metaDescription:
-        "Buy wholesale plantable seed paper sheets from Pakistan's only local manufacturer. A4, A5, custom GSM and deckle-edge formats. Sample packs available.",
+        "Buy wholesale plantable seed paper sheets from Pakistan's only local manufacturer. A4, custom GSM and deckle-edge formats. Sample kits available.",
       keywords: [
         "seed paper stock Pakistan",
         "wholesale plantable paper",

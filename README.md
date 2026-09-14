@@ -28,8 +28,7 @@ Merging to `main` builds and restarts the site on the VPS automatically. See
 
 See `.env.example`. Everything is optional in development:
 - `NEXT_PUBLIC_GA_ID`, `NEXT_PUBLIC_FB_PIXEL_ID` — analytics (no-op if unset)
-- `RESEND_API_KEY`, `LEADS_NOTIFY_EMAIL` — email notifications for leads/orders
-- `PAYMENT_PROVIDER` + gateway keys — JazzCash/Easypaisa/cards (COD + bank transfer work without any gateway)
+- `RESEND_API_KEY`, `LEADS_NOTIFY_EMAIL` — email notifications for leads
 - `NEXT_PUBLIC_SANITY_*` — optional CMS (local content is the default)
 
 ## Structure
@@ -39,7 +38,7 @@ src/
   app/                 # routes (home, segments, products, sample-kit, quote, work, blog, legal, api)
   components/          # UI: header/footer, cart, forms, sections, product card, analytics, json-ld
   content/             # typed content (products, categories, segments, faqs, case studies, pricing, blog)
-  lib/                 # site config, content access, payments, commerce, tracking, utm, format
+  lib/                 # site config, content access, tracking, utm, format
 scripts/               # Python: utm_links.py (channel links), optimize_seo.py (90-day SEO run)
 ```
 
@@ -49,15 +48,15 @@ Content lives in `src/content/*` as typed objects, each with **SEO fields** (`se
 
 ## Marketing attribution (UTMs)
 
-`scripts/utm_links.py` generates a tagged-link sheet for every channel (Meta/IG ads, IG bio, WhatsApp, email, QR, partners). On landing, the site captures first-touch UTM/click-IDs (`src/lib/utm.ts`) and attaches them to **every lead and order**, plus forwards campaigns to GA4.
+`scripts/utm_links.py` generates a tagged-link sheet for every channel (Meta/IG ads, IG bio, WhatsApp, email, QR, partners). On landing, the site captures first-touch UTM/click-IDs (`src/lib/utm.ts`) and attaches them to **every lead**, plus forwards campaigns to GA4.
 
 ## Commerce
 
-- Cart (context + localStorage), checkout, order confirmation.
-- Server recomputes order totals from the catalogue (never trusts client prices).
-- Payments: **COD** and **bank transfer** work today; **JazzCash/Easypaisa** is behind an adapter (`src/lib/payments.ts`) that switches on once merchant keys are set.
-- Standard SKUs are purchasable; custom/bulk routes to **Request a Quote**.
+- **Quote-only.** Nothing is sold or paid for on the site: there is no checkout, no cart total and no payment method (COD included).
+- Every product — the sample kit included — shows *Price on request* and routes to **Request a quote**, WhatsApp or the cost estimator.
+- The "quote list" (context + localStorage, `src/components/cart/`) collects items so a visitor can send several at once from `/quote`.
+- `price`/`variants` in `src/content/products.ts` are internal reference rates only; nothing charges from them.
 
 ## Before launch (open items)
 
-Real prices/MOQs/timelines, sample-kit price, WhatsApp number, payee/bank details (`src/lib/payments.ts`), product photography, and (optionally) a Sanity project + payment-gateway credentials. See the build plan for the full list.
+Real prices/MOQs/timelines, WhatsApp number, product photography, and (optionally) a Sanity project. See the build plan for the full list.

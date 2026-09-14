@@ -1,8 +1,8 @@
 import type { Product } from "./types";
 
-// NOTE: prices are placeholders for the productized SKUs (confirm before launch).
-// Purchasable = fixed-price standard items (checkout). Everything custom/bulk
-// routes to Request-a-Quote, per the strategy.
+// NOTE: the site does not sell online — every product routes to
+// Request-a-Quote. The `price`/`variants` figures below are internal reference
+// rates (they feed the cost estimator); nothing on the site charges from them.
 
 export const products: Product[] = [
   // ---------- Purchasable standard SKUs ----------
@@ -36,25 +36,6 @@ export const products: Product[] = [
         "seed paper test pack",
       ],
     },
-  },
-  {
-    slug: "seed-paper-a5-pack",
-    name: "Seed Paper A5 Pack (25 sheets)",
-    tagline: "Plantable A5 sheets for cards, notes & DIY",
-    description:
-      "Tree-free, seed-embedded A5 sheets you can print, write or craft on, then plant. Grows into herbs and wildflowers. Great for testing before a bulk run.",
-    category: "seed-paper",
-    segments: ["seed-paper-stock", "weddings-events"],
-    image: "/images/products/seed-paper-a5-printed.jpg",
-    gallery: [
-      "/images/products/seed-paper-a5-printed.jpg",
-      "/images/products/seed-paper-a5-printed-cards.jpg",
-    ],
-    purchasable: true,
-    price: 1200,
-    moq: "1 pack",
-    leadTime: "Ships in 2–3 working days",
-    features: ["25 × A5 seed paper sheets", "Mixed herb / wildflower seeds", "Tree-free, 100% biodegradable"],
   },
   {
     slug: "plantable-greeting-cards-set",

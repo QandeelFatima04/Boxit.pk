@@ -3,12 +3,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Check, Sprout, Truck, Package } from "lucide-react";
-import { AddToQuoteButton, AddToCartButton } from "@/components/add-to-cart-button";
-import { SheetConfigurator } from "@/components/sheet-configurator";
+import { AddToQuoteButton } from "@/components/add-to-quote-button";
 import { WhatsAppButton } from "@/components/whatsapp-button";
 import { EstimatorButton } from "@/components/estimator-button";
-import { formatPKR } from "@/lib/format";
-import { isCheckoutEnabled } from "@/lib/commerce";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ProductCard } from "@/components/product-card";
@@ -61,26 +58,14 @@ export default async function ProductPage({
     .filter((p) => p.slug !== product.slug)
     .slice(0, 4);
 
-  // Sized stock (seed paper sheets) is priced per unit via the configurator;
-  // flat SKUs (the sample kit, the A5 pack) get a straight Add-to-cart.
-  // Everything else stays on the quote flow — see CHECKOUT_ENABLED_SLUGS.
-  const buyable = product.purchasable && isCheckoutEnabled(product.slug);
-  const sizedVariants = buyable ? product.variants : undefined;
-  const hasSizes = Boolean(sizedVariants?.length);
-  const flatPrice = buyable && !hasSizes ? product.price : undefined;
-  const cheapestVariant = sizedVariants?.length
-    ? Math.min(...sizedVariants.map((v) => v.price))
-    : undefined;
-
   return (
     <>
       <ProductJsonLd
         name={product.name}
         description={product.description}
         image={product.image}
-        // Only flat SKUs get an Offer price. Sized stock has a 300-sheet MOQ, so
-        // advertising its per-sheet rate as a buyable price would be inaccurate.
-        price={flatPrice}
+        // Nothing is sold online — every product is quoted — so the listing
+        // carries no Offer price.
         slug={product.slug}
       />
       <BreadcrumbJsonLd
@@ -151,20 +136,7 @@ export default async function ProductPage({
             </p>
 
             <div className="mt-4">
-              {flatPrice ? (
-                <span className="text-3xl font-bold">{formatPKR(flatPrice)}</span>
-              ) : cheapestVariant ? (
-                <span className="text-3xl font-bold">
-                  From {formatPKR(cheapestVariant)}
-                  <span className="ml-1 text-base font-medium text-muted-foreground">
-                    / sheet
-                  </span>
-                </span>
-              ) : (
-                <span className="text-xl font-bold text-brand">
-                  Custom-quoted
-                </span>
-              )}
+              <span className="text-xl font-bold text-brand">Custom-quoted</span>
             </div>
 
             <p className="mt-3 leading-relaxed text-muted-foreground">
@@ -196,32 +168,18 @@ export default async function ProductPage({
               </ul>
             )}
 
-            {hasSizes && <SheetConfigurator product={product} />}
-
             {/* 2×2 grid: equal-width CTAs that never overflow the column (a
                 flex row pushed the page into horizontal scroll). Stacks on
                 phones; each cell stretches so all four share one size. */}
             <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2 [&>*]:w-full">
-              {flatPrice ? (
-                <AddToCartButton
-                  size="lg"
-                  item={{
-                    slug: product.slug,
-                    name: product.name,
-                    price: flatPrice,
-                    image: product.image,
-                  }}
-                />
-              ) : hasSizes ? null : (
-                <AddToQuoteButton
-                  size="lg"
-                  item={{
-                    slug: product.slug,
-                    name: product.name,
-                    image: product.image,
-                  }}
-                />
-              )}
+              <AddToQuoteButton
+                size="lg"
+                item={{
+                  slug: product.slug,
+                  name: product.name,
+                  image: product.image,
+                }}
+              />
               <Button asChild size="lg" variant="outline">
                 <Link href={`/quote?product=${product.slug}`}>
                   Request a quote

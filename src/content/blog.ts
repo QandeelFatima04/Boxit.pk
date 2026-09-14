@@ -151,7 +151,7 @@ Importing seed paper means customs delays, minimum container requirements, and t
 
 We supply bulk seed-paper sheets directly from our own facility:
 
-- **A4 and A5 sheets**: standard sizes, ready to print
+- **A4 sheets**: standard size, ready to print
 - **Custom sizes**: up to 15" × 20" deckle-edge sheets
 - **GSM options**: multiple thickness options for different applications
 - **Seed selection**: seasonal availability of basil, marigold, wildflower, coriander and more
@@ -170,11 +170,11 @@ We recommend testing a sample batch before production to confirm your press sett
 
 ## How to get started
 
-Order a [sample pack (A5, 25 sheets)](/products/seed-paper-a5-pack) and run it through your own equipment. Once you are satisfied with quality and germination, [request a bulk stock quote](/seed-paper-stock) for your production needs.`,
+Order a [sample kit](/sample-kit) and run it through your own equipment. Once you are satisfied with quality and germination, [request a bulk stock quote](/seed-paper-stock) for your production needs.`,
     seo: {
       seoTitle: "Wholesale Seed Paper Stock Pakistan — Guide for Printers",
       metaDescription:
-        "Local seed paper stock supplier in Pakistan for printers, designers and manufacturers. A4/A5 sheets, custom GSM, bulk supply nationwide. No import delays.",
+        "Local seed paper stock supplier in Pakistan for printers, designers and manufacturers. A4 sheets, custom GSM, bulk supply nationwide. No import delays.",
       keywords: [
         "seed paper stock Pakistan",
         "wholesale plantable paper",

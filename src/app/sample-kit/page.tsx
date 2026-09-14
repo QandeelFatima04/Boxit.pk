@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Check, Sprout } from "lucide-react";
-import { AddToCartButton } from "@/components/add-to-cart-button";
+import { AddToQuoteButton } from "@/components/add-to-quote-button";
 import { WhatsAppButton } from "@/components/whatsapp-button";
-import { formatPKR } from "@/lib/format";
 import { Guarantees } from "@/components/sections";
 import { ProductJsonLd } from "@/components/json-ld";
 import { getProduct } from "@/lib/content";
@@ -33,14 +32,13 @@ export const metadata: Metadata = {
 };
 
 export default function SampleKitPage() {
-  if (!kit || !kit.price) notFound();
+  if (!kit) notFound();
 
   return (
     <>
       <ProductJsonLd
         name={kit.name}
         description={kit.description}
-        price={kit.price}
         slug={kit.slug}
       />
 
@@ -58,19 +56,19 @@ export default function SampleKitPage() {
             </p>
 
             <div className="mt-7 flex items-baseline gap-3">
-              <span className="text-3xl font-bold">{formatPKR(kit.price)}</span>
+              <span className="text-3xl font-bold">Price on request</span>
               <span className="text-sm font-medium text-brand">
                 Credited in full against your first bulk order
               </span>
             </div>
 
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-              <AddToCartButton
+              <AddToQuoteButton
                 size="lg"
+                label="Request the kit"
                 item={{
                   slug: kit.slug,
                   name: kit.name,
-                  price: kit.price,
                   image: kit.image,
                 }}
               />

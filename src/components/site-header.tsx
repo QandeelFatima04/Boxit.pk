@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState, useEffect, useCallback } from "react";
 import { usePathname } from "next/navigation";
-import { Calculator, Menu, ShoppingBag } from "lucide-react";
+import { Calculator, FileText, Menu } from "lucide-react";
 import { Logo } from "@/components/logo";
 import { Button } from "@/components/ui/button";
 import {
@@ -134,7 +134,7 @@ export function SiteHeader({
               onDark ? "text-white hover:bg-white/15" : "hover:bg-muted"
             }`}
           >
-            <ShoppingBag className="h-5 w-5" />
+            <FileText className="h-5 w-5" />
             {count > 0 && (
               <span className="absolute -right-0.5 -top-0.5 grid h-5 w-5 place-items-center rounded-full bg-gold text-[11px] font-bold text-gold-foreground">
                 {count}

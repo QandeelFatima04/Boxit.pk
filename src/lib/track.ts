@@ -1,6 +1,6 @@
 // Key-event tracking helper. Fires to GA4 (gtag) and Meta Pixel (fbq) if present.
 // Key events per the diagnosis chat: WhatsApp click, form submit, sample-kit
-// request, catalogue download, call click, begin/complete checkout.
+// request, catalogue download, call click.
 
 declare global {
   interface Window {
@@ -17,9 +17,7 @@ export type KeyEvent =
   | "sample_kit_request"
   | "quote_request"
   | "quiz_complete"
-  | "catalogue_download"
-  | "begin_checkout"
-  | "purchase";
+  | "catalogue_download";
 
 // Map our events to Meta standard events where one fits.
 const META_EVENT: Partial<Record<KeyEvent, string>> = {
@@ -30,8 +28,6 @@ const META_EVENT: Partial<Record<KeyEvent, string>> = {
   quote_request: "Lead",
   quiz_complete: "Lead",
   catalogue_download: "ViewContent",
-  begin_checkout: "InitiateCheckout",
-  purchase: "Purchase",
 };
 
 export function track(event: KeyEvent, params: Record<string, unknown> = {}) {

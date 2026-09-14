@@ -20,7 +20,10 @@ export default function TermsPage() {
           Custom work is priced per project. Quotes are valid for the period
           stated and depend on final specifications.
         </li>
-        <li>Ready-made item prices are shown on the product page.</li>
+        <li>
+          Ready-made items are quoted too — tell us the quantity you need and we
+          will send current pricing.
+        </li>
       </ul>
       <h2>Orders & approval</h2>
       <ul>
@@ -32,8 +35,9 @@ export default function TermsPage() {
       </ul>
       <h2>Payments</h2>
       <p>
-        We accept Cash on Delivery, bank transfer, and JazzCash/Easypaisa. For
-        manual methods, please share your receipt so we can confirm your order.
+        Nothing is sold or paid for on this website. Every order starts with a
+        quote; once you approve it, we agree payment terms with you directly and
+        invoice you for the order.
       </p>
       <h2>Liability</h2>
       <p>

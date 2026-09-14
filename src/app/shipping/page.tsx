@@ -26,9 +26,11 @@ export default function ShippingPage() {
       </ul>
       <h2>Shipping charges</h2>
       <ul>
-        <li>A flat shipping fee applies to small ready-made orders.</li>
-        <li>Free shipping over PKR 5,000.</li>
-        <li>Bulk order delivery is quoted per project.</li>
+        <li>
+          Delivery is quoted with your order — the charge is stated in the quote
+          before you approve it.
+        </li>
+        <li>Nationwide courier; remote areas may add a day or two.</li>
       </ul>
       <h2>Questions?</h2>
       <p>

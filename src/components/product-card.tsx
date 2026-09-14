@@ -4,9 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
-import { AddToQuoteButton, AddToCartButton } from "@/components/add-to-cart-button";
-import { formatPKR } from "@/lib/format";
-import { isCheckoutEnabled } from "@/lib/commerce";
+import { AddToQuoteButton } from "@/components/add-to-quote-button";
 import type { Product } from "@/content/types";
 
 function Placeholder({ name }: { name: string }) {
@@ -37,15 +35,6 @@ export function ProductCard({ product }: { product: Product }) {
         : [];
   const [active, setActive] = useState(0);
   const activeSrc = gallery[active];
-
-  // Flat SKUs buy in one tap; sized stock needs a size chosen on the product page.
-  // Only CHECKOUT_ENABLED_SLUGS are live for payment — the rest stay on quote.
-  const buyable = product.purchasable && isCheckoutEnabled(product.slug);
-  const hasSizes = Boolean(buyable && product.variants?.length);
-  const flatPrice = buyable && !hasSizes ? product.price : undefined;
-  const cheapestVariant = hasSizes
-    ? Math.min(...product.variants!.map((v) => v.price))
-    : undefined;
 
   return (
     <div
@@ -124,40 +113,16 @@ export function ProductCard({ product }: { product: Product }) {
           {/* whitespace-nowrap keeps the price label on one line so it reads
               as a single value against the CTA, rather than wrapping. */}
           <span className="whitespace-nowrap text-sm font-semibold text-brand">
-            {flatPrice
-              ? formatPKR(flatPrice)
-              : cheapestVariant
-                ? `From ${formatPKR(cheapestVariant)} / sheet`
-                : "Price on request"}
+            Price on request
           </span>
-          {flatPrice ? (
-            <AddToCartButton
-              size="sm"
-              item={{
-                slug: product.slug,
-                name: product.name,
-                price: flatPrice,
-                image: product.image,
-              }}
-            />
-          ) : cheapestVariant ? (
-            // Sizes must be picked before this can be priced — send them to the page.
-            <Link
-              href={`/products/${product.slug}`}
-              className="text-sm font-medium text-brand underline underline-offset-4"
-            >
-              Choose size
-            </Link>
-          ) : (
-            <AddToQuoteButton
-              size="sm"
-              item={{
-                slug: product.slug,
-                name: product.name,
-                image: product.image,
-              }}
-            />
-          )}
+          <AddToQuoteButton
+            size="sm"
+            item={{
+              slug: product.slug,
+              name: product.name,
+              image: product.image,
+            }}
+          />
         </div>
       </div>
     </div>
