@@ -42,15 +42,17 @@ jobs:
           VPS_HOST: ${{ secrets.VPS_HOST }}
           VPS_USER: ${{ secrets.VPS_USER }}
           VPS_PORT: ${{ vars.VPS_PORT || '22' }}
-          APP_DIR: ${{ secrets.VPS_APP_DIR }}
-          RESTART_CMD: ${{ secrets.VPS_RESTART_CMD }}
-          HEALTH_URL: ${{ vars.VPS_HEALTH_URL }}
+          APP_ROOT: ${{ vars.VPS_APP_ROOT || '/var/www/boxit' }}
+          RESTART_CMD: ${{ vars.VPS_RESTART_CMD || 'pm2 restart boxit --update-env' }}
+          REPO_URL: ${{ vars.VPS_REPO_URL || format('https://github.com/{0}.git', github.repository) }}
+          BRANCH: ${{ github.ref_name }}
+          HEALTH_URL: ${{ vars.VPS_HEALTH_URL || 'http://127.0.0.1:3002/' }}
         run: |
           set -euo pipefail
           # printf %q quotes each value for the remote shell, which re-parses
           # the command string — so paths or restart commands containing
           # spaces survive intact.
-          ARGS=$(printf '%q %q %q' "$APP_DIR" "$RESTART_CMD" "${HEALTH_URL:-}")
+          ARGS=$(printf '%q %q %q %q %q'             "$APP_ROOT" "$RESTART_CMD" "$REPO_URL" "$BRANCH" "${HEALTH_URL:-}")
           ssh -i ~/.ssh/id_deploy -p "$VPS_PORT" \
               -o IdentitiesOnly=yes -o BatchMode=yes \
               "$VPS_USER@$VPS_HOST" \
