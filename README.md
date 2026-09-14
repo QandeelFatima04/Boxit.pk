@@ -19,6 +19,11 @@ npm run build                # production build
 npm run lint
 ```
 
+## Deployment
+
+Merging to `main` builds and restarts the site on the VPS automatically. See
+[DEPLOY.md](DEPLOY.md) for the one-time secret setup and how to roll back.
+
 ## Environment
 
 See `.env.example`. Everything is optional in development:

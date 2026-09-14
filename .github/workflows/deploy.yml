@@ -1,0 +1,61 @@
+name: Deploy boxit.pk
+
+# Runs on every merge to main, or on demand from the Actions tab.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Never let two deploys touch the server at once, and never cancel one
+# part-way through a build on the box.
+concurrency:
+  group: deploy-boxit-production
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    # Add a required reviewer to this environment in Settings -> Environments
+    # if you ever want deploys to wait for approval.
+    environment: production
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Load deploy key and pin the host
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh && chmod 700 ~/.ssh
+          printf '%s\n' "${{ secrets.VPS_SSH_KEY }}" > ~/.ssh/id_deploy
+          chmod 600 ~/.ssh/id_deploy
+          # Pinned from a secret rather than StrictHostKeyChecking=no, so a
+          # spoofed host can never receive the deploy key.
+          printf '%s\n' "${{ secrets.VPS_KNOWN_HOSTS }}" > ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
+
+      - name: Build and restart on the VPS
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+          VPS_PORT: ${{ vars.VPS_PORT || '22' }}
+          APP_DIR: ${{ secrets.VPS_APP_DIR }}
+          RESTART_CMD: ${{ secrets.VPS_RESTART_CMD }}
+          HEALTH_URL: ${{ vars.VPS_HEALTH_URL }}
+        run: |
+          set -euo pipefail
+          # printf %q quotes each value for the remote shell, which re-parses
+          # the command string — so paths or restart commands containing
+          # spaces survive intact.
+          ARGS=$(printf '%q %q %q' "$APP_DIR" "$RESTART_CMD" "${HEALTH_URL:-}")
+          ssh -i ~/.ssh/id_deploy -p "$VPS_PORT" \
+              -o IdentitiesOnly=yes -o BatchMode=yes \
+              "$VPS_USER@$VPS_HOST" \
+              "bash -s -- $ARGS" < scripts/deploy-remote.sh
+
+      - name: Scrub the key
+        if: always()
+        run: rm -f ~/.ssh/id_deploy
