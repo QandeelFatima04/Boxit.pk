@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Check, Sprout } from "lucide-react";
 import { AddToQuoteButton } from "@/components/add-to-quote-button";
@@ -86,18 +87,35 @@ export default function SampleKitPage() {
             </p>
           </div>
 
-          <div className="rounded-3xl border bg-card p-8">
-            <h2 className="font-[family-name:var(--font-heading)] text-xl font-bold">
-              What&apos;s inside
-            </h2>
-            <ul className="mt-5 space-y-3">
-              {kit.features?.map((f) => (
-                <li key={f} className="flex gap-2 text-sm">
-                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-brand" />
-                  <span>{f}</span>
-                </li>
-              ))}
-            </ul>
+          <div className="space-y-6">
+            {kit.image && (
+              // The kit itself — the page asked people to request it without
+              // ever showing them what lands on their desk.
+              <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border bg-secondary/30">
+                <Image
+                  src={kit.image}
+                  alt="The Boxit plantable sample kit: seed-paper swatches, printed cards, tags and calendar samples"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  priority
+                />
+              </div>
+            )}
+
+            <div className="rounded-3xl border bg-card p-8">
+              <h2 className="font-[family-name:var(--font-heading)] text-xl font-bold">
+                What&apos;s inside
+              </h2>
+              <ul className="mt-5 space-y-3">
+                {kit.features?.map((f) => (
+                  <li key={f} className="flex gap-2 text-sm">
+                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-brand" />
+                    <span>{f}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </section>
